@@ -1,0 +1,50 @@
+// Footer styles
+// Simple footer with logo, navigation links, and copyright
+
+.footer {
+  background-color: $alliant-light-gray;
+  padding: 3rem 0 2rem;
+  text-align: center;
+
+  // Footer logo
+  .footer-logo {
+    margin-bottom: 3rem;
+
+    img {
+      height: 40px;
+    }
+  }
+
+  // Footer navigation
+  .footer-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+
+    li {
+      margin: 0;
+    }
+
+    a {
+      color: $alliant-navy;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $secondary;
+      }
+    }
+  }
+
+  // Copyright text
+  .footer-copyright {
+    font-size: 0.875rem;
+    color: $text-muted;
+    margin: 0;
+  }
+}

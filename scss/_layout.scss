@@ -1,0 +1,227 @@
+// Main layout and section styles
+// All major content sections using Bootstrap grid and utilities
+
+// Section spacing and backgrounds
+.section {
+  padding: 4rem 0;
+
+  @media (min-width: 768px) {
+    padding: 5rem 0;
+  }
+}
+
+.section-light {
+  background-color: $alliant-light-gray;
+}
+
+.section-dark {
+  background: linear-gradient(-62deg, #223A69 0%, #526FA1 100%);
+  color: $white;
+}
+
+// Section titles
+.section-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: $alliant-navy;
+  margin-bottom: 1.5rem;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    font-size: 2.25rem;
+  }
+
+  .section-dark & {
+    color: $white;
+  }
+}
+
+.section-subtitle {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  color: $text-muted;
+  line-height: 1.6;
+
+  .section-dark & {
+    color: rgba(255, 255, 255, 0.85);
+  }
+}
+
+// Alliant Values section - Bootstrap card with image at top
+.value-card {
+  overflow: hidden;
+  border-radius: $card-border-radius;
+
+  // Image at top of card - larger to match design
+  .card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+
+    @media (min-width: 768px) {
+      height: 220px;
+    }
+  }
+
+  // Blue card body section below image
+  .card-overlay {
+    background-color: $alliant-navy;
+    color: $white;
+    padding: 2rem 1.5rem;
+
+    .card-text {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 0;
+      color: $white;
+    }
+  }
+}
+
+// Icon wrapper for product offerings and asset types
+// Shared styling for both sections
+.icon-wrapper {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg, img {
+    width: 60px;
+    height: 60px;
+    stroke: $alliant-navy;
+    fill: none;
+    stroke-width: 1.5;
+  }
+}
+
+// Card styles organized by section type
+.section {
+  // Value cards (Alliant Values section) - white text on navy background
+  .value-card {
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: $white;
+      letter-spacing: normal;
+      text-transform: none;
+
+      @media (min-width: 768px) {
+        font-size: 1.75rem;
+      }
+    }
+
+    .card-text {
+      color: $white;
+    }
+  }
+}
+
+// Product Offerings section - navy text on white background
+.section-white {
+  background-color: $white;
+
+  .card {
+    .card-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: $alliant-navy;
+      margin-bottom: 0;
+      text-transform: uppercase;
+    }
+  }
+}
+
+// Asset Types section - transparent cards with white icons
+.section-dark {
+  .icon-wrapper {
+    svg, img {
+      stroke: $white;
+    }
+  }
+
+  .card-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: $white;
+  }
+}
+
+// Decorative diagonal lines (top right corner pattern with rounded edge)
+.diagonal-lines {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 400px;
+  opacity: 0.1;
+  pointer-events: none;
+  overflow: hidden;
+
+  // Diagonal lines pattern in top-right corner - extends to edges
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 800px;
+    height: 800px;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      $alliant-navy 10px,
+      $alliant-navy 12px
+    );
+  }
+
+  .section-dark & {
+    &::before {
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        $white 10px,
+        $white 12px
+      );
+    }
+  }
+
+  .section-light &,
+  .section-white & {
+    &::before {
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        $alliant-navy 10px,
+        $alliant-navy 12px
+      );
+    }
+  }
+
+  /* Alternative: Full circle approach (if reverting)
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 600px;
+    height: 600px;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      $alliant-navy 10px,
+      $alliant-navy 12px
+    );
+    border-radius: 50%;
+    transform: translate(25%, -25%);
+  }
+  */
+}

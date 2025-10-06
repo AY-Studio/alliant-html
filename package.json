@@ -1,0 +1,25 @@
+{
+  "name": "alliant-airfinance",
+  "version": "1.0.0",
+  "description": "Alliant AirFinance - Specialist Aviation Finance Website",
+  "scripts": {
+    "scss": "sass --watch scss/style.scss:css/style.css",
+    "build": "sass scss/style.scss:css/style.css --style compressed",
+    "build:dev": "sass scss/style.scss:css/style.css",
+    "watch": "sass --watch scss/style.scss:css/style.css"
+  },
+  "keywords": [
+    "bootstrap",
+    "scss",
+    "aviation",
+    "finance"
+  ],
+  "author": "Alliant AirFinance",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^5.3.2"
+  },
+  "devDependencies": {
+    "sass": "^1.69.5"
+  }
+}

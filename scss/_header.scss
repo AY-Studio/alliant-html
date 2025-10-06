@@ -1,0 +1,120 @@
+// Header and Navigation styles
+// Uses Bootstrap navbar component with custom Alliant branding
+
+.navbar {
+  background-color: $alliant-navy;
+  padding: 1rem 0;
+
+  // Alliant logo styling
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    color: $white;
+    font-weight: 600;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+    &:hover {
+      color: $white;
+    }
+
+    img {
+      height: 30px;
+      margin-right: 0.5rem;
+    }
+  }
+
+  // Navigation links
+  .navbar-nav {
+    // Center align on mobile
+    @media (max-width: 991.98px) {
+      text-align: center;
+    }
+
+    .nav-link {
+      color: $navbar-dark-color;
+      padding: 0.5rem 1rem;
+      font-weight: 400;
+
+      &:hover {
+        color: $navbar-dark-hover-color;
+      }
+    }
+  }
+}
+
+// Hero section with background image and overlay
+.hero-section {
+  position: relative;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: $white;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    min-height: 700px;
+  }
+
+  @media (min-width: 1200px) {
+    min-height: 800px;
+  }
+
+  // Dark overlay for better text readability
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $hero-overlay;
+    z-index: 1;
+  }
+
+  // Content positioning above overlay
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+
+    @media (min-width: 768px) {
+      font-size: 3rem;
+    }
+  }
+
+  p.lead {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (min-width: 768px) {
+      font-size: 1.25rem;
+    }
+  }
+
+  // CTA button styling
+  .btn-outline-light {
+    border-width: 2px;
+    padding: 0.625rem 1.5rem;
+    font-weight: 500;
+
+    &:hover {
+      background-color: $white;
+      color: $alliant-navy;
+    }
+  }
+}
