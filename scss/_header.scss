@@ -47,7 +47,8 @@
 // Hero section with background image and overlay
 .hero-section {
   position: relative;
-  min-height: 600px;
+  min-height: 450px;
+  max-height: 570px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,11 +60,11 @@
   text-align: center;
 
   @media (min-width: 768px) {
-    min-height: 700px;
+    min-height: 500px;
   }
 
   @media (min-width: 1200px) {
-    min-height: 800px;
+    min-height: 570px;
   }
 
   // Dark overlay for better text readability

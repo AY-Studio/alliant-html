@@ -282,6 +282,25 @@
     height: 200px;
     object-fit: cover;
     flex-shrink: 0;
+    position: relative;
+    transition: opacity 0.3s;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background-color: rgba($alliant-navy, 0);
+    transition: background-color 0.3s;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  &:hover::before {
+    background-color: rgba($alliant-navy, 0.15);
   }
 
   .card-body {
@@ -318,4 +337,346 @@
   &:hover .read-more {
     color: $secondary;
   }
+}
+
+// Article section styles
+.article-section {
+  background-color: $alliant-light-gray;
+  min-height: 100vh;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+
+  @media (min-width: 768px) {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    color: $alliant-navy;
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+
+    svg {
+      transition: transform 0.2s;
+    }
+
+    &:hover {
+      color: $secondary;
+
+      svg {
+        transform: translateX(-3px);
+      }
+    }
+  }
+
+  .article-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: $alliant-navy;
+    line-height: 1.3;
+
+    @media (min-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+
+  .article-image {
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+    }
+  }
+
+  .article-meta {
+    p {
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+  }
+
+  .article-content {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: $alliant-navy;
+
+    p {
+      margin-bottom: 1.5rem;
+    }
+
+    strong {
+      font-weight: 600;
+    }
+
+    // Headings
+    h2 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-top: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: $alliant-navy;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: $alliant-navy;
+    }
+
+    h4 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+      color: $alliant-navy;
+    }
+
+    h5, h6 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: $alliant-navy;
+    }
+
+    // Links
+    a {
+      color: $alliant-navy;
+      text-decoration: underline;
+      transition: color 0.2s;
+
+      &:hover {
+        color: $secondary;
+      }
+    }
+
+    // Lists
+    ul, ol {
+      margin-bottom: 1.5rem;
+      padding-left: 2rem;
+
+      li {
+        margin-bottom: 0.5rem;
+      }
+
+      ul, ol {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    ul {
+      list-style-type: disc;
+    }
+
+    ol {
+      list-style-type: decimal;
+    }
+
+    // Blockquotes
+    blockquote {
+      border-left: 4px solid $alliant-navy;
+      padding-left: 1.5rem;
+      margin: 2rem 0;
+      font-style: italic;
+      color: $alliant-navy;
+      background-color: rgba($alliant-navy, 0.05);
+      padding: 1.5rem;
+      border-radius: 0.25rem;
+
+      p:last-child {
+        margin-bottom: 0;
+      }
+
+      cite {
+        display: block;
+        margin-top: 1rem;
+        font-size: 0.875rem;
+        font-style: normal;
+        color: $text-muted;
+
+        &:before {
+          content: '— ';
+        }
+      }
+    }
+
+    // Images
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+      margin: 2rem 0;
+    }
+
+    // WordPress alignment classes
+    .alignleft {
+      float: left;
+      margin-right: 1.5rem;
+      margin-bottom: 1rem;
+      max-width: 50%;
+
+      @media (max-width: 767px) {
+        float: none;
+        margin-right: 0;
+        max-width: 100%;
+      }
+    }
+
+    .alignright {
+      float: right;
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+      max-width: 50%;
+
+      @media (max-width: 767px) {
+        float: none;
+        margin-left: 0;
+        max-width: 100%;
+      }
+    }
+
+    .aligncenter {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    // Captions
+    .wp-caption {
+      max-width: 100%;
+      margin-bottom: 1.5rem;
+
+      img {
+        margin: 0;
+      }
+
+      .wp-caption-text {
+        font-size: 0.875rem;
+        color: $text-muted;
+        text-align: center;
+        padding-top: 0.5rem;
+        font-style: italic;
+      }
+    }
+
+    // Tables
+    table {
+      width: 100%;
+      margin-bottom: 1.5rem;
+      border-collapse: collapse;
+
+      th, td {
+        padding: 0.75rem;
+        border: 1px solid rgba($alliant-navy, 0.2);
+        text-align: left;
+      }
+
+      th {
+        background-color: $alliant-navy;
+        color: $white;
+        font-weight: 600;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: rgba($alliant-navy, 0.05);
+      }
+    }
+
+    // Horizontal rule
+    hr {
+      border: 0;
+      border-top: 2px solid rgba($alliant-navy, 0.2);
+      margin: 2.5rem 0;
+    }
+
+    // Code blocks
+    code {
+      background-color: rgba($alliant-navy, 0.1);
+      color: $alliant-navy;
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.25rem;
+      font-size: 0.9em;
+      font-family: 'Courier New', monospace;
+    }
+
+    pre {
+      background-color: rgba($alliant-navy, 0.05);
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+
+      code {
+        background-color: transparent;
+        padding: 0;
+      }
+    }
+
+    // WordPress embed blocks
+    .wp-block-embed {
+      margin-bottom: 1.5rem;
+
+      iframe {
+        max-width: 100%;
+      }
+    }
+
+    // WordPress button blocks
+    .wp-block-button {
+      margin-bottom: 1.5rem;
+
+      .wp-block-button__link {
+        display: inline-block;
+        padding: 0.625rem 1.5rem;
+        background-color: $alliant-navy;
+        color: $white;
+        text-decoration: none;
+        border-radius: 0.25rem;
+        font-weight: 500;
+        transition: background-color 0.2s;
+
+        &:hover {
+          background-color: $secondary;
+          color: $white;
+        }
+      }
+    }
+  }
+
+  .article-share {
+    .btn-social {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: $alliant-navy;
+      color: $white;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      transition: background-color 0.2s;
+      text-decoration: none;
+
+      &:hover {
+        background-color: $secondary;
+        color: $white;
+      }
+    }
+  }
+}
+
+// Clear floats in article content
+.article-section .article-content::after {
+  content: "";
+  display: table;
+  clear: both;
 }
