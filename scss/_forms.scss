@@ -1,0 +1,272 @@
+// Contact Form Section
+.contact-form-section {
+  background-color: $alliant-light-gray;
+  min-height: 50vh;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+
+  @media (min-width: 768px) {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .contact-intro {
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: $alliant-navy;
+      margin-bottom: 1rem;
+
+      @media (min-width: 768px) {
+        font-size: 2rem;
+      }
+    }
+
+    p {
+      color: $alliant-navy;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+  }
+}
+
+// Gravity Forms Styling
+.gform_wrapper {
+  // Success message
+  .gform_confirmation_wrapper {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    border: none;
+    color: $white;
+    padding: 2.5rem 3rem;
+    border-radius: 0.75rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(40, 167, 69, 0.3);
+    position: relative;
+    text-align: center;
+
+    &::before {
+      content: '✓';
+      display: block;
+      font-size: 3.5rem;
+      font-weight: bold;
+      color: $white;
+      line-height: 1;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .gform_confirmation_message {
+      margin: 0;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: $white;
+
+      strong {
+        font-weight: 700;
+        display: block;
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+        color: $white;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+
+  // Error alert
+  .validation_error {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    border: none;
+    color: $white;
+    padding: 2.5rem 3rem;
+    border-radius: 0.75rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(220, 53, 69, 0.3);
+    position: relative;
+    text-align: center;
+
+    &::before {
+      content: '⚠';
+      display: block;
+      font-size: 3.5rem;
+      font-weight: bold;
+      color: $white;
+      line-height: 1;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    strong {
+      font-weight: 700;
+      display: block;
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: $white;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    // Error message text (if any additional text)
+    color: rgba($white, 0.95);
+    font-size: 1.1rem;
+  }
+
+  // Form styles
+  .gform_form {
+    .gform_body {
+      ul.gform_fields {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+
+        li.gfield {
+          list-style: none;
+          margin: 0;
+
+          &.gfield--width-full {
+            width: 100%;
+          }
+
+          &.gfield--width-half {
+            width: 100%;
+
+            @media (min-width: 768px) {
+              width: calc(50% - 0.75rem);
+            }
+          }
+
+          // Labels
+          .gfield_label {
+            display: block;
+            font-weight: 500;
+            color: $alliant-navy;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+
+            .gfield_required {
+              color: #dc3545;
+
+              .gfield_required_asterisk {
+                margin-left: 0.25rem;
+              }
+            }
+          }
+
+          // Input containers
+          .ginput_container {
+            position: relative;
+          }
+
+          // Input fields
+          input.gfield_input,
+          textarea.gfield_textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba($alliant-navy, 0.2);
+            border-radius: 0.25rem;
+            font-size: 1rem;
+            color: $alliant-navy;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background-color: $white;
+
+            &::placeholder {
+              color: rgba($alliant-navy, 0.5);
+            }
+
+            &:focus {
+              outline: none;
+              border-color: $alliant-navy;
+              box-shadow: 0 0 0 0.2rem rgba($alliant-navy, 0.1);
+            }
+
+            &[aria-invalid="true"] {
+              border-color: #dc3545;
+
+              &:focus {
+                box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.15);
+              }
+            }
+          }
+
+          textarea.gfield_textarea {
+            resize: vertical;
+            min-height: 200px;
+          }
+
+          // Error state
+          &.gfield_error {
+            .gfield_label {
+              color: #dc3545;
+            }
+
+            input.gfield_input,
+            textarea.gfield_textarea {
+              border-color: #dc3545;
+            }
+
+            .validation_message {
+              color: #dc3545;
+              font-size: 0.875rem;
+              margin-top: 0.5rem;
+              display: block;
+            }
+          }
+        }
+      }
+    }
+
+    // Submit button
+    .gform_footer {
+      margin-top: 2rem;
+
+      .gform_button {
+        background-color: $alliant-navy;
+        color: $white;
+        padding: 0.875rem 2.5rem;
+        border: none;
+        border-radius: 0.25rem;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s, transform 0.1s;
+
+        &:hover {
+          background-color: darken($alliant-navy, 10%);
+        }
+
+        &:active {
+          transform: translateY(1px);
+        }
+
+        &:disabled {
+          background-color: rgba($alliant-navy, 0.6);
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}
+
+// Additional Gravity Forms overrides
+.gform_wrapper.gravity-theme {
+  // Remove default Gravity Forms margins
+  .gform_body ul li.gfield {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  // Override any inline styles that might conflict
+  .ginput_container input[type="text"],
+  .ginput_container input[type="email"],
+  .ginput_container input[type="tel"],
+  .ginput_container textarea {
+    font-family: $font-family-sans-serif !important;
+  }
+
+  // Loading state
+  .gform_ajax_spinner {
+    margin-left: 1rem;
+  }
+
+}

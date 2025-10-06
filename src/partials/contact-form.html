@@ -1,0 +1,107 @@
+<!-- Contact Form Section -->
+<section class="contact-form-section py-6">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <div class="contact-intro text-center mb-5">
+                    <h2 class="section-title">Send Us A Message</h2>
+                    <p>The Alliant team brings together deep expertise, diverse perspectives, and a shared commitment to delivering tailored solutions that help clients navigate complexity with confidence.</p>
+                </div>
+
+                <!-- Success Message (shown after form submission) -->
+                <div class="gform_confirmation_wrapper mb-4">
+                    <div class="gform_confirmation_message">
+                        <strong>Thank you for contacting us!</strong> We have received your message and will get back to you as soon as possible.
+                    </div>
+                </div>
+
+                <!-- Validation Error Alert (shown when form has errors) -->
+                <div class="validation_error mb-4">
+                    <strong>There was a problem with your submission.</strong> Please review the fields below and try again.
+                </div>
+
+                <!-- Gravity Form -->
+                <div class="gform_wrapper gravity-theme gform-theme--framework">
+                    <form method="post" class="gform_form">
+                        <div class="gform_body">
+                            <ul class="gform_fields">
+                                <!-- Name Field -->
+                                <li class="gfield gfield--width-half">
+                                    <label class="gfield_label" for="input_1">
+                                        Your Name
+                                        <span class="gfield_required">
+                                            <span class="gfield_required_asterisk">*</span>
+                                        </span>
+                                    </label>
+                                    <div class="ginput_container ginput_container_text">
+                                        <input type="text" id="input_1" name="input_1" class="gfield_input" placeholder="Your Name">
+                                    </div>
+                                </li>
+
+                                <!-- Email Field -->
+                                <li class="gfield gfield--width-half">
+                                    <label class="gfield_label" for="input_2">
+                                        Your Email
+                                        <span class="gfield_required">
+                                            <span class="gfield_required_asterisk">*</span>
+                                        </span>
+                                    </label>
+                                    <div class="ginput_container ginput_container_email">
+                                        <input type="email" id="input_2" name="input_2" class="gfield_input" placeholder="Your Email">
+                                    </div>
+                                </li>
+
+                                <!-- Phone Field -->
+                                <li class="gfield gfield--width-half">
+                                    <label class="gfield_label" for="input_3">Your Number</label>
+                                    <div class="ginput_container ginput_container_phone">
+                                        <input type="tel" id="input_3" name="input_3" class="gfield_input" placeholder="Your Number">
+                                    </div>
+                                </li>
+
+                                <!-- Subject Field -->
+                                <li class="gfield gfield--width-half">
+                                    <label class="gfield_label" for="input_4">Subject</label>
+                                    <div class="ginput_container ginput_container_text">
+                                        <input type="text" id="input_4" name="input_4" class="gfield_input" placeholder="Subject">
+                                    </div>
+                                </li>
+
+                                <!-- Message Field -->
+                                <li class="gfield gfield--width-full">
+                                    <label class="gfield_label" for="input_5">
+                                        Write your message...
+                                        <span class="gfield_required">
+                                            <span class="gfield_required_asterisk">*</span>
+                                        </span>
+                                    </label>
+                                    <div class="ginput_container ginput_container_textarea">
+                                        <textarea id="input_5" name="input_5" class="gfield_textarea" rows="10" placeholder="Write your message..."></textarea>
+                                    </div>
+                                </li>
+
+                                <!-- Field with Error Example (demonstrates validation state) -->
+                                <li class="gfield gfield--width-full gfield_error">
+                                    <label class="gfield_label" for="input_error">
+                                        Company Name
+                                        <span class="gfield_required">
+                                            <span class="gfield_required_asterisk">*</span>
+                                        </span>
+                                    </label>
+                                    <div class="ginput_container ginput_container_text">
+                                        <input type="text" id="input_error" name="input_error" class="gfield_input" placeholder="Company Name" aria-invalid="true" value="">
+                                    </div>
+                                    <div class="gfield_description validation_message">This field is required.</div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="gform_footer">
+                            <button type="submit" class="gform_button button btn btn-primary">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
