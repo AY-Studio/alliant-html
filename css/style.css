@@ -12432,6 +12432,7 @@ textarea.form-control-lg {
     float: none;
     margin-right: 0;
     max-width: 100%;
+    width: 100%;
   }
 }
 .article-section .article-content .alignright {
@@ -12445,6 +12446,7 @@ textarea.form-control-lg {
     float: none;
     margin-left: 0;
     max-width: 100%;
+    width: 100%;
   }
 }
 .article-section .article-content .aligncenter {
@@ -12685,6 +12687,7 @@ textarea.form-control-lg {
     float: none;
     margin-right: 0;
     max-width: 100%;
+    width: 100%;
   }
 }
 .page-section .page-content .alignright {
@@ -12698,6 +12701,7 @@ textarea.form-control-lg {
     float: none;
     margin-left: 0;
     max-width: 100%;
+    width: 100%;
   }
 }
 .page-section .page-content .aligncenter {
