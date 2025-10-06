@@ -104,6 +104,10 @@
     @media (min-width: 768px) {
       font-size: 1.25rem;
     }
+
+    @media (min-width: 1200px) {
+      max-width: 750px;
+    }
   }
 
   // CTA button styling

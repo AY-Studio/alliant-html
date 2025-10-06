@@ -225,3 +225,39 @@
   }
   */
 }
+
+// Team section styles
+.team-hero {
+  background-image: url('../img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.team-card {
+  background-color: $white;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  }
+
+  .card-img-top {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: $alliant-navy;
+  }
+
+  .card-text {
+    font-size: 0.9rem;
+    color: $text-muted;
+  }
+}

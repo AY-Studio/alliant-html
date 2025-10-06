@@ -4,9 +4,15 @@
   "description": "Alliant AirFinance - Specialist Aviation Finance Website",
   "scripts": {
     "scss": "sass --watch scss/style.scss:css/style.css",
-    "build": "sass scss/style.scss:css/style.css --style compressed",
-    "build:dev": "sass scss/style.scss:css/style.css",
-    "watch": "sass --watch scss/style.scss:css/style.css"
+    "build": "npm run build:panini && npm run build:scss",
+    "build:scss": "sass scss/style.scss:css/style.css --style compressed",
+    "build:panini": "panini --root src/pages --layouts src/layouts --partials src/partials --output dist 'src/pages/**/*.html'",
+    "build:dev": "npm run build:panini:dev && npm run build:scss:dev",
+    "build:panini:dev": "panini --root src/pages --layouts src/layouts --partials src/partials --output . 'src/pages/**/*.html'",
+    "build:scss:dev": "sass scss/style.scss:css/style.css",
+    "watch": "npm-run-all --parallel watch:*",
+    "watch:scss": "sass --watch scss/style.scss:css/style.css",
+    "watch:panini": "panini --root src/pages --layouts src/layouts --partials src/partials --output . --watch"
   },
   "keywords": [
     "bootstrap",
@@ -20,6 +26,8 @@
     "bootstrap": "^5.3.2"
   },
   "devDependencies": {
+    "npm-run-all": "^4.1.5",
+    "panini": "^1.7.2",
     "sass": "^1.69.5"
   }
 }
