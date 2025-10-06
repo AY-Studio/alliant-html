@@ -19,6 +19,11 @@
 @import 'forms';
 
 // 4. Additional global styles
+html,
+body {
+  background-color: $alliant-navy;
+}
+
 body {
   font-family: $font-family-sans-serif;
   color: $body-color;
@@ -46,4 +51,18 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+// Swup transitions
+.transition-fade {
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+}
+
+html.is-animating .transition-fade {
+  opacity: 0;
+}
+
+html.is-animating {
+  background-color: $alliant-navy;
 }
