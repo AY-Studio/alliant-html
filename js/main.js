@@ -21,14 +21,16 @@ document.addEventListener('DOMContentLoaded', function() {
 // Close mobile menu on link click (for persistent navigation)
 swup.hooks.on('link:click', () => {
   const navbarCollapse = document.querySelector('.navbar-collapse');
-  const navbarToggler = document.querySelector('.navbar-toggler');
 
   if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-    // Use Bootstrap's collapse method to close the menu
-    const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse) || new bootstrap.Collapse(navbarCollapse, {
-      toggle: false
-    });
-    bsCollapse.hide();
+    // Manually trigger smooth fade out
+    navbarCollapse.classList.remove('show');
+    navbarCollapse.classList.add('collapsing');
+
+    // Remove collapsing class after transition completes
+    setTimeout(() => {
+      navbarCollapse.classList.remove('collapsing');
+    }, 100); // Match the transition duration in CSS
   }
 });
 

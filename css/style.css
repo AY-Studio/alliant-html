@@ -11918,11 +11918,6 @@ textarea.form-control-lg {
   height: 30px;
   margin-right: 0.5rem;
 }
-@media (max-width: 991.98px) {
-  .navbar .navbar-nav {
-    text-align: center;
-  }
-}
 .navbar .navbar-nav .nav-link {
   color: rgba(255, 255, 255, 0.9);
   padding: 0.5rem 1rem;
@@ -11930,6 +11925,92 @@ textarea.form-control-lg {
 }
 .navbar .navbar-nav .nav-link:hover {
   color: rgb(255, 255, 255);
+}
+@media (max-width: 991.98px) {
+  .navbar .navbar-nav .nav-link {
+    font-size: 1.75rem;
+    padding: 1.25rem 1rem;
+    font-weight: 500;
+    display: block;
+    text-align: center;
+  }
+}
+@media (max-width: 991.98px) {
+  .navbar .navbar-nav .nav-item {
+    width: 100%;
+  }
+}
+@media (max-width: 991.98px) {
+  .navbar .navbar-nav {
+    margin-left: 0 !important;
+    width: 100%;
+  }
+}
+@media (max-width: 991.98px) {
+  .navbar .navbar-collapse {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #223a69;
+    z-index: 1050;
+    padding: 2rem 0;
+    flex-direction: column;
+    justify-content: space-between;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.1s ease-in-out, visibility 0.1s ease-in-out;
+  }
+  .navbar .navbar-collapse.collapsing {
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+  }
+  .navbar .navbar-collapse.show {
+    display: flex !important;
+    opacity: 1;
+    visibility: visible;
+  }
+  .navbar .navbar-collapse .navbar-nav {
+    flex-grow: 1;
+    justify-content: center;
+    padding-top: 2rem;
+    align-items: center;
+  }
+}
+.navbar .mobile-social-links {
+  display: none;
+}
+@media (max-width: 991.98px) {
+  .navbar .mobile-social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 2rem 1.5rem 0;
+  }
+}
+.navbar .mobile-social-links .mobile-social-link {
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+.navbar .mobile-social-links .mobile-social-link:hover {
+  background-color: #ffffff;
+  color: #223a69;
+  border-color: #ffffff;
+}
+.navbar .mobile-social-links .mobile-social-link svg {
+  width: 24px;
+  height: 24px;
 }
 
 .hero-section {

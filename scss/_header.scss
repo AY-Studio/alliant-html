@@ -27,11 +27,6 @@
 
   // Navigation links
   .navbar-nav {
-    // Center align on mobile
-    @media (max-width: 991.98px) {
-      text-align: center;
-    }
-
     .nav-link {
       color: $navbar-dark-color;
       padding: 0.5rem 1rem;
@@ -39,6 +34,102 @@
 
       &:hover {
         color: $navbar-dark-hover-color;
+      }
+
+      // Large links on mobile
+      @media (max-width: 991.98px) {
+        font-size: 1.75rem;
+        padding: 1.25rem 1rem;
+        font-weight: 500;
+        display: block;
+        text-align: center;
+      }
+    }
+
+    .nav-item {
+      @media (max-width: 991.98px) {
+        width: 100%;
+      }
+    }
+
+    // Remove margin-left auto on mobile to center items
+    @media (max-width: 991.98px) {
+      margin-left: 0 !important;
+      width: 100%;
+    }
+  }
+
+  // Full screen mobile menu
+  @media (max-width: 991.98px) {
+    .navbar-collapse {
+      position: fixed;
+      top: 60px; // Below navbar height
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: $alliant-navy;
+      z-index: 1050;
+      padding: 2rem 0;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.1s ease, visibility 0.1s ease;
+
+      &.collapsing {
+        display: flex;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      &.show {
+        display: flex !important;
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .navbar-nav {
+        flex-grow: 1;
+        justify-content: center;
+        padding-top: 2rem;
+        align-items: center;
+      }
+    }
+  }
+
+  // Mobile social links
+  .mobile-social-links {
+    display: none;
+
+    @media (max-width: 991.98px) {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-top: 1px solid rgba($white, 0.2);
+      margin: 2rem 1.5rem 0;
+    }
+
+    .mobile-social-link {
+      color: $white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border: 2px solid rgba($white, 0.3);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: $white;
+        color: $alliant-navy;
+        border-color: $white;
+      }
+
+      svg {
+        width: 24px;
+        height: 24px;
       }
     }
   }
