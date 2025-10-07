@@ -18,6 +18,20 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+// Close mobile menu on link click (for persistent navigation)
+swup.hooks.on('link:click', () => {
+  const navbarCollapse = document.querySelector('.navbar-collapse');
+  const navbarToggler = document.querySelector('.navbar-toggler');
+
+  if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+    // Use Bootstrap's collapse method to close the menu
+    const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse) || new bootstrap.Collapse(navbarCollapse, {
+      toggle: false
+    });
+    bsCollapse.hide();
+  }
+});
+
 // Reinitialize AOS after Swup page transitions
 swup.hooks.on('page:view', () => {
   if (typeof AOS !== 'undefined') {
