@@ -12,7 +12,9 @@
     "build:scss:dev": "sass scss/style.scss:css/style.css",
     "watch": "npm-run-all --parallel watch:*",
     "watch:scss": "sass --watch scss/style.scss:css/style.css",
-    "watch:panini": "panini --root src/pages --layouts src/layouts --partials src/partials --output . --watch"
+    "watch:panini": "panini --root src/pages --layouts src/layouts --partials src/partials --output . --watch",
+    "server": "browser-sync start --server --files '*.html, css/*.css, js/*.js' --port 8000 --no-notify",
+    "dev": "npm-run-all build:dev --parallel watch server"
   },
   "keywords": [
     "bootstrap",
@@ -28,6 +30,7 @@
     "swup": "^4.8.2"
   },
   "devDependencies": {
+    "browser-sync": "^3.0.4",
     "npm-run-all": "^4.1.5",
     "panini": "^1.7.2",
     "sass": "^1.69.5"

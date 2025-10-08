@@ -1,0 +1,128 @@
+<!-- Block: Pricing Table -->
+<!--
+CMS FIELDS:
+- Background Color: Select (White / Light Gray)
+  - White: class="block-pricing"
+  - Light Gray: class="block-pricing bg-light"
+- Block Title: Text
+- Block Subtitle: Text (optional)
+- Pricing Cards: Repeater
+  - Card Title: Text
+  - Card Subtitle: Text
+  - Features: Repeater
+    - Feature Text: Text
+  - Featured Card: Checkbox (adds "featured" class and badge)
+  - Badge Text: Text (for featured cards, e.g., "Most Popular")
+  - Button Text: Text
+  - Button Link: URL
+  - Button Style: Select (Primary / Outline)
+
+USAGE EXAMPLES:
+White background (default):
+-->
+<section class="block-pricing">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade">
+            <h2 class="block-title">Financing Solutions</h2>
+            <p class="block-subtitle">Flexible options tailored to your needs</p>
+        </div>
+
+        <div class="pricing-grid">
+            <!-- Pricing Card 1 -->
+            <div class="pricing-card" data-aos="fade" data-aos-delay="100">
+                <div class="pricing-header">
+                    <h3 class="pricing-title">Direct Financing</h3>
+                    <div class="pricing-subtitle">Traditional loan structure</div>
+                </div>
+                <div class="pricing-features">
+                    <ul>
+                        <li>Competitive interest rates</li>
+                        <li>Flexible terms up to 15 years</li>
+                        <li>Fixed or variable rates</li>
+                        <li>Quick approval process</li>
+                        <li>Minimal documentation</li>
+                    </ul>
+                </div>
+                <div class="pricing-cta">
+                    <a href="contact.html" class="btn btn-outline-primary">Learn More</a>
+                </div>
+            </div>
+
+            <!-- Pricing Card 2 (Featured) -->
+            <div class="pricing-card featured" data-aos="fade" data-aos-delay="200">
+                <div class="pricing-badge">Most Popular</div>
+                <div class="pricing-header">
+                    <h3 class="pricing-title">Operating Lease</h3>
+                    <div class="pricing-subtitle">Off-balance sheet solution</div>
+                </div>
+                <div class="pricing-features">
+                    <ul>
+                        <li>Preserve capital</li>
+                        <li>Tax advantages</li>
+                        <li>Flexible end-of-lease options</li>
+                        <li>No balloon payment</li>
+                        <li>Maintenance options available</li>
+                    </ul>
+                </div>
+                <div class="pricing-cta">
+                    <a href="contact.html" class="btn btn-primary">Get Started</a>
+                </div>
+            </div>
+
+            <!-- Pricing Card 3 -->
+            <div class="pricing-card" data-aos="fade" data-aos-delay="300">
+                <div class="pricing-header">
+                    <h3 class="pricing-title">Sale-Leaseback</h3>
+                    <div class="pricing-subtitle">Unlock aircraft value</div>
+                </div>
+                <div class="pricing-features">
+                    <ul>
+                        <li>Immediate liquidity</li>
+                        <li>Maintain operational control</li>
+                        <li>Improve balance sheet</li>
+                        <li>Fund growth initiatives</li>
+                        <li>Transparent process</li>
+                    </ul>
+                </div>
+                <div class="pricing-cta">
+                    <a href="contact.html" class="btn btn-outline-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Light gray background variant:
+<section class="block-pricing bg-light">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade">
+            <h2 class="block-title">Financing Solutions</h2>
+            <p class="block-subtitle">Flexible options tailored to your needs</p>
+        </div>
+
+        <div class="pricing-grid">
+            <div class="pricing-card" data-aos="fade" data-aos-delay="100">
+                <div class="pricing-header">
+                    <h3 class="pricing-title">Plan Name</h3>
+                    <div class="pricing-subtitle">Plan description</div>
+                </div>
+                <div class="pricing-features">
+                    <ul>
+                        <li>Feature one</li>
+                        <li>Feature two</li>
+                    </ul>
+                </div>
+                <div class="pricing-cta">
+                    <a href="#" class="btn btn-outline-primary">Learn More</a>
+                </div>
+            </div>
+
+            <div class="pricing-card featured" data-aos="fade" data-aos-delay="200">
+                <div class="pricing-badge">Most Popular</div>
+                [Featured card content...]
+            </div>
+            [Additional pricing cards...]
+        </div>
+    </div>
+</section>
+-->

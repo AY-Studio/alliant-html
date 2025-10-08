@@ -1,0 +1,182 @@
+<!-- Block: Locations -->
+<!--
+CMS FIELDS:
+- Background Color: Select (White / Light Gray)
+  - White: class="block-locations"
+  - Light Gray: class="block-locations bg-light"
+- Block Title: Text
+- Block Subtitle: Text (optional)
+- Locations: Repeater
+  - Location Name: Text (e.g., "New York")
+  - Location Designation: Text (e.g., "Headquarters", "Regional Office")
+  - Address Line 1: Text
+  - Address Line 2: Text (optional)
+  - City/State/Zip: Text
+  - Country: Text
+  - Phone: Text
+  - Email: Email
+
+USAGE EXAMPLES:
+White background (default):
+-->
+<section class="block-locations">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade">
+            <h2 class="block-title">Our Global Presence</h2>
+            <p class="block-subtitle">Serving clients across the aviation industry worldwide</p>
+        </div>
+
+        <div class="locations-grid">
+            <!-- Location 1 -->
+            <div class="location-card" data-aos="fade" data-aos-delay="100">
+                <div class="location-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                </div>
+                <h3 class="location-name">New York</h3>
+                <div class="location-designation">Headquarters</div>
+                <div class="location-details">
+                    <p class="location-address">
+                        500 Park Avenue, Suite 2400<br>
+                        New York, NY 10022<br>
+                        United States
+                    </p>
+                    <p class="location-contact">
+                        <strong>Phone:</strong> +1 (212) 555-0100<br>
+                        <strong>Email:</strong> newyork@alliantairfinance.com
+                    </p>
+                </div>
+            </div>
+
+            <!-- Location 2 -->
+            <div class="location-card" data-aos="fade" data-aos-delay="200">
+                <div class="location-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                </div>
+                <h3 class="location-name">London</h3>
+                <div class="location-designation">European Office</div>
+                <div class="location-details">
+                    <p class="location-address">
+                        1 Canary Wharf<br>
+                        London E14 5AB<br>
+                        United Kingdom
+                    </p>
+                    <p class="location-contact">
+                        <strong>Phone:</strong> +44 (20) 7946 0958<br>
+                        <strong>Email:</strong> london@alliantairfinance.com
+                    </p>
+                </div>
+            </div>
+
+            <!-- Location 3 -->
+            <div class="location-card" data-aos="fade" data-aos-delay="300">
+                <div class="location-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                </div>
+                <h3 class="location-name">Singapore</h3>
+                <div class="location-designation">Asia Pacific Office</div>
+                <div class="location-details">
+                    <p class="location-address">
+                        8 Marina Boulevard #05-02<br>
+                        Marina Bay Financial Centre<br>
+                        Singapore 018981
+                    </p>
+                    <p class="location-contact">
+                        <strong>Phone:</strong> +65 6808 7888<br>
+                        <strong>Email:</strong> singapore@alliantairfinance.com
+                    </p>
+                </div>
+            </div>
+
+            <!-- Location 4 -->
+            <div class="location-card" data-aos="fade" data-aos-delay="100">
+                <div class="location-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                </div>
+                <h3 class="location-name">Dubai</h3>
+                <div class="location-designation">Middle East Office</div>
+                <div class="location-details">
+                    <p class="location-address">
+                        Level 14, The Gate Building<br>
+                        Dubai International Financial Centre<br>
+                        Dubai, UAE
+                    </p>
+                    <p class="location-contact">
+                        <strong>Phone:</strong> +971 4 363 4400<br>
+                        <strong>Email:</strong> dubai@alliantairfinance.com
+                    </p>
+                </div>
+            </div>
+
+            <!-- Location 5 -->
+            <div class="location-card" data-aos="fade" data-aos-delay="200">
+                <div class="location-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                </div>
+                <h3 class="location-name">São Paulo</h3>
+                <div class="location-designation">Latin America Office</div>
+                <div class="location-details">
+                    <p class="location-address">
+                        Av. Brigadeiro Faria Lima, 3729<br>
+                        São Paulo, SP 04538-133<br>
+                        Brazil
+                    </p>
+                    <p class="location-contact">
+                        <strong>Phone:</strong> +55 11 3049 3500<br>
+                        <strong>Email:</strong> saopaulo@alliantairfinance.com
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Light gray background variant:
+<section class="block-locations bg-light">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade">
+            <h2 class="block-title">Our Global Presence</h2>
+            <p class="block-subtitle">Serving clients worldwide</p>
+        </div>
+
+        <div class="locations-grid">
+            <div class="location-card" data-aos="fade" data-aos-delay="100">
+                <div class="location-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                </div>
+                <h3 class="location-name">City Name</h3>
+                <div class="location-designation">Office Type</div>
+                <div class="location-details">
+                    <p class="location-address">
+                        Address Line 1<br>
+                        City, State Zip<br>
+                        Country
+                    </p>
+                    <p class="location-contact">
+                        <strong>Phone:</strong> +1 (555) 555-5555<br>
+                        <strong>Email:</strong> city@company.com
+                    </p>
+                </div>
+            </div>
+            [Additional location cards...]
+        </div>
+    </div>
+</section>
+-->

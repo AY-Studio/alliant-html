@@ -1,0 +1,113 @@
+<!-- Block: Accordion / FAQ -->
+<!--
+CMS FIELDS:
+- Background Color: Select (White / Light Gray)
+  - White: class="block-accordion"
+  - Light Gray: class="block-accordion bg-light"
+- Block Title: Text
+- Accordion Items: Repeater
+  - Question/Title: Text
+  - Answer/Content: WYSIWYG/Textarea
+  - Default Open: Checkbox (first item typically open)
+
+NOTE: The accordion uses Bootstrap's collapse component. The first item is typically set to
+show by default (class="collapse show"). Ensure unique IDs for each accordion item.
+
+USAGE EXAMPLES:
+White background (default):
+-->
+<section class="block-accordion">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <h2 class="block-title text-center mb-5" data-aos="fade">Frequently Asked Questions</h2>
+
+                <div class="accordion" id="accordionFAQ" data-aos="fade" data-aos-delay="100">
+                    <!-- Accordion Item 1 -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading1">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                What types of aircraft financing do you offer?
+                            </button>
+                        </h3>
+                        <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="heading1" data-bs-parent="#accordionFAQ">
+                            <div class="accordion-body">
+                                We provide comprehensive financing solutions for all types of aircraft, including commercial jets, business aviation, helicopters, and regional aircraft. Our services include direct loans, sale-leaseback arrangements, and structured finance solutions tailored to your specific needs.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Accordion Item 2 -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                How long does the financing approval process take?
+                            </button>
+                        </h3>
+                        <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionFAQ">
+                            <div class="accordion-body">
+                                The timeline varies based on the complexity of the transaction and the completeness of your application. Typically, we provide initial feedback within 48-72 hours and can complete the approval process within 2-4 weeks for straightforward transactions.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Accordion Item 3 -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading3">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                What are the minimum requirements for financing?
+                            </button>
+                        </h3>
+                        <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3" data-bs-parent="#accordionFAQ">
+                            <div class="accordion-body">
+                                Requirements vary by transaction type and aircraft value. Generally, we look for strong credit profiles, demonstrated aviation experience, and a clear business case for the aircraft acquisition. We work with both established operators and qualified first-time buyers.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Accordion Item 4 -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading4">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                                Do you provide international financing?
+                            </button>
+                        </h3>
+                        <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#accordionFAQ">
+                            <div class="accordion-body">
+                                Yes, we have extensive experience with cross-border transactions and can structure financing for aircraft registered in multiple jurisdictions worldwide. Our team understands the complexities of international aviation finance and regulatory requirements.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Light gray background variant:
+<section class="block-accordion bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <h2 class="block-title text-center mb-5" data-aos="fade">Frequently Asked Questions</h2>
+
+                <div class="accordion" id="accordionFAQ" data-aos="fade" data-aos-delay="100">
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading1">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                Question text here?
+                            </button>
+                        </h3>
+                        <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="heading1" data-bs-parent="#accordionFAQ">
+                            <div class="accordion-body">
+                                Answer content here.
+                            </div>
+                        </div>
+                    </div>
+                    [Additional accordion items...]
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+-->

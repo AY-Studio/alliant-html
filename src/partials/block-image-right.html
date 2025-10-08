@@ -1,0 +1,60 @@
+<!-- Block: Content Left, Image Right -->
+<!--
+CMS FIELDS:
+- Background Color: Select (White / Light Gray)
+  - White: class="block-image-content image-right"
+  - Light Gray: class="block-image-content image-right bg-light"
+- Block Title: Text
+- Content Paragraph 1: WYSIWYG/Textarea
+- Content Paragraph 2: WYSIWYG/Textarea (optional)
+- Button Text: Text (optional)
+- Button Link: URL (optional)
+- Image: Image Upload
+- Image Alt Text: Text
+
+NOTE: This block is identical to block-image-left.html but with reversed column order.
+The content appears on the left on desktop, image on the right.
+
+USAGE EXAMPLES:
+White background (default):
+-->
+<section class="block-image-content image-right">
+    <div class="container">
+        <div class="row align-items-center g-4 g-lg-5">
+            <div class="col-12 col-lg-6 order-2 order-lg-1">
+                <div class="block-content" data-aos="fade">
+                    <h2 class="block-title">Expert Team & Industry Knowledge</h2>
+                    <p>Our dedicated team brings together decades of combined experience in aviation finance, investment banking, and aircraft operations. We pride ourselves on delivering personalized service and innovative solutions.</p>
+                    <p>Whether you're looking to finance a single aircraft or an entire fleet, our experts provide the guidance and support you need throughout the entire transaction process.</p>
+                    <a href="team.html" class="btn btn-primary mt-3">Meet Our Team</a>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 order-1 order-lg-2">
+                <div class="block-image" data-aos="fade" data-aos-delay="100">
+                    <img src="img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg" alt="Aviation expertise" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Light gray background variant:
+<section class="block-image-content image-right bg-light">
+    <div class="container">
+        <div class="row align-items-center g-4 g-lg-5">
+            <div class="col-12 col-lg-6 order-2 order-lg-1">
+                <div class="block-content" data-aos="fade">
+                    <h2 class="block-title">Block Title</h2>
+                    <p>Content paragraph goes here...</p>
+                    <a href="team.html" class="btn btn-primary mt-3">Button Text</a>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 order-1 order-lg-2">
+                <div class="block-image" data-aos="fade" data-aos-delay="100">
+                    <img src="img/placeholder.jpg" alt="Alt text" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+-->

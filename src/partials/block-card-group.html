@@ -1,0 +1,133 @@
+<!-- Block: Card Group (Services/People) -->
+<!--
+CMS FIELDS:
+- Background Color: Select (White / Light Gray)
+  - White: class="block-card-group"
+  - Light Gray: class="block-card-group bg-light"
+- Block Title: Text
+- Block Subtitle: Text (optional)
+- Cards: Repeater (typically 3-6 items)
+  - Icon: SVG Code/Icon Picker
+  - Card Title: Text
+  - Card Description: Textarea
+  - Link Text: Text (e.g., "Learn More")
+  - Link URL: URL
+
+USAGE EXAMPLES:
+White background (default):
+-->
+<section class="block-card-group">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade">
+            <h2 class="block-title">Our Services</h2>
+            <p class="block-subtitle">Comprehensive aviation finance solutions tailored to your needs</p>
+        </div>
+
+        <div class="card-group-grid">
+            <!-- Card 1 -->
+            <div class="card-group-item" data-aos="fade" data-aos-delay="100">
+                <div class="card-group-icon">
+                    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                </div>
+                <h3 class="card-group-title">Aircraft Acquisition</h3>
+                <p class="card-group-description">Expert guidance and financing for commercial and private aircraft purchases, from narrowbody jets to wide-body aircraft.</p>
+                <a href="#" class="card-group-link">Learn More →</a>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card-group-item" data-aos="fade" data-aos-delay="200">
+                <div class="card-group-icon">
+                    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                    </svg>
+                </div>
+                <h3 class="card-group-title">Lease Financing</h3>
+                <p class="card-group-description">Flexible operating and capital lease structures designed to optimize your balance sheet and preserve capital.</p>
+                <a href="#" class="card-group-link">Learn More →</a>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card-group-item" data-aos="fade" data-aos-delay="300">
+                <div class="card-group-icon">
+                    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 3v18h18"/>
+                        <path d="M18 17V9"/>
+                        <path d="M13 17V5"/>
+                        <path d="M8 17v-3"/>
+                    </svg>
+                </div>
+                <h3 class="card-group-title">Asset Management</h3>
+                <p class="card-group-description">Comprehensive portfolio management services including remarketing, maintenance oversight, and value optimization.</p>
+                <a href="#" class="card-group-link">Learn More →</a>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card-group-item" data-aos="fade" data-aos-delay="100">
+                <div class="card-group-icon">
+                    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="7" width="20" height="14" rx="2"/>
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                    </svg>
+                </div>
+                <h3 class="card-group-title">Sale-Leaseback</h3>
+                <p class="card-group-description">Unlock capital from your existing fleet while maintaining operational control through our sale-leaseback programs.</p>
+                <a href="#" class="card-group-link">Learn More →</a>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="card-group-item" data-aos="fade" data-aos-delay="200">
+                <div class="card-group-icon">
+                    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5"/>
+                        <path d="M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <h3 class="card-group-title">Structured Finance</h3>
+                <p class="card-group-description">Custom financial solutions for complex transactions including tax leases, EETCs, and cross-border financing.</p>
+                <a href="#" class="card-group-link">Learn More →</a>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="card-group-item" data-aos="fade" data-aos-delay="300">
+                <div class="card-group-icon">
+                    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                </div>
+                <h3 class="card-group-title">Advisory Services</h3>
+                <p class="card-group-description">Strategic consulting on fleet planning, market analysis, and transaction structuring to maximize value.</p>
+                <a href="#" class="card-group-link">Learn More →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Light gray background variant:
+<section class="block-card-group bg-light">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade">
+            <h2 class="block-title">Our Services</h2>
+            <p class="block-subtitle">Comprehensive solutions tailored to your needs</p>
+        </div>
+
+        <div class="card-group-grid">
+            <div class="card-group-item" data-aos="fade" data-aos-delay="100">
+                <div class="card-group-icon">
+                    [SVG Icon Code]
+                </div>
+                <h3 class="card-group-title">Service Title</h3>
+                <p class="card-group-description">Service description text goes here.</p>
+                <a href="#" class="card-group-link">Learn More →</a>
+            </div>
+            [Additional card items...]
+        </div>
+    </div>
+</section>
+-->

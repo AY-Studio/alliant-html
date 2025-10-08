@@ -219,6 +219,27 @@
     // Submit button
     .gform_footer {
       margin-top: 2rem;
+      display: flex;
+      justify-content: flex-start; // Default to left
+
+      // Support Gravity Forms alignment classes
+      &.text-end,
+      &.gform_footer_right,
+      &[align="right"] {
+        justify-content: flex-end;
+      }
+
+      &.text-start,
+      &.gform_footer_left,
+      &[align="left"] {
+        justify-content: flex-start;
+      }
+
+      &.text-center,
+      &.gform_footer_center,
+      &[align="center"] {
+        justify-content: center;
+      }
 
       .gform_button {
         background-color: $alliant-navy;

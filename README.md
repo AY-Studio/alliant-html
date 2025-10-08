@@ -99,8 +99,22 @@ Watches both Panini templates and SCSS files.
 
 **Important:** Use a local server (not `file://`) for Swup page transitions to work:
 
+**Option 1: Browser-Sync (Recommended - with live reload):**
 ```bash
-# Using Python 3
+npm run server
+```
+
+**Option 2: Full development mode (build + watch + server):**
+```bash
+npm run dev
+```
+This will automatically:
+- Build the project
+- Watch for file changes
+- Start a local server with live reload
+
+**Option 3: Simple Python server:**
+```bash
 python3 -m http.server 8000
 ```
 
@@ -239,12 +253,17 @@ $font-family-sans-serif: "Mulish", -apple-system, BlinkMacSystemFont, "Segoe UI"
 
 ## NPM Scripts
 
+### Building
 - `npm run build` - Production build (Panini + compressed SCSS)
 - `npm run build:dev` - Development build (Panini + uncompressed SCSS)
 - `npm run build:panini` - Compile Panini to `dist/`
 - `npm run build:panini:dev` - Compile Panini to root (development)
 - `npm run build:scss` - Compile SCSS (compressed)
 - `npm run build:scss:dev` - Compile SCSS (uncompressed)
+
+### Development
+- `npm run dev` - **Full dev mode:** Build + watch + live reload server
+- `npm run server` - Start local server with live reload on port 8000
 - `npm run watch` - Watch Panini and SCSS in parallel
 - `npm run watch:panini` - Watch Panini templates
 - `npm run watch:scss` - Watch SCSS files
