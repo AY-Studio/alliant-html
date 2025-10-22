@@ -5,10 +5,12 @@
   background-color: $white;
   padding: 3rem 0 2rem;
   text-align: center;
+  border-top: 5px solid #A8D8E6;
+  box-shadow: 0 -12px 24px rgba(34, 58, 105, 0.08);
 
   // Footer logo
   .footer-logo {
-    margin-bottom: 3rem;
+    margin-bottom: 6rem;
 
     img {
       height: 40px;
@@ -19,7 +21,7 @@
   .footer-nav {
     list-style: none;
     padding: 0;
-    margin: 0 0 1.5rem 0;
+    margin: 0 0 3rem 0;
     display: flex;
     justify-content: center;
     gap: 2rem;

@@ -12,6 +12,11 @@
 
 .section-light {
   background-color: $alliant-light-gray;
+
+  .card {
+    background-color: transparent;
+    box-shadow: none;
+  }
 }
 
 .section-dark {
@@ -24,7 +29,7 @@
   font-size: 2rem;
   font-weight: 600;
   color: $alliant-navy;
-  margin-bottom: 1.5rem;
+  margin-bottom: 3rem;
   text-align: center;
 
   @media (min-width: 768px) {

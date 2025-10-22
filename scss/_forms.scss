@@ -11,17 +11,6 @@
   }
 
   .contact-intro {
-    .section-title {
-      font-size: 1.75rem;
-      font-weight: 600;
-      color: $alliant-navy;
-      margin-bottom: 1rem;
-
-      @media (min-width: 768px) {
-        font-size: 2rem;
-      }
-    }
-
     p {
       color: $alliant-navy;
       font-size: 1rem;

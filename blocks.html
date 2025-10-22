@@ -14,8 +14,8 @@
     <!-- Bootstrap CSS (compiled from SCSS) -->
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- AOS CSS -->
-    <link rel="stylesheet" href="node_modules/aos/dist/aos.css">
+    <!-- AOS CSS (CDN) -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
 </head>
 <body>
 
@@ -34,8 +34,12 @@
             </a>
     
             <!-- Mobile menu toggle button -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" aria-hidden="true">
+                    <span class="toggler-line"></span>
+                    <span class="toggler-line"></span>
+                    <span class="toggler-line"></span>
+                </span>
             </button>
     
             <!-- Navigation links -->
@@ -974,7 +978,8 @@
             </div>
         </section>
         
-        <!-- Alternative content example (gradient is always applied):
+        <!-- Alternative content example (gradient is always applied): -->
+        <!--
         <section class="block-cta-callout">
             <div class="container">
                 <div class="row justify-content-center">
@@ -2005,10 +2010,21 @@
     <!-- Bootstrap JavaScript Bundle (includes Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- AOS JavaScript -->
-    <script src="node_modules/aos/dist/aos.js"></script>
+    <!-- AOS JavaScript (CDN) -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true,
+        offset: 100
+      });
+    </script>
 
-    <!-- Swup -->
+    <!-- Swup UMD (CDN) -->
+    <script src="https://unpkg.com/swup@4"></script>
+
+    <!-- Site JavaScript -->
     <script type="module" src="js/main.js"></script>
 </body>
 </html>

@@ -14,8 +14,8 @@
     <!-- Bootstrap CSS (compiled from SCSS) -->
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- AOS CSS -->
-    <link rel="stylesheet" href="node_modules/aos/dist/aos.css">
+    <!-- AOS CSS (CDN) -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
 </head>
 <body>
 
@@ -34,8 +34,12 @@
             </a>
     
             <!-- Mobile menu toggle button -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" aria-hidden="true">
+                    <span class="toggler-line"></span>
+                    <span class="toggler-line"></span>
+                    <span class="toggler-line"></span>
+                </span>
             </button>
     
             <!-- Navigation links -->
@@ -99,7 +103,7 @@
         <!-- Alliant Values Section -->
         <!-- Alliant Values Section -->
         <!-- Light background with three value cards -->
-        <section class="section section-light">
+        <section class="section section-white">
             <!-- Decorative diagonal lines in corner -->
             <div class="diagonal-lines"></div>
         
@@ -160,8 +164,8 @@
         
         <!-- Product Offerings Section -->
         <!-- Product Offerings Section -->
-        <!-- White background with icon grid -->
-        <section class="section section-white">
+        <!-- Light gray background with icon grid -->
+        <section class="section section-light">
             <!-- Decorative diagonal lines in corner -->
             <div class="diagonal-lines"></div>
         
@@ -169,12 +173,121 @@
                 <div class="row">
                     <div class="col-12" data-aos="fade">
                         <h2 class="section-title">Product Offerings</h2>
+                        <p class="section-subtitle">Alliant AirFinance believes its full-suite of product offerings, along with Alliant AirFinance’s certainty of execution, positions Alliant AirFinance as a preferred solutions provider for counterparties.</p>
                     </div>
                 </div>
         
                 <!-- Product offerings grid - 3 columns on desktop, 2 on tablet, 1 on mobile -->
                 <!-- Using Bootstrap card component -->
                 <div class="row g-4">
+                    <!-- Bridge Financing -->
+                    <div class="col-12 col-sm-6 col-lg-4" data-aos="fade" data-aos-delay="100">
+                        <div class="card border-0 text-center h-100">
+                            <div class="card-body">
+                                <div class="icon-wrapper mx-auto mb-3">
+                                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8 48 L8 32 M56 48 L56 32 M8 32 Q32 16 56 32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <circle cx="8" cy="48" r="3" fill="currentColor"/>
+                                        <circle cx="56" cy="48" r="3" fill="currentColor"/>
+                                        <line x1="8" y1="48" x2="56" y2="48" stroke-width="2"/>
+                                    </svg>
+                                </div>
+                                <h4 class="card-title text-uppercase">Bridge Financing</h4>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Structured Credit -->
+                    <div class="col-12 col-sm-6 col-lg-4" data-aos="fade" data-aos-delay="200">
+                        <div class="card border-0 text-center h-100">
+                            <div class="card-body">
+                                <div class="icon-wrapper mx-auto mb-3">
+                                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                        <polygon points="32,12 20,28 44,28" stroke-width="2" stroke-linejoin="round"/>
+                                        <polygon points="20,28 8,44 32,44" stroke-width="2" stroke-linejoin="round"/>
+                                        <polygon points="44,28 32,44 56,44" stroke-width="2" stroke-linejoin="round"/>
+                                        <polygon points="8,44 8,52 56,52 56,44" stroke-width="2" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <h4 class="card-title text-uppercase">Structured Credit</h4>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Portfolio Financing / Revolving Facilities -->
+                    <div class="col-12 col-sm-6 col-lg-4" data-aos="fade" data-aos-delay="300">
+                        <div class="card border-0 text-center h-100">
+                            <div class="card-body">
+                                <div class="icon-wrapper mx-auto mb-3">
+                                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="32" cy="32" r="20" stroke-width="2"/>
+                                        <path d="M32 12 L32 32 L44 20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <circle cx="32" cy="32" r="3" fill="currentColor"/>
+                                        <line x1="12" y1="32" x2="8" y2="32" stroke-width="2" stroke-linecap="round"/>
+                                        <line x1="52" y1="32" x2="56" y2="32" stroke-width="2" stroke-linecap="round"/>
+                                        <line x1="32" y1="12" x2="32" y2="8" stroke-width="2" stroke-linecap="round"/>
+                                        <line x1="32" y1="52" x2="32" y2="56" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                                <h4 class="card-title text-uppercase">Portfolio Financing / Revolving Facilities</h4>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Pre-Delivery Payments -->
+                    <div class="col-12 col-sm-6 col-lg-4" data-aos="fade" data-aos-delay="100">
+                        <div class="card border-0 text-center h-100">
+                            <div class="card-body">
+                                <div class="icon-wrapper mx-auto mb-3">
+                                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="12" y="24" width="40" height="28" rx="2" stroke-width="2"/>
+                                        <path d="M20 24 L20 20 C20 16 24 12 32 12 C40 12 44 16 44 20 L44 24" stroke-width="2" stroke-linecap="round"/>
+                                        <circle cx="32" cy="38" r="4" stroke-width="2"/>
+                                        <line x1="32" y1="42" x2="32" y2="46" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                                <h4 class="card-title text-uppercase">Pre-Delivery Payments</h4>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Hybrid Debt -->
+                    <div class="col-12 col-sm-6 col-lg-4" data-aos="fade" data-aos-delay="200">
+                        <div class="card border-0 text-center h-100">
+                            <div class="card-body">
+                                <div class="icon-wrapper mx-auto mb-3">
+                                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="8" y="20" width="48" height="32" rx="2" stroke-width="2"/>
+                                        <line x1="8" y1="32" x2="56" y2="32" stroke-width="2"/>
+                                        <line x1="8" y1="40" x2="56" y2="40" stroke-width="2"/>
+                                        <rect x="38" y="24" width="12" height="5" rx="1" fill="currentColor"/>
+                                        <rect x="38" y="35" width="12" height="2" rx="1" fill="currentColor"/>
+                                        <rect x="38" y="43" width="12" height="2" rx="1" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                                <h4 class="card-title text-uppercase">Hybrid Debt</h4>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Operating & Finance Leases -->
+                    <div class="col-12 col-sm-6 col-lg-4" data-aos="fade" data-aos-delay="300">
+                        <div class="card border-0 text-center h-100">
+                            <div class="card-body">
+                                <div class="icon-wrapper mx-auto mb-3">
+                                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M32 12 L20 28 L44 28 Z" stroke-width="2" stroke-linejoin="round"/>
+                                        <path d="M16 28 L16 48 L48 48 L48 28" stroke-width="2" stroke-linejoin="round"/>
+                                        <circle cx="24" cy="36" r="3" stroke-width="2"/>
+                                        <circle cx="40" cy="36" r="3" stroke-width="2"/>
+                                        <path d="M24 39 L24 44 M40 39 L40 44" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                                <h4 class="card-title text-uppercase">Operating & Finance Leases</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Duplicate offerings to reach 12 cards -->
                     <!-- Bridge Financing -->
                     <div class="col-12 col-sm-6 col-lg-4" data-aos="fade" data-aos-delay="100">
                         <div class="card border-0 text-center h-100">
@@ -451,10 +564,21 @@
     <!-- Bootstrap JavaScript Bundle (includes Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- AOS JavaScript -->
-    <script src="node_modules/aos/dist/aos.js"></script>
+    <!-- AOS JavaScript (CDN) -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true,
+        offset: 100
+      });
+    </script>
 
-    <!-- Swup -->
+    <!-- Swup UMD (CDN) -->
+    <script src="https://unpkg.com/swup@4"></script>
+
+    <!-- Site JavaScript -->
     <script type="module" src="js/main.js"></script>
 </body>
 </html>

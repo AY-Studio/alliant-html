@@ -95,6 +95,16 @@ npm run watch
 
 Watches both Panini templates and SCSS files.
 
+#### Script reference
+
+- `npm run build` – production build (`build:panini` + `build:scss`).
+- `npm run build:dev` – development build with readable CSS and in-place HTML output.
+- `npm run watch:scss` – watch and recompile only `scss/` → `css/style.css` via Sass.
+- `npm run watch:panini` – watch Panini sources and rebuild pages.
+- `npm run watch` – run both watchers in parallel.
+- `npm run server` – start BrowserSync on port 8000 and watch HTML/CSS/JS for reloads.
+- `npm run dev` – build once, then run both watchers and BrowserSync together.
+
 ### 3. Run Local Server
 
 **Important:** Use a local server (not `file://`) for Swup page transitions to work:
