@@ -10,7 +10,9 @@
   }
 }
 
-.section-light {
+// Theme helpers: add `group-grey` or `group-navy` to a `.section` to swap palettes
+.section-light,
+.group-grey {
   background-color: $alliant-light-gray;
 
   .card {
@@ -19,7 +21,8 @@
   }
 }
 
-.section-dark {
+.section-dark,
+.group-navy {
   background: linear-gradient(-62deg, #223A69 0%, #526FA1 100%);
   color: $white;
 }
@@ -36,7 +39,8 @@
     font-size: 2.25rem;
   }
 
-  .section-dark & {
+  .section-dark &,
+  .group-navy & {
     color: $white;
   }
 }
@@ -48,7 +52,8 @@
   color: $alliant-navy;
   line-height: 1.6;
 
-  .section-dark & {
+  .section-dark &,
+  .group-navy & {
     color: rgba(255, 255, 255, 0.85);
   }
 }
@@ -142,7 +147,8 @@
 }
 
 // Asset Types section - transparent cards with white icons
-.section-dark {
+.section-dark,
+.group-navy {
   .icon-wrapper {
     svg, img {
       stroke: $white;
@@ -185,7 +191,8 @@
     );
   }
 
-  .section-dark & {
+  .section-dark &,
+  .group-navy & {
     &::before {
       background: repeating-linear-gradient(
         45deg,
@@ -198,6 +205,7 @@
   }
 
   .section-light &,
+  .group-grey &,
   .section-white & {
     &::before {
       background: repeating-linear-gradient(

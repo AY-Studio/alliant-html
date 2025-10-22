@@ -48,6 +48,7 @@ alliant/
 - **Swup Page Transitions** - Smooth fade transitions between pages
 - **AOS Scroll Animations** - Fade-in animations on scroll (once per session)
 - **Responsive Design** - Fully responsive for desktop, tablet, and mobile
+- **Section Theme Helpers** - Swap between grey (`group-grey`) and navy (`group-navy`) section palettes without touching markup
 - **Custom Colors** - SCSS variables to match brand colors (#223a69)
 - **Google Fonts** - Mulish font family
 - **Gravity Forms** - Styled contact form with validation

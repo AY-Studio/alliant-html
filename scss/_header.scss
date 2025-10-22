@@ -3,7 +3,8 @@
 
 .navbar {
   background-color: $alliant-navy;
-  padding: 1rem 0;
+  padding: 1.5rem 0;
+  min-height: 110px;
 
   // Alliant logo styling
   .navbar-brand {
@@ -20,8 +21,15 @@
     }
 
     img {
-      height: 30px;
-      margin-right: 0.5rem;
+      width: 235px;
+      max-height: 52px;
+      height: auto;
+      margin-right: 0;
+
+      @media (max-width: 575.98px) {
+        width: 190px;
+        max-height: 42px;
+      }
     }
   }
 
@@ -93,7 +101,9 @@
     .nav-link {
       color: $navbar-dark-color;
       padding: 0.5rem 1rem;
-      font-weight: 400;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: 'Mulish', sans-serif;
 
       &:hover {
         color: $navbar-dark-hover-color;
