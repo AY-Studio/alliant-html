@@ -11902,6 +11902,10 @@ textarea.form-control-lg {
   background-color: #223a69;
   padding: 1.5rem 0;
   min-height: 110px;
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+  transition: padding 0.3s ease, min-height 0.3s ease, background-color 0.3s ease;
 }
 .navbar .navbar-brand {
   display: flex;
@@ -11920,11 +11924,26 @@ textarea.form-control-lg {
   max-height: 52px;
   height: auto;
   margin-right: 0;
+  transition: width 0.3s ease, max-height 0.3s ease;
 }
 @media (max-width: 575.98px) {
   .navbar .navbar-brand img {
     width: 190px;
     max-height: 42px;
+  }
+}
+.navbar.navbar-shrink {
+  padding: 0.75rem 0;
+  min-height: 80px;
+}
+.navbar.navbar-shrink .navbar-brand img {
+  width: 160px;
+  max-height: 38px;
+}
+@media (max-width: 575.98px) {
+  .navbar.navbar-shrink .navbar-brand img {
+    width: 150px;
+    max-height: 34px;
   }
 }
 .navbar .navbar-toggler {
@@ -12012,7 +12031,7 @@ textarea.form-control-lg {
 @media (max-width: 991.98px) {
   .navbar .navbar-collapse {
     position: fixed;
-    top: 60px;
+    top: 110px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -12040,6 +12059,9 @@ textarea.form-control-lg {
     justify-content: center;
     padding-top: 2rem;
     align-items: center;
+  }
+  .navbar.navbar-shrink .navbar-collapse {
+    top: 80px;
   }
 }
 .navbar .mobile-social-links {
@@ -12290,47 +12312,23 @@ textarea.form-control-lg {
   position: absolute;
   top: 0;
   right: 0;
-  width: 400px;
-  height: 400px;
-  opacity: 0.1;
+  width: clamp(220px, 32vw, 360px);
+  height: clamp(240px, 34vw, 420px);
   pointer-events: none;
-  overflow: hidden;
+  background-image: url("../img/bg-corner.png");
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-size: contain;
+  mix-blend-mode: multiply;
+  opacity: 0.3;
+  overflow: visible;
+  z-index: 1;
 }
-.diagonal-lines::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  right: -50%;
-  width: 800px;
-  height: 800px;
-  background: repeating-linear-gradient(45deg, transparent, transparent 10px, #223a69 10px, #223a69 12px);
-}
-.section-dark .diagonal-lines::before, .group-navy .diagonal-lines::before {
-  background: repeating-linear-gradient(45deg, transparent, transparent 10px, #ffffff 10px, #ffffff 12px);
-}
-.section-light .diagonal-lines::before, .group-grey .diagonal-lines::before, .section-white .diagonal-lines::before {
-  background: repeating-linear-gradient(45deg, transparent, transparent 10px, #223a69 10px, #223a69 12px);
-}
-.diagonal-lines {
-  /* Alternative: Full circle approach (if reverting)
-  &::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -50%;
-    width: 600px;
-    height: 600px;
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      $alliant-navy 10px,
-      $alliant-navy 12px
-    );
-    border-radius: 50%;
-    transform: translate(25%, -25%);
-  }
-  */
+
+.section-dark .diagonal-lines,
+.group-navy .diagonal-lines {
+  mix-blend-mode: screen;
+  opacity: 0.45;
 }
 
 .team-hero {
@@ -12955,6 +12953,8 @@ textarea.form-control-lg {
   text-align: center;
   border-top: 5px solid #A8D8E6;
   box-shadow: 0 -12px 24px rgba(34, 58, 105, 0.08);
+  position: relative;
+  overflow: hidden;
 }
 .footer .footer-logo {
   margin-bottom: 6rem;
@@ -12988,6 +12988,16 @@ textarea.form-control-lg {
   font-size: 0.875rem;
   color: #6c757d;
   margin: 0;
+}
+.footer .diagonal-lines {
+  width: clamp(200px, 36vw, 420px);
+  height: clamp(220px, 40vw, 480px);
+  opacity: 0.28;
+  mix-blend-mode: multiply;
+}
+.footer .container {
+  position: relative;
+  z-index: 2;
 }
 
 .contact-form-section {

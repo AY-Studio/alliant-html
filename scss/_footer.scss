@@ -7,6 +7,8 @@
   text-align: center;
   border-top: 5px solid #A8D8E6;
   box-shadow: 0 -12px 24px rgba(34, 58, 105, 0.08);
+  position: relative;
+  overflow: hidden;
 
   // Footer logo
   .footer-logo {
@@ -49,5 +51,17 @@
     font-size: 0.875rem;
     color: $text-muted;
     margin: 0;
+  }
+
+  .diagonal-lines {
+    width: clamp(200px, 36vw, 420px);
+    height: clamp(220px, 40vw, 480px);
+    opacity: 0.28;
+    mix-blend-mode: multiply;
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
   }
 }

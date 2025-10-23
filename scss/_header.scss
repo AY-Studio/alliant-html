@@ -5,6 +5,10 @@
   background-color: $alliant-navy;
   padding: 1.5rem 0;
   min-height: 110px;
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+  transition: padding 0.3s ease, min-height 0.3s ease, background-color 0.3s ease;
 
   // Alliant logo styling
   .navbar-brand {
@@ -25,10 +29,26 @@
       max-height: 52px;
       height: auto;
       margin-right: 0;
+      transition: width 0.3s ease, max-height 0.3s ease;
 
       @media (max-width: 575.98px) {
         width: 190px;
         max-height: 42px;
+      }
+    }
+  }
+
+  &.navbar-shrink {
+    padding: 0.75rem 0;
+    min-height: 80px;
+
+    .navbar-brand img {
+      width: 160px;
+      max-height: 38px;
+
+      @media (max-width: 575.98px) {
+        width: 150px;
+        max-height: 34px;
       }
     }
   }
@@ -136,7 +156,7 @@
   @media (max-width: 991.98px) {
     .navbar-collapse {
       position: fixed;
-      top: 60px; // Below navbar height
+      top: 110px; // Below navbar height
       left: 0;
       right: 0;
       bottom: 0;
@@ -166,6 +186,12 @@
         justify-content: center;
         padding-top: 2rem;
         align-items: center;
+      }
+    }
+
+    &.navbar-shrink {
+      .navbar-collapse {
+        top: 80px;
       }
     }
   }
