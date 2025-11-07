@@ -37,11 +37,34 @@
     a {
       color: $alliant-navy;
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 600;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      padding-bottom: 0.15rem;
       transition: color 0.3s ease;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 2px;
+        background-color: currentColor;
+        border-radius: 999px;
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform 0.25s ease;
+        opacity: 0.85;
+      }
 
       &:hover {
         color: $secondary;
+
+        &::after {
+          transform: scaleX(1);
+        }
       }
     }
   }

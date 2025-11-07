@@ -124,9 +124,41 @@
       font-size: 1rem;
       font-weight: 700;
       font-family: 'Mulish', sans-serif;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      transition: color 0.3s ease;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0.85rem;
+        right: 0.85rem;
+        bottom: 0.15rem;
+        height: 2px;
+        background-color: currentColor;
+        border-radius: 999px;
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform 0.25s ease;
+        opacity: 0.85;
+      }
 
       &:hover {
         color: $navbar-dark-hover-color;
+
+        &::after {
+          transform: scaleX(1);
+        }
+      }
+
+      &.active,
+      &[aria-current='page'] {
+        color: $white;
+
+        &::after {
+          transform: scaleX(1);
+        }
       }
 
       // Large links on mobile
@@ -136,6 +168,10 @@
         font-weight: 500;
         display: block;
         text-align: center;
+
+        &::after {
+          display: none;
+        }
       }
     }
 
