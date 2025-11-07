@@ -11,7 +11,7 @@ alliant/
 │   │   └── default.html    # Main layout with header/footer
 │   ├── pages/              # Page templates
 │   │   ├── index.html      # Homepage
-│   │   ├── team.html       # Team page
+│   │   ├── about.html      # About page
 │   │   ├── news.html       # News listing
 │   │   ├── article.html    # Article detail
 │   │   ├── contact.html    # Contact page
@@ -134,7 +134,7 @@ Then visit `http://localhost:8000`
 ## Pages
 
 - **Homepage (index.html)** - Hero, values, products, assets sections
-- **Team (team.html)** - Mission statement and 5 team member cards
+- **About (about.html)** - Mission statement and 5 team member cards
 - **News (news.html)** - 9 article grid with pagination
 - **Article (article.html)** - Article detail with WordPress styling
 - **Contact (contact.html)** - Contact form with Gravity Forms styling

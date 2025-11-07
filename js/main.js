@@ -4,19 +4,36 @@ const swup = new window.Swup({
   animationSelector: '[class*="transition-"]'
 });
 
-// Navbar shrink on scroll
+// Navbar shrink on scroll with hysteresis to avoid jitter near the top
 const navbar = document.querySelector('.navbar');
+const SHRINK_ADD_OFFSET = 90; // scrollY to apply shrink
+const SHRINK_REMOVE_OFFSET = 30; // scrollY to remove shrink
+let isNavbarShrunk = false;
+let isScrollTicking = false;
 
 const updateNavbarState = () => {
   if (!navbar) return;
-  if (window.scrollY > 20) {
+  const scrollPosition = window.scrollY || window.pageYOffset;
+
+  if (!isNavbarShrunk && scrollPosition > SHRINK_ADD_OFFSET) {
     navbar.classList.add('navbar-shrink');
-  } else {
+    isNavbarShrunk = true;
+  } else if (isNavbarShrunk && scrollPosition < SHRINK_REMOVE_OFFSET) {
     navbar.classList.remove('navbar-shrink');
+    isNavbarShrunk = false;
   }
 };
 
-window.addEventListener('scroll', updateNavbarState, { passive: true });
+const handleScroll = () => {
+  if (isScrollTicking) return;
+  isScrollTicking = true;
+  window.requestAnimationFrame(() => {
+    updateNavbarState();
+    isScrollTicking = false;
+  });
+};
+
+window.addEventListener('scroll', handleScroll, { passive: true });
 updateNavbarState();
 
 // Close mobile menu on link click (for persistent navigation)
