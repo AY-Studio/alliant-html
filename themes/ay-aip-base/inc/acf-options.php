@@ -23,3 +23,15 @@ add_action( 'acf/init', function () {
         ] );
     }
 } );
+
+add_filter( 'acf/load_field/name=theme_heading_font_choice', 'ay_aip_base_populate_font_choices' );
+add_filter( 'acf/load_field/name=theme_body_font_choice', 'ay_aip_base_populate_font_choices' );
+function ay_aip_base_populate_font_choices( $field ) {
+    $choices = ay_aip_base_get_font_choices_dropdown();
+    if ( ! empty( $choices ) ) {
+        $field['choices'] = $choices;
+    }
+    $field['ui'] = 1;
+    $field['ajax'] = 0;
+    return $field;
+}

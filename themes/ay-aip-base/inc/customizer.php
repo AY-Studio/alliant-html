@@ -5,6 +5,33 @@
 
 add_action( 'customize_register', 'ay_aip_base_customize_register' );
 function ay_aip_base_customize_register( $wp_customize ) {
+    if ( ! class_exists( 'AY_AIP_Base_Font_Control' ) ) {
+        class AY_AIP_Base_Font_Control extends WP_Customize_Control {
+            public $type = 'ay-font-select';
+
+            public function render_content() {
+                $choices = ay_aip_base_get_font_choices_dropdown();
+                if ( empty( $choices ) ) {
+                    echo '<p>' . esc_html__( 'Unable to load fonts list. Please try again later.', 'ay-aip-base' ) . '</p>';
+                    return;
+                }
+
+                if ( ! empty( $this->label ) ) {
+                    echo '<span class="customize-control-title">' . esc_html( $this->label ) . '</span>';
+                }
+                if ( ! empty( $this->description ) ) {
+                    echo '<span class="description customize-control-description">' . esc_html( $this->description ) . '</span>';
+                }
+
+                printf( '<select class="ay-font-select-control" %s>', $this->get_link() );
+                foreach ( $choices as $value => $label ) {
+                    printf( '<option value="%1$s" %2$s>%3$s</option>', esc_attr( $value ), selected( $this->value(), $value, false ), esc_html( $label ) );
+                }
+                echo '</select>';
+            }
+        }
+    }
+
     $wp_customize->add_section( 'ay_aip_base_design', [
         'title'    => __( 'Design Settings', 'ay-aip-base' ),
         'priority' => 30,
@@ -19,16 +46,14 @@ function ay_aip_base_customize_register( $wp_customize ) {
         'heading_font'   => [
             'default'     => 'mulish',
             'label'       => __( 'Heading Font', 'ay-aip-base' ),
-            'description' => __( 'Select a Google Font for headings. Loaded automatically on the front end.', 'ay-aip-base' ),
-            'type'        => 'select',
-            'choices'     => $font_choices,
+            'description' => __( 'Search and select any Google Font for headings.', 'ay-aip-base' ),
+            'type'        => 'font',
         ],
         'body_font'      => [
             'default'     => 'mulish',
             'label'       => __( 'Body Font', 'ay-aip-base' ),
-            'description' => __( 'Choose the font used for paragraphs, navigation, and UI text.', 'ay-aip-base' ),
-            'type'        => 'select',
-            'choices'     => $font_choices,
+            'description' => __( 'Search and select any Google Font for body text.', 'ay-aip-base' ),
+            'type'        => 'font',
         ],
         'primary_color'  => [ 'default' => '#1f3a63', 'label' => __( 'Primary Color', 'ay-aip-base' ) ],
         'accent_color'   => [ 'default' => '#4a7dff', 'label' => __( 'Accent Color', 'ay-aip-base' ) ],
@@ -57,10 +82,8 @@ function ay_aip_base_customize_register( $wp_customize ) {
             'description' => isset( $args['description'] ) ? $args['description'] : '',
         ];
 
-        if ( isset( $args['type'] ) && 'select' === $args['type'] ) {
-            $control_args['type']    = 'select';
-            $control_args['choices'] = $args['choices'];
-            $wp_customize->add_control( $setting_id, $control_args );
+        if ( isset( $args['type'] ) && 'font' === $args['type'] ) {
+            $wp_customize->add_control( new AY_AIP_Base_Font_Control( $wp_customize, $setting_id, $control_args ) );
             continue;
         }
 
@@ -83,6 +106,9 @@ function ay_aip_base_print_theme_tokens() {
     $tokens = [
         '--ay-font-heading'   => $heading_font['stack'],
         '--ay-font-body'      => $body_font['stack'],
+        '--bs-font-sans-serif' => $body_font['stack'],
+        '--bs-body-font-family' => $body_font['stack'],
+        '--bs-heading-font-family' => $heading_font['stack'],
         '--ay-color-primary'  => get_theme_mod( 'ay_aip_base_primary_color', '#1f3a63' ),
         '--ay-color-accent'   => get_theme_mod( 'ay_aip_base_accent_color', '#4a7dff' ),
         '--ay-color-heading'  => get_theme_mod( 'ay_aip_base_heading_color', '#111827' ),
@@ -96,5 +122,29 @@ function ay_aip_base_print_theme_tokens() {
         echo esc_html( $var ) . ':' . $value . ';'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     }
     echo "}</style>"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-    echo '<style id="ay-aip-base-nav-style">.navbar{background-color:var(--ay-nav-background);}html.is-animating{background-color:var(--ay-nav-background);}</style>';
+    $heading_selectors = 'h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6';
+    $body_selectors    = 'body, button, input, optgroup, select, textarea, .navbar .navbar-nav .nav-link, .tooltip, .popover';
+    $gform_selectors   = implode(
+        ',',
+        [
+            '.gform_wrapper.gravity-theme .ginput_container input[type=text]',
+            '.gform_wrapper.gravity-theme .ginput_container input[type=email]',
+            '.gform_wrapper.gravity-theme .ginput_container input[type=tel]',
+            '.gform_wrapper.gravity-theme .ginput_container textarea',
+        ]
+    );
+    echo "<style id='ay-aip-base-font-overrides'>";
+    echo $heading_selectors . '{font-family:var(--ay-font-heading);}';
+    echo $body_selectors . '{font-family:var(--ay-font-body);}';
+    echo $gform_selectors . '{font-family:var(--ay-font-body) !important;}';
+    echo '</style>';
+    echo "<style id='ay-aip-base-nav-style'>.navbar{background-color:var(--ay-nav-background);}html.is-animating{background-color:var(--ay-nav-background);}</style>";
+}
+
+add_action( 'customize_controls_enqueue_scripts', 'ay_aip_base_customize_assets' );
+function ay_aip_base_customize_assets() {
+    wp_enqueue_style( 'selectWoo' );
+    wp_enqueue_script( 'selectWoo' );
+    wp_enqueue_style( 'ay-aip-base-customizer', AY_AIP_BASE_URI . '/assets/css/customizer.css', [], AY_AIP_BASE_VERSION );
+    wp_enqueue_script( 'ay-aip-base-customizer', AY_AIP_BASE_URI . '/assets/js/customizer.js', [ 'jquery', 'customize-controls', 'selectWoo' ], AY_AIP_BASE_VERSION, true );
 }

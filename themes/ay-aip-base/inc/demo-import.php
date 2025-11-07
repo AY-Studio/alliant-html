@@ -333,25 +333,6 @@ function ay_aip_base_privacy_content() {
 }
 
 function ay_aip_base_blocks_content() {
-    return <<<HTML
-<!-- wp:heading {"level":1} -->
-<h1 class="wp-block-heading">Blocks Library</h1>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>This page collects sample sections so editors can copy/paste components into new layouts.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:columns {"align":"wide"} -->
-<div class="wp-block-columns alignwide"><!-- wp:column -->
-<div class="wp-block-column"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Card Example</h3>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>Swap this with ACF Card Grid block once content is ready.</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:column --></div>
-<!-- /wp:columns -->
-HTML;
+    $html = ay_aip_base_get_demo_html( 'blocks' );
+    return $html ? ay_aip_base_wrap_html_block( $html ) : '';
 }

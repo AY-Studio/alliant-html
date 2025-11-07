@@ -7,38 +7,28 @@
             "label": "Heading Font",
             "name": "theme_heading_font_choice",
             "type": "select",
-            "choices": {
-                "inter": "Inter",
-                "mulish": "Mulish",
-                "source-sans": "Source Sans 3",
-                "space-grotesk": "Space Grotesk",
-                "manrope": "Manrope"
-            },
+            "choices": {},
             "default_value": "mulish",
             "wrapper": {
                 "width": "50"
             },
             "ui": 1,
-            "return_format": "value"
+            "return_format": "value",
+            "ajax": 0
         },
         {
             "key": "field_theme_body_font_choice",
             "label": "Body Font",
             "name": "theme_body_font_choice",
             "type": "select",
-            "choices": {
-                "inter": "Inter",
-                "mulish": "Mulish",
-                "source-sans": "Source Sans 3",
-                "space-grotesk": "Space Grotesk",
-                "manrope": "Manrope"
-            },
+            "choices": {},
             "default_value": "mulish",
             "wrapper": {
                 "width": "50"
             },
             "ui": 1,
-            "return_format": "value"
+            "return_format": "value",
+            "ajax": 0
         },
         {
             "key": "field_theme_primary_color",
@@ -59,7 +49,7 @@
             "label": "Navigation Background",
             "name": "theme_nav_background",
             "type": "color_picker",
-            "default_value": "#ffffff"
+            "default_value": "#223a69"
         },
         {
             "key": "field_theme_nav_cta_label",
@@ -90,6 +80,17 @@
             },
             "default_value": "primary",
             "return_format": "value"
+        },
+        {
+            "key": "field_theme_google_fonts_api_key",
+            "label": "Google Fonts API Key",
+            "name": "theme_google_fonts_api_key",
+            "type": "text",
+            "instructions": "Optional override. Leave blank to use the default key.",
+            "default_value": "AIzaSyAUaND6Jsu_ABtWFHeZ4rh4u8kZO3VbBVc",
+            "wrapper": {
+                "width": "100"
+            }
         }
     ],
     "location": [
@@ -109,5 +110,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1762533296
+    "modified": 1762553581
 }
