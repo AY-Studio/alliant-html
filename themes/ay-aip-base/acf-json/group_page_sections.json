@@ -1,0 +1,39 @@
+{
+    "key": "group_page_sections",
+    "title": "Page Sections",
+    "fields": [
+        {
+            "key": "field_page_sections_flexible",
+            "label": "Sections",
+            "name": "page_sections",
+            "type": "flexible_content",
+            "layouts": {
+                "layout_hero": {
+                    "key": "layout_hero",
+                    "name": "hero",
+                    "label": "Hero",
+                    "display": "block",
+                    "sub_fields": []
+                },
+                "layout_card_grid": {
+                    "key": "layout_card_grid",
+                    "name": "card_grid",
+                    "label": "Card Grid",
+                    "display": "block",
+                    "sub_fields": []
+                }
+            },
+            "button_label": "Add Section"
+        }
+    ],
+    "location": [[{"param":"page_template","operator":"==","value":"templates/template-pagebuilder.php"}]],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "the_content",
+    "active": true,
+    "description": "",
+    "modified": 1735737607
+}

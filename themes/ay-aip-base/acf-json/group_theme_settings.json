@@ -1,0 +1,86 @@
+{
+    "key": "group_theme_settings",
+    "title": "Theme Settings",
+    "fields": [
+        {
+            "key": "field_theme_heading_font",
+            "label": "Heading Font",
+            "name": "theme_heading_font",
+            "type": "text",
+            "instructions": "Enter a CSS font-family stack for headings.",
+            "required": 0,
+            "wrapper": {"width": "50"},
+            "default_value": "Inter, sans-serif"
+        },
+        {
+            "key": "field_theme_body_font",
+            "label": "Body Font",
+            "name": "theme_body_font",
+            "type": "text",
+            "wrapper": {"width": "50"},
+            "default_value": "Inter, sans-serif"
+        },
+        {
+            "key": "field_theme_primary_color",
+            "label": "Primary Color",
+            "name": "theme_primary_color",
+            "type": "color_picker",
+            "default_value": "#1f3a63"
+        },
+        {
+            "key": "field_theme_accent_color",
+            "label": "Accent Color",
+            "name": "theme_accent_color",
+            "type": "color_picker",
+            "default_value": "#4a7dff"
+        },
+        {
+            "key": "field_theme_nav_background",
+            "label": "Navigation Background",
+            "name": "theme_nav_background",
+            "type": "color_picker",
+            "default_value": "#ffffff"
+        },
+        {
+            "key": "field_theme_nav_cta_label",
+            "label": "Navigation CTA Label",
+            "name": "theme_nav_cta_label",
+            "type": "text",
+            "wrapper": {"width": "50"}
+        },
+        {
+            "key": "field_theme_nav_cta_url",
+            "label": "Navigation CTA URL",
+            "name": "theme_nav_cta_url",
+            "type": "url",
+            "wrapper": {"width": "50"}
+        },
+        {
+            "key": "field_theme_nav_cta_style",
+            "label": "Navigation CTA Style",
+            "name": "theme_nav_cta_style",
+            "type": "select",
+            "choices": {"primary": "Primary","secondary": "Secondary"},
+            "default_value": "primary",
+            "return_format": "value"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "ay-theme-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1735737600
+}

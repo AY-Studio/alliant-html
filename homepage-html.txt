@@ -1,0 +1,370 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Alliant AirFinance is an experienced commercial aviation lending platform with deep expertise in the aviation finance sector.">
+    <title>Specialist Aviation Finance - Alliant AirFinance</title>
+
+    <!-- Google Fonts - Mulish -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS (compiled from SCSS) -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- AOS CSS (CDN) -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+</head>
+<body>
+
+    <!-- Include Header Partial -->
+    <!-- Header Navigation -->
+    <!-- Uses Bootstrap navbar component with dark theme -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <!-- Brand logo and name -->
+            <a class='navbar-brand' href='/'>
+                <img src="img/alliant-logo-header.svg" srcset="img/alliant-logo-header.svg 1x, img/alliant-logo-header@2x.png 2x" alt="Alliant AirFinance" width="235" height="50">
+            </a>
+
+            <!-- Mobile menu toggle button -->
+            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" aria-hidden="true">
+                    <span class="toggler-line"></span>
+                    <span class="toggler-line"></span>
+                    <span class="toggler-line"></span>
+                </span>
+            </button>
+
+            <!-- Navigation links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class='nav-link' href='/'>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class='nav-link' href='/about'>About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class='nav-link' href='/news'>Insights</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class='nav-link' href='/contact'>Contact</a>
+                    </li>
+                </ul>
+
+                <!-- Social links for mobile menu -->
+                <div class="mobile-social-links">
+                    <a href="https://www.linkedin.com/company/alliant" class="mobile-social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.facebook.com/alliantairfinance" class="mobile-social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                    <a href="https://twitter.com/alliantair" class="mobile-social-link" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Swup Container -->
+    <main id="swup" class="transition-fade">
+        <!-- Page Content -->
+
+        <!-- Hero Section -->
+        <!-- Full-width hero with background image and overlay -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h1>Specialist Aviation Finance</h1>
+                        <p class="lead">Alliant AirFinance is an experienced commercial aviation lending platform with deep expertise in the aviation finance sector.</p>
+                        <a href="#contact" class="btn btn-outline-light">Contact Us →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alliant Values Section -->
+        <!-- Light background with three value cards -->
+        <section class="section section-white">
+            <!-- Decorative diagonal lines in corner -->
+            <div class="diagonal-lines"></div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-12" data-aos="fade">
+                        <h2 class="section-title">Alliant Values</h2>
+                        <p class="section-subtitle">Our values are more than statements on a page — they define who we are and how we work. They guide our decisions, shape our culture, and set the standard for the impact we create. Each value reflects a commitment to our clients, our people, and our shared future.</p>
+                    </div>
+                </div>
+
+                <!-- Value cards with images at top and text below -->
+                <!-- Using Bootstrap card component with card-img-top -->
+                <div class="row g-4 mb-4">
+                    <!-- We Are Global -->
+                    <div class="col-12 col-lg-4" data-aos="fade" data-aos-delay="100">
+                        <div class="card border-0 value-card h-100">
+                            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&h=1000&fit=crop" class="card-img-top" alt="Global aircraft">
+                            <div class="card-body card-overlay text-center">
+                                <h3 class="card-title">We Are Global</h3>
+                                <p class="card-text">Our reach spans markets and cultures, giving us the insight to navigate complexity and connect opportunities worldwide. By embracing diversity and building partnerships that last, we deliver capital and solutions aligned to our clients' risk, we deliver solutions shaped by international insight.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- We Are Experienced -->
+                    <div class="col-12 col-lg-4" data-aos="fade" data-aos-delay="200">
+                        <div class="card border-0 value-card h-100">
+                            <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?w=800&h=1000&fit=crop" class="card-img-top" alt="Aviation expertise">
+                            <div class="card-body card-overlay text-center">
+                                <h3 class="card-title">We Are Experienced</h3>
+                                <p class="card-text">Our track record spans years of guiding clients across the full aviation lifecycle—from acquisition to exit, through changing markets and evolving regulations. We combine deep technical understanding with the judgment born from navigating real-world challenges. Experience shapes our decisions and sharpens the value we bring to every transaction.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- We Are Innovative -->
+                    <div class="col-12 col-lg-4" data-aos="fade" data-aos-delay="300">
+                        <div class="card border-0 value-card h-100">
+                            <img src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&h=1000&fit=crop" class="card-img-top" alt="Innovation">
+                            <div class="card-body card-overlay text-center">
+                                <h3 class="card-title">We Are Innovative</h3>
+                                <p class="card-text">Curiosity drives us to challenge convention and explore better ways forward. We tailor financing structures with precision, apply emerging technologies with purpose, and rethink traditional approaches where others see only risk — it's embedded in how we think, how we work, and how we deliver.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Learn more button -->
+                <!-- Using Bootstrap button component -->
+                <div class="row pt-4">
+                    <div class="col-12 text-center" data-aos="fade" data-aos-delay="400">
+                        <a class='btn btn-outline-primary' href='/about'>Learn more →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Offerings Section -->
+        <!-- Apply `group-grey` or `group-navy` to swap theme -->
+        <section class="section group-grey">
+            <!-- Decorative diagonal lines in corner -->
+            <div class="diagonal-lines"></div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-12" data-aos="fade">
+                        <h2 class="section-title">Product Offerings</h2>
+                        <p class="section-subtitle">Alliant AirFinance believes its full-suite of product offerings, along with Alliant AirFinance’s certainty of execution, positions Alliant AirFinance as a preferred solutions provider for counterparties.</p>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <!-- 1. Bridge Financing -->
+                    <div class="col-12 col-sm-6 col-lg-4" data-aos="fade" data-aos-delay="100">
+                        <div class="card border-0 text-center h-100">
+                            <div class="card-body">
+                                <div class="icon-wrapper mx-auto mb-3">
+                                    <img src="img/ico/bridge.svg" alt="Bridge financing icon">
+                                </div>
+                                <h4 class="card-title text-uppercase">Bridge Financing</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Structured Credit -->
+                    <div class="col-12 col-sm-6 col-lg-4" data-aos="fade" data-aos-delay="200">
+                        <div class="card border-0 text-center h-100">
+                            <div class="card-body">
+                                <div class="icon-wrapper mx-auto mb-3">
+                                    <img src="img/ico/structured.svg" alt="Structured credit icon">
+                                </div>
+                                <h4 class="card-title text-uppercase">Structured Credit</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Portfolio Financing / Revolving Facilities -->
+                    <div class="col-12 col-sm-6 col-lg-4" data-aos="fade" data-aos-delay="300">
+                        <div class="card border-0 text-center h-100">
+                            <div class="card-body">
+                                <div class="icon-wrapper mx-auto mb-3">
+                                    <img src="img/ico/portfolio.svg" alt="Portfolio financing icon">
+                                </div>
+                                <h4 class="card-title text-uppercase">Portfolio Financing / Revolving Facilities</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Pre-Delivery Payments -->
+                    <div class="col-12 col-sm-6 col-lg-4" data-aos="fade" data-aos-delay="100">
+                        <div class="card border-0 text-center h-100">
+                            <div class="card-body">
+                                <div class="icon-wrapper mx-auto mb-3">
+                                    <img src="img/ico/payments.svg" alt="Pre-delivery payments icon">
+                                </div>
+                                <h4 class="card-title text-uppercase">Pre-Delivery Payments</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Hybrid Debt -->
+                    <div class="col-12 col-sm-6 col-lg-4" data-aos="fade" data-aos-delay="200">
+                        <div class="card border-0 text-center h-100">
+                            <div class="card-body">
+                                <div class="icon-wrapper mx-auto mb-3">
+                                    <img src="img/ico/hybrid-debt.svg" alt="Hybrid debt icon">
+                                </div>
+                                <h4 class="card-title text-uppercase">Hybrid Debt</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. Operating & Finance Leases -->
+                    <div class="col-12 col-sm-6 col-lg-4" data-aos="fade" data-aos-delay="300">
+                        <div class="card border-0 text-center h-100">
+                            <div class="card-body">
+                                <div class="icon-wrapper mx-auto mb-3">
+                                    <img src="img/ico/diamond.svg" alt="Operating and finance leases icon">
+                                </div>
+                                <h4 class="card-title text-uppercase">Operating &amp; Finance Leases</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 7. Aircraft -->
+                    <div class="col-12 col-sm-6 col-lg-4" data-aos="fade" data-aos-delay="100">
+                        <div class="card border-0 text-center h-100">
+                            <div class="card-body">
+                                <div class="icon-wrapper mx-auto mb-3">
+                                    <img src="img/ico/aircraft.svg" alt="Aircraft icon">
+                                </div>
+                                <h4 class="card-title text-uppercase">Aircraft</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 8. Engines -->
+                    <div class="col-12 col-sm-6 col-lg-4" data-aos="fade" data-aos-delay="200">
+                        <div class="card border-0 text-center h-100">
+                            <div class="card-body">
+                                <div class="icon-wrapper mx-auto mb-3">
+                                    <img src="img/ico/engines.svg" alt="Engines icon">
+                                </div>
+                                <h4 class="card-title text-uppercase">Engines</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 9. Frequent Flyer Programs -->
+                    <div class="col-12 col-sm-6 col-lg-4" data-aos="fade" data-aos-delay="300">
+                        <div class="card border-0 text-center h-100">
+                            <div class="card-body">
+                                <div class="icon-wrapper mx-auto mb-3">
+                                    <img src="img/ico/frequent-flyer.svg" alt="Frequent flyer programs icon">
+                                </div>
+                                <h4 class="card-title text-uppercase">Frequent Flyer Programs</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 10. Slots Gates & Routes -->
+                    <div class="col-12 col-sm-6 col-lg-4" data-aos="fade" data-aos-delay="100">
+                        <div class="card border-0 text-center h-100">
+                            <div class="card-body">
+                                <div class="icon-wrapper mx-auto mb-3">
+                                    <img src="img/ico/slots-gates.svg" alt="Slots, gates, and routes icon">
+                                </div>
+                                <h4 class="card-title text-uppercase">Slots Gates &amp; Routes</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 11. Ground Equipment -->
+                    <div class="col-12 col-sm-6 col-lg-4" data-aos="fade" data-aos-delay="200">
+                        <div class="card border-0 text-center h-100">
+                            <div class="card-body">
+                                <div class="icon-wrapper mx-auto mb-3">
+                                    <img src="img/ico/ground.svg" alt="Ground equipment icon">
+                                </div>
+                                <h4 class="card-title text-uppercase">Ground Equipment</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 12. Receivables -->
+                    <div class="col-12 col-sm-6 col-lg-4" data-aos="fade" data-aos-delay="300">
+                        <div class="card border-0 text-center h-100">
+                            <div class="card-body">
+                                <div class="icon-wrapper mx-auto mb-3">
+                                    <img src="img/ico/recievables.svg" alt="Receivables icon">
+                                </div>
+                                <h4 class="card-title text-uppercase">Receivables</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Include Footer Partial -->
+    <!-- Footer -->
+    <!-- Light background with centered content -->
+    <footer class="footer">
+        <div class="diagonal-lines diagonal-lines--footer"></div>
+        <div class="container">
+            <!-- Footer logo -->
+            <div class="footer-logo">
+                <img src="img/alliant-logo-footer.svg" srcset="img/alliant-logo-footer.svg 1x, img/alliant-logo-footer@2x.png 2x" alt="Alliant AirFinance" width="220" height="52">
+            </div>
+
+            <!-- Footer navigation -->
+            <ul class="footer-nav">
+                <li><a href='/'>Home</a></li>
+                <li><a href='/about'>About</a></li>
+                <li><a href='/news'>Insights</a></li>
+                <li><a href='/blocks'>Blocks</a></li>
+                <li><a href='/terms'>Terms &amp; Conditions</a></li>
+                <li><a href='/page'>Privacy Policy</a></li>
+            </ul>
+
+            <!-- Copyright -->
+            <p class="footer-copyright">&copy; 2025 ALLIANT AirFinance LLC. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JavaScript Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- AOS JavaScript (CDN) -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true,
+        offset: 100
+      });
+    </script>
+
+    <!-- Swup UMD (CDN) -->
+    <script src="https://unpkg.com/swup@4"></script>
+
+    <!-- Site JavaScript -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

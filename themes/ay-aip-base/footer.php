@@ -1,0 +1,35 @@
+<?php
+/**
+ * Footer template.
+ */
+?>
+</main>
+<footer class="footer">
+    <div class="diagonal-lines diagonal-lines--footer" aria-hidden="true"></div>
+    <div class="container">
+        <div class="footer-logo">
+            <?php if ( has_custom_logo() ) : ?>
+                <?php the_custom_logo(); ?>
+            <?php else : ?>
+                <span class="footer-logo__text"><?php bloginfo( 'name' ); ?></span>
+            <?php endif; ?>
+        </div>
+        <?php
+        if ( has_nav_menu( 'footer' ) ) {
+            wp_nav_menu( [
+                'theme_location' => 'footer',
+                'container'      => false,
+                'menu_class'     => 'footer-nav',
+                'items_wrap'     => '<ul class="footer-nav">%3$s</ul>',
+                'fallback_cb'    => '__return_empty_string',
+            ] );
+        } else {
+            echo '<ul class="footer-nav"><li class="footer-nav__item"><a class="footer-nav__link" href="' . esc_url( admin_url( 'nav-menus.php' ) ) . '">' . esc_html__( 'Assign footer menu', 'ay-aip-base' ) . '</a></li></ul>';
+        }
+        ?>
+        <p class="footer-copy">&copy; <?php echo esc_html( date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>. <?php esc_html_e( 'All rights reserved.', 'ay-aip-base' ); ?></p>
+    </div>
+</footer>
+<?php wp_footer(); ?>
+</body>
+</html>

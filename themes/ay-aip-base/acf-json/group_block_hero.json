@@ -1,0 +1,28 @@
+{
+    "key": "group_block_hero",
+    "title": "Block: Hero",
+    "fields": [
+        {"key":"field_hero_layout_style","label":"Layout Style","name":"hero_layout_style","type":"select","choices":{"default":"Default","compact":"Compact"},"default_value":"default"},
+        {"key":"field_hero_text_mode","label":"Text Mode","name":"hero_text_mode","type":"select","choices":{"light":"Light","dark":"Dark"},"default_value":"dark","wrapper":{"width":"50"}},
+        {"key":"field_hero_eyebrow","label":"Eyebrow","name":"hero_eyebrow","type":"text","wrapper":{"width":"50"}},
+        {"key":"field_hero_heading","label":"Heading","name":"hero_heading","type":"text"},
+        {"key":"field_hero_subheading","label":"Subheading","name":"hero_subheading","type":"textarea","rows":3},
+        {"key":"field_hero_buttons","label":"Buttons","name":"hero_buttons","type":"repeater","layout":"row","button_label":"Add Button","sub_fields":[
+            {"key":"field_hero_button_label","label":"Label","name":"label","type":"text","wrapper":{"width":"40"}},
+            {"key":"field_hero_button_url","label":"URL","name":"url","type":"url","wrapper":{"width":"40"}},
+            {"key":"field_hero_button_style","label":"Style","name":"style","type":"select","choices":{"primary":"Primary","secondary":"Secondary"},"wrapper":{"width":"20"},"default_value":"primary"}
+        ]},
+        {"key":"field_hero_background_image","label":"Background Image","name":"hero_background_image","type":"image","return_format":"array","preview_size":"medium"},
+        {"key":"field_hero_overlay_color","label":"Overlay Color","name":"hero_overlay_color","type":"color_picker"}
+    ],
+    "location": [[{"param":"block","operator":"==","value":"acf/hero"}]],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1735737601
+}

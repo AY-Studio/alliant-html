@@ -1,0 +1,20 @@
+{
+    "key": "group_block_stats",
+    "title": "Block: Stats",
+    "fields": [
+        {"key":"field_stats_items","label":"Stats","name":"stats_items","type":"repeater","layout":"table","button_label":"Add Stat","sub_fields":[
+            {"key":"field_stats_value","label":"Value","name":"value","type":"text","wrapper":{"width":"50"}},
+            {"key":"field_stats_heading","label":"Label","name":"heading","type":"text","wrapper":{"width":"50"}}
+        ]}
+    ],
+    "location": [[{"param":"block","operator":"==","value":"acf/stats"}]],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1735739103
+}

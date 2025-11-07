@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+:root {
+  --ay-font-heading: 'Inter', sans-serif;
+  --ay-font-body: 'Inter', sans-serif;
+  --ay-color-primary: #1f3a63;
+  --ay-color-accent: #4a7dff;
+  --ay-color-heading: #111827;
+  --ay-color-body: #4b5563;
+}
+body.gutenberg-editor-page .editor-styles-wrapper {
+  font-family: var(--ay-font-body);
+  color: var(--ay-color-body);
+}
