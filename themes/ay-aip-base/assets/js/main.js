@@ -1,11 +1,12 @@
 (function () {
   const initSwup = () => {
-    if (!window.Swup || document.getElementById('swup') === null) {
+    if (typeof window.Swup === 'undefined' || !document.getElementById('swup')) {
       return null;
     }
     return new window.Swup({
       containers: ['#swup'],
-      animationSelector: '[class*="transition-"]'
+      animationSelector: '[class*="transition-"]',
+      linkSelector: 'a[href^="' + window.location.origin + '"], a[href^="/"], a[href^="./"], a[href^="../"]'
     });
   };
 
@@ -67,16 +68,14 @@
     }
   };
 
-  document.addEventListener('scroll', handleScroll, { passive: true });
-  updateNavbarState();
+  const attachToggler = () => {
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.querySelector('#navbarNav');
 
-  const swup = initSwup();
-  initAOS();
+    if (!navbarToggler || !navbarCollapse) {
+      return;
+    }
 
-  const navbarToggler = document.querySelector('.navbar-toggler');
-  const navbarCollapse = document.querySelector('#navbarNav');
-
-  if (navbarToggler && navbarCollapse) {
     navbarToggler.addEventListener('click', () => {
       const expanded = navbarToggler.getAttribute('aria-expanded') === 'true';
       if (expanded) {
@@ -89,13 +88,27 @@
         navbarToggler.setAttribute('aria-expanded', 'true');
       }
     });
-  }
+  };
 
-  if (swup) {
-    swup.hooks.on('link:click', collapseNav);
-    swup.hooks.on('page:view', () => {
-      initAOS();
-      updateNavbarState();
-    });
+  const boot = () => {
+    document.addEventListener('scroll', handleScroll, { passive: true });
+    updateNavbarState();
+    initAOS();
+    attachToggler();
+
+    const swup = initSwup();
+    if (swup) {
+      swup.hooks.on('link:click', collapseNav);
+      swup.hooks.on('page:view', () => {
+        initAOS();
+        updateNavbarState();
+      });
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
   }
 })();

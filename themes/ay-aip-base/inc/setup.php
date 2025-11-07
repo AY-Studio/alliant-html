@@ -37,6 +37,33 @@ function ay_aip_base_register_image_sizes() {
     add_image_size( 'ay_aip_base_square', 600, 600, true );
 }
 
+add_filter( 'post_type_link', 'ay_aip_base_news_permalink', 10, 2 );
+function ay_aip_base_news_permalink( $permalink, $post ) {
+    if ( 'post' === $post->post_type ) {
+        $permalink = home_url( user_trailingslashit( 'news/' . $post->post_name ) );
+    }
+    return $permalink;
+}
+
+add_action( 'init', 'ay_aip_base_register_news_rewrite' );
+function ay_aip_base_register_news_rewrite() {
+    add_rewrite_rule( '^news/([^/]+)/?$', 'index.php?name=$matches[1]', 'top' );
+}
+
+add_action( 'after_switch_theme', 'ay_aip_base_flush_rewrite' );
+function ay_aip_base_flush_rewrite() {
+    ay_aip_base_register_news_rewrite();
+    flush_rewrite_rules();
+}
+
+add_action( 'wp_head', 'ay_aip_base_inline_backgrounds', 30 );
+function ay_aip_base_inline_backgrounds() {
+    $hero_bg = esc_url( get_template_directory_uri() . '/img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg' );
+    echo '<style class="ay-hero-inline">.hero-section{background-image:url(' . $hero_bg . ');}';
+    echo '.admin-bar .navbar{top:32px;}@media (max-width:782px){.admin-bar .navbar{top:46px;}}';
+    echo '</style>';
+}
+
 add_filter( 'nav_menu_css_class', 'ay_aip_base_nav_item_classes', 10, 4 );
 function ay_aip_base_nav_item_classes( $classes, $item, $args, $depth ) {
     if ( isset( $args->theme_location ) && 'primary' === $args->theme_location ) {
@@ -58,3 +85,10 @@ function ay_aip_base_nav_link_attributes( $atts, $item, $args ) {
     }
     return $atts;
 }
+
+add_filter( 'use_block_editor_for_post_type', 'ay_aip_base_disable_gutenberg', 10, 2 );
+function ay_aip_base_disable_gutenberg( $use_block_editor, $post_type ) {
+    return false;
+}
+
+add_filter( 'use_widgets_block_editor', '__return_false' );

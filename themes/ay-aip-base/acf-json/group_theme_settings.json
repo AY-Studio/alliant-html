@@ -3,22 +3,42 @@
     "title": "Theme Settings",
     "fields": [
         {
-            "key": "field_theme_heading_font",
+            "key": "field_theme_heading_font_choice",
             "label": "Heading Font",
-            "name": "theme_heading_font",
-            "type": "text",
-            "instructions": "Enter a CSS font-family stack for headings.",
-            "required": 0,
-            "wrapper": {"width": "50"},
-            "default_value": "Inter, sans-serif"
+            "name": "theme_heading_font_choice",
+            "type": "select",
+            "choices": {
+                "inter": "Inter",
+                "mulish": "Mulish",
+                "source-sans": "Source Sans 3",
+                "space-grotesk": "Space Grotesk",
+                "manrope": "Manrope"
+            },
+            "default_value": "mulish",
+            "wrapper": {
+                "width": "50"
+            },
+            "ui": 1,
+            "return_format": "value"
         },
         {
-            "key": "field_theme_body_font",
+            "key": "field_theme_body_font_choice",
             "label": "Body Font",
-            "name": "theme_body_font",
-            "type": "text",
-            "wrapper": {"width": "50"},
-            "default_value": "Inter, sans-serif"
+            "name": "theme_body_font_choice",
+            "type": "select",
+            "choices": {
+                "inter": "Inter",
+                "mulish": "Mulish",
+                "source-sans": "Source Sans 3",
+                "space-grotesk": "Space Grotesk",
+                "manrope": "Manrope"
+            },
+            "default_value": "mulish",
+            "wrapper": {
+                "width": "50"
+            },
+            "ui": 1,
+            "return_format": "value"
         },
         {
             "key": "field_theme_primary_color",
@@ -46,21 +66,28 @@
             "label": "Navigation CTA Label",
             "name": "theme_nav_cta_label",
             "type": "text",
-            "wrapper": {"width": "50"}
+            "wrapper": {
+                "width": "50"
+            }
         },
         {
             "key": "field_theme_nav_cta_url",
             "label": "Navigation CTA URL",
             "name": "theme_nav_cta_url",
             "type": "url",
-            "wrapper": {"width": "50"}
+            "wrapper": {
+                "width": "50"
+            }
         },
         {
             "key": "field_theme_nav_cta_style",
             "label": "Navigation CTA Style",
             "name": "theme_nav_cta_style",
             "type": "select",
-            "choices": {"primary": "Primary","secondary": "Secondary"},
+            "choices": {
+                "primary": "Primary",
+                "secondary": "Secondary"
+            },
             "default_value": "primary",
             "return_format": "value"
         }
@@ -82,5 +109,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1735737600
+    "modified": 1762533296
 }

@@ -79,16 +79,20 @@ function ay_aip_base_run_import() {
     require_once ABSPATH . 'wp-admin/includes/taxonomy.php';
     require_once ABSPATH . 'wp-admin/includes/post.php';
 
-    $home_content   = ay_aip_base_home_content();
-    $about_content  = ay_aip_base_about_content();
-    $news_content   = ay_aip_base_news_content();
-    $contact_content= ay_aip_base_contact_content();
-    $blocks_content = ay_aip_base_blocks_content();
+    $home_content    = ay_aip_base_home_content();
+    $about_content   = ay_aip_base_about_content();
+    $news_content    = ay_aip_base_news_content();
+    $contact_content = ay_aip_base_contact_content();
+    $blocks_content  = ay_aip_base_blocks_content();
+    $terms_content   = ay_aip_base_terms_content();
+    $privacy_content = ay_aip_base_privacy_content();
 
-    $home_id   = ay_aip_base_upsert_page( 'Home', 'home', $home_content );
-    $about_id  = ay_aip_base_upsert_page( 'About', 'about', $about_content );
-    $news_id   = ay_aip_base_upsert_page( 'News & Insights', 'news', $news_content );
-    $contact_id= ay_aip_base_upsert_page( 'Contact', 'contact', $contact_content );
+    $home_id    = ay_aip_base_upsert_page( 'Home', 'home', $home_content );
+    $about_id   = ay_aip_base_upsert_page( 'About', 'about', $about_content );
+    $news_id    = ay_aip_base_upsert_page( 'News & Insights', 'news', $news_content );
+    $contact_id = ay_aip_base_upsert_page( 'Contact', 'contact', $contact_content );
+    $terms_id   = ay_aip_base_upsert_page( 'Terms & Conditions', 'terms', $terms_content );
+    $privacy_id = ay_aip_base_upsert_page( 'Privacy Policy', 'privacy-policy', $privacy_content );
     ay_aip_base_upsert_page( 'Blocks Library', 'blocks-library', $blocks_content, 'templates/template-pagebuilder.php' );
 
     if ( ! $home_id ) {
@@ -102,7 +106,7 @@ function ay_aip_base_run_import() {
     }
 
     ay_aip_base_create_posts();
-    ay_aip_base_setup_menus( $home_id, $about_id, $news_id, $contact_id );
+    ay_aip_base_setup_menus( $home_id, $about_id, $news_id, $contact_id, $terms_id, $privacy_id );
 
     return true;
 }
@@ -125,10 +129,19 @@ function ay_aip_base_run_reset() {
     delete_option( 'page_for_posts' );
     update_option( 'show_on_front', 'posts' );
 
-    $menu_id = (int) get_option( 'ay_aip_base_demo_menu' );
+    $stored_menus = get_option( 'ay_aip_base_demo_menu' );
+    $menu_id = $stored_menus;
     if ( $menu_id ) {
+        if ( is_array( $menu_id ) ) {
+        foreach ( $menu_id as $menu ) {
+            if ( $menu ) {
+                wp_delete_nav_menu( $menu );
+            }
+        }
+    } else {
         wp_delete_nav_menu( $menu_id );
-        delete_option( 'ay_aip_base_demo_menu' );
+    }
+    delete_option( 'ay_aip_base_demo_menu' );
     }
 
     remove_theme_mod( 'nav_menu_locations' );
@@ -160,16 +173,20 @@ function ay_aip_base_upsert_page( $title, $slug, $content, $template = '' ) {
 function ay_aip_base_create_posts() {
     $samples = [
         [
-            'title'   => 'Global Aviation Market Outlook',
-            'content' => '<!-- wp:paragraph --><p>As passenger demand continues to recover, airlines are accelerating fleet renewal plans while investors seek yield in asset-backed transactions.</p><!-- /wp:paragraph -->',
+            'title'   => 'Engine Leasing Outlook 2025',
+            'content' => '<!-- wp:paragraph --><p>Engine aftermarket demand is driving new leasing structures as operators seek flexible maintenance solutions.</p><!-- /wp:paragraph -->',
         ],
         [
-            'title'   => 'Fleet Expansion Strategies for 2026',
-            'content' => '<!-- wp:paragraph --><p>Sale-leasebacks and PDP facilities remain central to airline capital planning, especially as OEM delivery slots tighten.</p><!-- /wp:paragraph -->',
+            'title'   => 'Capital Markets Update: Aviation ABS',
+            'content' => '<!-- wp:paragraph --><p>Investor appetite for aviation ABS remains high with spreads stabilizing as traffic normalizes.</p><!-- /wp:paragraph -->',
         ],
         [
-            'title'   => 'Structured Finance Trends',
-            'content' => '<!-- wp:paragraph --><p>Cross-border investors continue to target mid-life aircraft assets, leveraging structured notes to balance risk.</p><!-- /wp:paragraph -->',
+            'title'   => 'Regional Airline Growth Opportunities',
+            'content' => '<!-- wp:paragraph --><p>Regional carriers are expanding route maps and leveraging sale-leasebacks to free working capital.</p><!-- /wp:paragraph -->',
+        ],
+        [
+            'title'   => 'Aircraft ABS Performance Review',
+            'content' => '<!-- wp:paragraph --><p>Performance of legacy aircraft ABS pools continues to improve as utilization and lease rates recover.</p><!-- /wp:paragraph -->',
         ],
     ];
 
@@ -187,11 +204,12 @@ function ay_aip_base_create_posts() {
         ] );
         if ( $post_id && ! is_wp_error( $post_id ) ) {
             update_post_meta( $post_id, '_ay_aip_base_demo', 1 );
+            update_post_meta( $post_id, 'ay_source_html', $sample['html'] ?? '' );
         }
     }
 }
 
-function ay_aip_base_setup_menus( $home_id, $about_id, $news_id, $contact_id ) {
+function ay_aip_base_setup_menus( $home_id, $about_id, $news_id, $contact_id, $terms_id, $privacy_id ) {
     $menu = wp_get_nav_menu_object( 'Primary Menu' );
     if ( ! $menu ) {
         $menu_id = wp_create_nav_menu( 'Primary Menu' );
@@ -207,20 +225,59 @@ function ay_aip_base_setup_menus( $home_id, $about_id, $news_id, $contact_id ) {
             }
         }
 
-        $items = array_filter( [ $home_id, $about_id, $news_id, $contact_id ] );
-        foreach ( $items as $item_id ) {
+        $items = array_filter( [
+            $home_id ? [ 'id' => $home_id, 'title' => get_the_title( $home_id ) ] : null,
+            $about_id ? [ 'id' => $about_id, 'title' => get_the_title( $about_id ) ] : null,
+            $news_id ? [ 'id' => $news_id, 'title' => __( 'Insights', 'ay-aip-base' ) ] : null,
+            $contact_id ? [ 'id' => $contact_id, 'title' => get_the_title( $contact_id ) ] : null,
+        ] );
+        $footer_items = array_filter( [
+            $home_id ? [ 'id' => $home_id, 'title' => get_the_title( $home_id ) ] : null,
+            $about_id ? [ 'id' => $about_id, 'title' => get_the_title( $about_id ) ] : null,
+            $news_id ? [ 'id' => $news_id, 'title' => __( 'Insights', 'ay-aip-base' ) ] : null,
+            $contact_id ? [ 'id' => $contact_id, 'title' => get_the_title( $contact_id ) ] : null,
+            $terms_id ? [ 'id' => $terms_id, 'title' => get_the_title( $terms_id ) ] : null,
+            $privacy_id ? [ 'id' => $privacy_id, 'title' => get_the_title( $privacy_id ) ] : null,
+        ] );
+        foreach ( $items as $item ) {
             wp_update_nav_menu_item( $menu_id, 0, [
-                'menu-item-object-id' => $item_id,
+                'menu-item-object-id' => $item['id'],
                 'menu-item-object'    => 'page',
                 'menu-item-type'      => 'post_type',
+                'menu-item-title'     => $item['title'],
                 'menu-item-status'    => 'publish',
             ] );
         }
+        $footer_menu = wp_get_nav_menu_object( 'Footer Menu' );
+        if ( ! $footer_menu ) {
+            $footer_menu_id = wp_create_nav_menu( 'Footer Menu' );
+        } else {
+            $footer_menu_id = $footer_menu->term_id;
+        }
+        if ( $footer_menu_id && is_nav_menu( $footer_menu_id ) ) {
+            $existing_footer_items = wp_get_nav_menu_items( $footer_menu_id );
+            if ( $existing_footer_items ) {
+                foreach ( $existing_footer_items as $footer_item ) {
+                    wp_delete_post( $footer_item->ID, true );
+                }
+            }
+            foreach ( $footer_items as $item ) {
+                wp_update_nav_menu_item( $footer_menu_id, 0, [
+                    'menu-item-object-id' => $item['id'],
+                    'menu-item-object'    => 'page',
+                    'menu-item-type'      => 'post_type',
+                    'menu-item-title'     => $item['title'],
+                    'menu-item-status'    => 'publish',
+                ] );
+            }
+        }
         $locations = get_nav_menu_locations();
         $locations['primary'] = $menu_id;
-        $locations['footer']  = $menu_id;
+        if ( ! empty( $footer_menu_id ) ) {
+            $locations['footer'] = $footer_menu_id;
+        }
         set_theme_mod( 'nav_menu_locations', $locations );
-        update_option( 'ay_aip_base_demo_menu', $menu_id );
+        update_option( 'ay_aip_base_demo_menu', [ 'primary' => $menu_id, 'footer' => $footer_menu_id ?? $menu_id ] );
     }
 }
 
@@ -262,6 +319,16 @@ function ay_aip_base_news_content() {
 
 function ay_aip_base_contact_content() {
     $html = ay_aip_base_get_demo_html( 'contact' );
+    return $html ? ay_aip_base_wrap_html_block( $html ) : '';
+}
+
+function ay_aip_base_terms_content() {
+    $html = ay_aip_base_get_demo_html( 'terms' );
+    return $html ? ay_aip_base_wrap_html_block( $html ) : '';
+}
+
+function ay_aip_base_privacy_content() {
+    $html = ay_aip_base_get_demo_html( 'privacy' );
     return $html ? ay_aip_base_wrap_html_block( $html ) : '';
 }
 

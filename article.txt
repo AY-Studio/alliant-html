@@ -1,0 +1,305 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Alliant AirFinance and AIP Capital announce the closing of their inaugural $550 million senior unsecured notes offering">
+    <title>Alliant AirFinance and AIP Capital Announce Closing of Inaugural $550 Million Senior Unsecured Notes Offering - Alliant AirFinance</title>
+
+    <!-- Google Fonts - Mulish -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS (compiled from SCSS) -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- AOS CSS (CDN) -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+</head>
+<body><script id="__bs_script__">//<![CDATA[
+  (function() {
+    try {
+      var script = document.createElement('script');
+      if ('async') {
+        script.async = true;
+      }
+      script.src = '/browser-sync/browser-sync-client.js?v=3.0.4'.replace("HOST", location.hostname);
+      if (document.body) {
+        document.body.appendChild(script);
+      } else if (document.head) {
+        document.head.appendChild(script);
+      }
+    } catch (e) {
+      console.error("Browsersync: could not append script tag", e);
+    }
+  })()
+//]]></script>
+
+
+    <!-- Include Header Partial -->
+    <!-- Header Navigation -->
+    <!-- Uses Bootstrap navbar component with dark theme -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <!-- Brand logo and name -->
+            <a class="navbar-brand" href="index.html">
+                <img src="img/alliant-logo-header.svg" srcset="img/alliant-logo-header.svg 1x, img/alliant-logo-header@2x.png 2x" alt="Alliant AirFinance" width="235" height="50">
+            </a>
+
+            <!-- Mobile menu toggle button -->
+            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" aria-hidden="true">
+                    <span class="toggler-line"></span>
+                    <span class="toggler-line"></span>
+                    <span class="toggler-line"></span>
+                </span>
+            </button>
+
+            <!-- Navigation links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="news.html">Insights</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+
+                <!-- Social links for mobile menu -->
+                <div class="mobile-social-links">
+                    <a href="https://www.linkedin.com/company/alliant" class="mobile-social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.facebook.com/alliantairfinance" class="mobile-social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                    <a href="https://twitter.com/alliantair" class="mobile-social-link" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Swup Container -->
+    <main id="swup" class="transition-fade">
+        <!-- Page Content -->
+
+        <!-- Article Content Section -->
+        <article class="article-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-8">
+                        <!-- Back to News Link -->
+                        <div class="mb-4">
+                            <a href="news.html" class="back-link">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="me-2">
+                                    <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                BACK TO NEWS & INSIGHTS
+                            </a>
+                        </div>
+
+                        <!-- Article Title -->
+                        <h1 class="article-title mb-4">Alliant AirFinance and AIP Capital Announce Closing of Inaugural $550 Million Senior Unsecured Notes Offering</h1>
+
+                        <!-- Article Image -->
+                        <div class="article-image mb-4">
+                            <img src="img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg" alt="Article image" class="img-fluid">
+                        </div>
+
+                        <!-- Article Meta -->
+                        <div class="article-meta mb-4">
+                            <p class="text-muted mb-0">DUBLIN AND STAMFORD, September 30, 2024</p>
+                        </div>
+
+                        <!-- Article Content -->
+                        <div class="article-content">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer commodo, ipsum sed dignissim feugiat, nibh sem vestibulum nisl, vel tincidunt mi velit a magna. Nunc porttitor, tellus id dictum tempor, neque leo efficitur lorem, et tincidunt justo arcu a lorem.</p>
+
+                            <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed sodales turpis et risus luctus, ac tristique leo viverra. Integer vel odio lectus. Mauris eget risus justo. In aliquam mi quis dictum pulvinar.</p>
+
+                            <p>Curabitur hendrerit, ipsum in vulputate sagittis, sapien magna tincidunt ante, sed mattis nisl lacus nec dui. Suspendisse potenti. In hac habitasse platea dictumst. Nulla facilisi. Proin rutrum nunc vitae mi porta, sed gravida eros aliquet.</p>
+
+                            <p>Donec ut tincidunt diam. Nulla vel felis vitae velit aliquet porttitor. Sed ac condimentum velit. Vestibulum pellentesque nulla eget augue feugiat, id egestas dolor posuere. Sed eget ligula sit amet ante vestibulum fermentum.</p>
+
+                            <p>Aliquam erat volutpat. Integer molestie condimentum justo, ut placerat urna convallis vitae. Donec porta gravida lobortis. Suspendisse non sapien lectus. Integer congue urna mauris, ac rhoncus eros posuere eget.</p>
+
+                            <p>Nam ullamcorper dui nec felis imperdiet, vel dignissim massa gravida. Pellentesque ac leo ultricies, egestas libero sed, faucibus nibh. Proin molestie tincidunt velit, non dignissim tortor pharetra id. Nullam non mauris a nibh sodales euismod.</p>
+
+                            <p>Sed ut sodales lacus, id ornare nibh. Donec sit amet ultricies odio. Maecenas quis diam turpis. Morbi eu eros ac turpis vehicula placerat. Duis sed mattis nibh, nec interdum lacus.</p>
+
+                            <p>Praesent at mi vitae ex accumsan rutrum. Phasellus et sem a mauris sodales convallis. Integer iaculis maximus aliquam. Pellentesque ullamcorper hendrerit arcu id mattis. Mauris mollis ipsum nunc, at venenatis lectus mattis ac.</p>
+
+                            <p><strong>Lorem Ipsum Overview</strong></p>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae nunc erat. Nulla condimentum, augue in efficitur mollis, nisl ipsum finibus neque, quis sollicitudin ipsum mi id sem. Vivamus vehicula orci ut nisi hendrerit, ut varius augue laoreet.</p>
+
+                            <p>Morbi eu felis quis nibh efficitur tempus non vitae mauris. Quisque placerat lectus elit, eu ultricies lorem blandit sit amet. Etiam ornare posuere dolor sit amet sodales.</p>
+
+                            <h2>Additional Information</h2>
+
+                            <p>This section demonstrates various <strong>WordPress WYSIWYG editor elements</strong> that are fully styled and ready to use. The styling includes support for <em>italic text</em>, <a href="#">hyperlinks</a>, and inline <code>code snippets</code>.</p>
+
+                            <img src="img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg" alt="Aircraft on tarmac" class="alignright">
+
+                            <p>Image alignment classes work seamlessly with the content flow. This paragraph demonstrates how text wraps around a right-aligned image. The WordPress alignment system ensures that images integrate naturally with the surrounding text, maintaining proper spacing and responsive behavior across different screen sizes.</p>
+
+                            <p>On mobile devices, the alignment is automatically adjusted to prevent layout issues, with images displaying full-width for better readability. This ensures a consistent experience across all devices while maintaining the editorial control provided by the WYSIWYG editor.</p>
+
+                            <h3>Key Features</h3>
+
+                            <ul>
+                                <li>Comprehensive heading hierarchy (H2 through H6)</li>
+                                <li>Styled unordered and ordered lists with proper spacing</li>
+                                <li>Blockquotes with background styling and border accents</li>
+                                <li>Image alignment classes (left, right, center)</li>
+                                <li>Table styling with alternating row colors</li>
+                            </ul>
+
+                            <h4>Investment Strategy</h4>
+
+                            <ol>
+                                <li>Initial market analysis and opportunity assessment</li>
+                                <li>Due diligence and risk evaluation process</li>
+                                <li>Strategic positioning and capital allocation</li>
+                                <li>Ongoing portfolio management and optimization</li>
+                            </ol>
+
+                            <blockquote>
+                                <p>The aviation finance sector continues to demonstrate resilience and growth potential, offering sophisticated investors access to a specialized asset class with strong underlying fundamentals.</p>
+                                <cite>Industry Analysis Report</cite>
+                            </blockquote>
+
+                            <h3>Market Overview</h3>
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Region</th>
+                                        <th>Market Size</th>
+                                        <th>Growth Rate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>North America</td>
+                                        <td>$45B</td>
+                                        <td>4.2%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Europe</td>
+                                        <td>$38B</td>
+                                        <td>3.8%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Asia Pacific</td>
+                                        <td>$52B</td>
+                                        <td>6.5%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <hr>
+
+                            <h5>Technical Notes</h5>
+
+                            <p>All WordPress block editor elements are supported, including embedded content, custom buttons, and media galleries. The design maintains consistency with the Alliant brand guidelines while ensuring optimal readability.</p>
+
+                            <!-- Social Share -->
+                            <div class="article-share mt-5 pt-4 border-top">
+                                <p class="fw-bold mb-3">SHARE:</p>
+                                <div class="d-flex gap-2">
+                                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=" class="btn-social" aria-label="Share on LinkedIn" target="_blank" rel="noopener noreferrer">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                        </svg>
+                                    </a>
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u=" class="btn-social" aria-label="Share on Facebook" target="_blank" rel="noopener noreferrer">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                        </svg>
+                                    </a>
+                                    <a href="https://twitter.com/intent/tweet?url=" class="btn-social" aria-label="Share on Twitter" target="_blank" rel="noopener noreferrer">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                                        </svg>
+                                    </a>
+                                    <a href="mailto:?subject=Article&body=" class="btn-social" aria-label="Share via Email">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                            <polyline points="22,6 12,13 2,6"></polyline>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- Include Footer Partial -->
+    <!-- Footer -->
+    <!-- Light background with centered content -->
+    <footer class="footer">
+        <div class="diagonal-lines diagonal-lines--footer"></div>
+        <div class="container">
+            <!-- Footer logo -->
+            <div class="footer-logo">
+                <img src="img/alliant-logo-footer.svg" srcset="img/alliant-logo-footer.svg 1x, img/alliant-logo-footer@2x.png 2x" alt="Alliant AirFinance" width="220" height="52">
+            </div>
+
+            <!-- Footer navigation -->
+            <ul class="footer-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="news.html">Insights</a></li>
+                <li><a href="blocks.html">Blocks</a></li>
+                <li><a href="terms.html">Terms &amp; Conditions</a></li>
+                <li><a href="page.html">Privacy Policy</a></li>
+            </ul>
+
+            <!-- Copyright -->
+            <p class="footer-copyright">&copy; 2025 ALLIANT AirFinance LLC. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JavaScript Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- AOS JavaScript (CDN) -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true,
+        offset: 100
+      });
+    </script>
+
+    <!-- Swup UMD (CDN) -->
+    <script src="https://unpkg.com/swup@4"></script>
+
+    <!-- Site JavaScript -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

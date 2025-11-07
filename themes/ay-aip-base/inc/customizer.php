@@ -17,14 +17,14 @@ function ay_aip_base_customize_register( $wp_customize ) {
 
     $settings = [
         'heading_font'   => [
-            'default'     => 'inter',
+            'default'     => 'mulish',
             'label'       => __( 'Heading Font', 'ay-aip-base' ),
             'description' => __( 'Select a Google Font for headings. Loaded automatically on the front end.', 'ay-aip-base' ),
             'type'        => 'select',
             'choices'     => $font_choices,
         ],
         'body_font'      => [
-            'default'     => 'inter',
+            'default'     => 'mulish',
             'label'       => __( 'Body Font', 'ay-aip-base' ),
             'description' => __( 'Choose the font used for paragraphs, navigation, and UI text.', 'ay-aip-base' ),
             'type'        => 'select',
@@ -74,8 +74,11 @@ function ay_aip_base_customize_register( $wp_customize ) {
 
 add_action( 'wp_head', 'ay_aip_base_print_theme_tokens', 20 );
 function ay_aip_base_print_theme_tokens() {
-    $heading_font = ay_aip_base_get_font_choice( get_theme_mod( 'ay_aip_base_heading_font', 'inter' ) );
-    $body_font    = ay_aip_base_get_font_choice( get_theme_mod( 'ay_aip_base_body_font', 'inter' ) );
+    $heading_font_slug = ay_aip_base_get_font_slug( 'ay_aip_base_heading_font', 'theme_heading_font_choice' );
+    $body_font_slug    = ay_aip_base_get_font_slug( 'ay_aip_base_body_font', 'theme_body_font_choice' );
+    $heading_font = ay_aip_base_get_font_choice( $heading_font_slug );
+    $body_font    = ay_aip_base_get_font_choice( $body_font_slug );
+    $nav_background = ay_aip_base_get_nav_background_color();
 
     $tokens = [
         '--ay-font-heading'   => $heading_font['stack'],
@@ -85,6 +88,7 @@ function ay_aip_base_print_theme_tokens() {
         '--ay-color-heading'  => get_theme_mod( 'ay_aip_base_heading_color', '#111827' ),
         '--ay-color-body'     => get_theme_mod( 'ay_aip_base_body_color', '#4b5563' ),
         '--ay-color-background' => get_theme_mod( 'ay_aip_base_background_color', '#ffffff' ),
+        '--ay-nav-background' => $nav_background,
     ];
     echo "<style id='ay-aip-base-design-tokens'>:root";
     echo '{';
@@ -92,4 +96,5 @@ function ay_aip_base_print_theme_tokens() {
         echo esc_html( $var ) . ':' . $value . ';'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     }
     echo "}</style>"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo '<style id="ay-aip-base-nav-style">.navbar{background-color:var(--ay-nav-background);}html.is-animating{background-color:var(--ay-nav-background);}</style>';
 }

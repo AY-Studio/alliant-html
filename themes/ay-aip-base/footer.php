@@ -11,7 +11,7 @@
             <?php if ( has_custom_logo() ) : ?>
                 <?php the_custom_logo(); ?>
             <?php else : ?>
-                <span class="footer-logo__text"><?php bloginfo( 'name' ); ?></span>
+                <img src="<?php echo esc_url( get_template_directory_uri() . '/img/alliant-logo-footer.svg' ); ?>" alt="<?php esc_attr_e( 'Site logo', 'ay-aip-base' ); ?>" width="220" height="52">
             <?php endif; ?>
         </div>
         <?php
