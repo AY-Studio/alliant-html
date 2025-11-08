@@ -13,20 +13,1277 @@
                     "name": "hero",
                     "label": "Hero",
                     "display": "block",
-                    "sub_fields": []
+                    "sub_fields": [
+                        {
+                            "key": "field_page_sections_hero_clone",
+                            "label": "Hero",
+                            "name": "",
+                            "type": "clone",
+                            "clone": [
+                                "group_block_hero"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ]
+                },
+                "layout_hero_section": {
+                    "key": "layout_hero_section",
+                    "name": "hero_section",
+                    "label": "Hero Section (Simple)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_hero_section_heading",
+                            "label": "Heading",
+                            "name": "hero_section_heading",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_hero_section_lead",
+                            "label": "Lead Copy",
+                            "name": "hero_section_lead",
+                            "type": "textarea",
+                            "rows": 3
+                        },
+                        {
+                            "key": "field_hero_section_button_label",
+                            "label": "Button Label",
+                            "name": "hero_section_button_label",
+                            "type": "text",
+                            "wrapper": {
+                                "width": "50"
+                            }
+                        },
+                        {
+                            "key": "field_hero_section_button_url",
+                            "label": "Button URL",
+                            "name": "hero_section_button_url",
+                            "type": "url",
+                            "wrapper": {
+                                "width": "50"
+                            }
+                        }
+                    ]
                 },
                 "layout_card_grid": {
                     "key": "layout_card_grid",
                     "name": "card_grid",
                     "label": "Card Grid",
                     "display": "block",
-                    "sub_fields": []
+                    "sub_fields": [
+                        {
+                            "key": "field_page_sections_card_grid_clone",
+                            "label": "Card Grid",
+                            "name": "",
+                            "type": "clone",
+                            "clone": [
+                                "group_block_card_grid"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ]
+                },
+                "layout_stats": {
+                    "key": "layout_stats",
+                    "name": "stats",
+                    "label": "Stats",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_page_sections_stats_clone",
+                            "label": "Stats",
+                            "name": "",
+                            "type": "clone",
+                            "clone": [
+                                "group_block_stats"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ]
+                },
+                "layout_cta_banner": {
+                    "key": "layout_cta_banner",
+                    "name": "cta_banner",
+                    "label": "CTA Banner",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_page_sections_cta_clone",
+                            "label": "CTA Banner",
+                            "name": "",
+                            "type": "clone",
+                            "clone": [
+                                "group_block_cta"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ]
+                },
+                "layout_contact_form": {
+                    "key": "layout_contact_form",
+                    "name": "contact_form",
+                    "label": "Contact Form",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_page_sections_contact_clone",
+                            "label": "Contact Form",
+                            "name": "",
+                            "type": "clone",
+                            "clone": [
+                                "group_block_contact_form"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ]
+                },
+                "layout_team_grid": {
+                    "key": "layout_team_grid",
+                    "name": "team_grid",
+                    "label": "Team Grid",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_page_sections_team_clone",
+                            "label": "Team Grid",
+                            "name": "",
+                            "type": "clone",
+                            "clone": [
+                                "group_block_team_grid"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ]
+                },
+                "layout_text_content": {
+                    "key": "layout_text_content",
+                    "name": "text_content",
+                    "label": "Text Content",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_text_content_background",
+                            "label": "Background",
+                            "name": "text_content_background",
+                            "type": "select",
+                            "choices": {
+                                "white": "White",
+                                "light": "Light Gray"
+                            },
+                            "default_value": "white",
+                            "wrapper": {
+                                "width": "30"
+                            }
+                        },
+                        {
+                            "key": "field_text_content_title",
+                            "label": "Title",
+                            "name": "text_content_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_text_content_body",
+                            "label": "Content",
+                            "name": "text_content_body",
+                            "type": "wysiwyg",
+                            "tabs": "all",
+                            "toolbar": "full"
+                        }
+                    ]
+                },
+                "layout_icon_features": {
+                    "key": "layout_icon_features",
+                    "name": "icon_features",
+                    "label": "Icon Features",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_icon_features_background",
+                            "label": "Background",
+                            "name": "icon_features_background",
+                            "type": "select",
+                            "choices": {
+                                "white": "White",
+                                "light": "Light Gray"
+                            },
+                            "default_value": "white",
+                            "wrapper": {
+                                "width": "30"
+                            }
+                        },
+                        {
+                            "key": "field_icon_features_title",
+                            "label": "Title",
+                            "name": "icon_features_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_icon_features_subtitle",
+                            "label": "Subtitle",
+                            "name": "icon_features_subtitle",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_icon_features_items",
+                            "label": "Features",
+                            "name": "icon_features_items",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Add Feature",
+                            "sub_fields": [
+                                {
+                                    "key": "field_icon_features_icon_svg",
+                                    "label": "Icon SVG",
+                                    "name": "icon_svg",
+                                    "type": "textarea",
+                                    "rows": 3
+                                },
+                                {
+                                    "key": "field_icon_features_icon_class",
+                                    "label": "Icon Class",
+                                    "name": "icon_class",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_icon_features_icon_image",
+                                    "label": "Icon Image",
+                                    "name": "icon_image",
+                                    "type": "image",
+                                    "return_format": "array",
+                                    "preview_size": "medium"
+                                },
+                                {
+                                    "key": "field_icon_features_item_title",
+                                    "label": "Title",
+                                    "name": "title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_icon_features_item_description",
+                                    "label": "Description",
+                                    "name": "description",
+                                    "type": "textarea",
+                                    "rows": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_values": {
+                    "key": "layout_values",
+                    "name": "values",
+                    "label": "Values",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_values_title",
+                            "label": "Title",
+                            "name": "values_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_values_subtitle",
+                            "label": "Subtitle",
+                            "name": "values_subtitle",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_values_items",
+                            "label": "Values",
+                            "name": "values_items",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Add Value",
+                            "sub_fields": [
+                                {
+                                    "key": "field_values_number",
+                                    "label": "Value Number",
+                                    "name": "number",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_values_icon_svg",
+                                    "label": "Icon SVG",
+                                    "name": "value_icon_svg",
+                                    "type": "textarea",
+                                    "rows": 3
+                                },
+                                {
+                                    "key": "field_values_icon_class",
+                                    "label": "Icon Class",
+                                    "name": "value_icon_class",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_values_icon_image",
+                                    "label": "Icon Image",
+                                    "name": "value_icon_image",
+                                    "type": "image",
+                                    "return_format": "array",
+                                    "preview_size": "medium"
+                                },
+                                {
+                                    "key": "field_values_item_title",
+                                    "label": "Title",
+                                    "name": "title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_values_item_description",
+                                    "label": "Description",
+                                    "name": "description",
+                                    "type": "textarea",
+                                    "rows": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_media_content": {
+                    "key": "layout_media_content",
+                    "name": "media_content",
+                    "label": "Media + Content",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_media_content_background",
+                            "label": "Background",
+                            "name": "media_content_background",
+                            "type": "select",
+                            "choices": {
+                                "white": "White",
+                                "light": "Light Gray"
+                            },
+                            "default_value": "white",
+                            "wrapper": {
+                                "width": "30"
+                            }
+                        },
+                        {
+                            "key": "field_media_content_alignment",
+                            "label": "Image Alignment",
+                            "name": "media_content_alignment",
+                            "type": "select",
+                            "choices": {
+                                "left": "Image Left",
+                                "right": "Image Right"
+                            },
+                            "default_value": "left",
+                            "wrapper": {
+                                "width": "30"
+                            }
+                        },
+                        {
+                            "key": "field_media_content_title",
+                            "label": "Title",
+                            "name": "media_content_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_media_content_body",
+                            "label": "Body",
+                            "name": "media_content_body",
+                            "type": "wysiwyg",
+                            "toolbar": "basic",
+                            "media_upload": 0
+                        },
+                        {
+                            "key": "field_media_content_button_label",
+                            "label": "Button Label",
+                            "name": "media_content_button_label",
+                            "type": "text",
+                            "wrapper": {
+                                "width": "50"
+                            }
+                        },
+                        {
+                            "key": "field_media_content_button_url",
+                            "label": "Button URL",
+                            "name": "media_content_button_url",
+                            "type": "url",
+                            "wrapper": {
+                                "width": "50"
+                            }
+                        },
+                        {
+                            "key": "field_media_content_image",
+                            "label": "Image",
+                            "name": "media_content_image",
+                            "type": "image",
+                            "return_format": "array",
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_media_content_image_alt",
+                            "label": "Image Alt Text",
+                            "name": "media_content_image_alt",
+                            "type": "text"
+                        }
+                    ]
+                },
+                "layout_testimonial": {
+                    "key": "layout_testimonial",
+                    "name": "testimonial",
+                    "label": "Testimonial",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_testimonial_background",
+                            "label": "Background",
+                            "name": "testimonial_background",
+                            "type": "select",
+                            "choices": {
+                                "white": "White",
+                                "light": "Light Gray"
+                            },
+                            "default_value": "white",
+                            "wrapper": {
+                                "width": "30"
+                            }
+                        },
+                        {
+                            "key": "field_testimonial_quote",
+                            "label": "Quote",
+                            "name": "testimonial_quote",
+                            "type": "textarea",
+                            "rows": 4
+                        },
+                        {
+                            "key": "field_testimonial_author_name",
+                            "label": "Author Name",
+                            "name": "testimonial_author_name",
+                            "type": "text",
+                            "wrapper": {
+                                "width": "33"
+                            }
+                        },
+                        {
+                            "key": "field_testimonial_author_title",
+                            "label": "Author Title",
+                            "name": "testimonial_author_title",
+                            "type": "text",
+                            "wrapper": {
+                                "width": "33"
+                            }
+                        },
+                        {
+                            "key": "field_testimonial_author_image",
+                            "label": "Author Image",
+                            "name": "testimonial_author_image",
+                            "type": "image",
+                            "return_format": "array",
+                            "preview_size": "medium",
+                            "wrapper": {
+                                "width": "34"
+                            }
+                        }
+                    ]
+                },
+                "layout_pricing": {
+                    "key": "layout_pricing",
+                    "name": "pricing",
+                    "label": "Pricing Table",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_pricing_background",
+                            "label": "Background",
+                            "name": "pricing_background",
+                            "type": "select",
+                            "choices": {
+                                "white": "White",
+                                "light": "Light Gray"
+                            },
+                            "default_value": "white",
+                            "wrapper": {
+                                "width": "30"
+                            }
+                        },
+                        {
+                            "key": "field_pricing_title",
+                            "label": "Title",
+                            "name": "pricing_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_pricing_subtitle",
+                            "label": "Subtitle",
+                            "name": "pricing_subtitle",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_pricing_cards",
+                            "label": "Pricing Cards",
+                            "name": "pricing_cards",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Add Card",
+                            "sub_fields": [
+                                {
+                                    "key": "field_pricing_card_title",
+                                    "label": "Card Title",
+                                    "name": "title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_pricing_card_subtitle",
+                                    "label": "Card Subtitle",
+                                    "name": "subtitle",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_pricing_card_featured",
+                                    "label": "Featured",
+                                    "name": "featured",
+                                    "type": "true_false",
+                                    "ui": 1,
+                                    "wrapper": {
+                                        "width": "33"
+                                    }
+                                },
+                                {
+                                    "key": "field_pricing_card_badge",
+                                    "label": "Badge Text",
+                                    "name": "badge_text",
+                                    "type": "text",
+                                    "wrapper": {
+                                        "width": "33"
+                                    }
+                                },
+                                {
+                                    "key": "field_pricing_card_button_style",
+                                    "label": "Button Style",
+                                    "name": "button_style",
+                                    "type": "select",
+                                    "choices": {
+                                        "primary": "Primary",
+                                        "outline": "Outline"
+                                    },
+                                    "default_value": "outline",
+                                    "wrapper": {
+                                        "width": "34"
+                                    }
+                                },
+                                {
+                                    "key": "field_pricing_card_button_label",
+                                    "label": "Button Label",
+                                    "name": "button_label",
+                                    "type": "text",
+                                    "wrapper": {
+                                        "width": "50"
+                                    }
+                                },
+                                {
+                                    "key": "field_pricing_card_button_url",
+                                    "label": "Button URL",
+                                    "name": "button_url",
+                                    "type": "url",
+                                    "wrapper": {
+                                        "width": "50"
+                                    }
+                                },
+                                {
+                                    "key": "field_pricing_card_features",
+                                    "label": "Features",
+                                    "name": "features",
+                                    "type": "repeater",
+                                    "layout": "table",
+                                    "button_label": "Add Feature",
+                                    "sub_fields": [
+                                        {
+                                            "key": "field_pricing_card_feature_text",
+                                            "label": "Feature",
+                                            "name": "text",
+                                            "type": "text"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_video": {
+                    "key": "layout_video",
+                    "name": "video",
+                    "label": "Video Embed",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_video_background",
+                            "label": "Background",
+                            "name": "video_background",
+                            "type": "select",
+                            "choices": {
+                                "white": "White",
+                                "light": "Light Gray"
+                            },
+                            "default_value": "white",
+                            "wrapper": {
+                                "width": "30"
+                            }
+                        },
+                        {
+                            "key": "field_video_title",
+                            "label": "Title",
+                            "name": "video_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_video_url",
+                            "label": "Video URL",
+                            "name": "video_url",
+                            "type": "url"
+                        },
+                        {
+                            "key": "field_video_caption",
+                            "label": "Caption",
+                            "name": "video_caption",
+                            "type": "textarea",
+                            "rows": 3
+                        }
+                    ]
+                },
+                "layout_accordion": {
+                    "key": "layout_accordion",
+                    "name": "accordion",
+                    "label": "Accordion / FAQ",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_accordion_background",
+                            "label": "Background",
+                            "name": "accordion_background",
+                            "type": "select",
+                            "choices": {
+                                "white": "White",
+                                "light": "Light Gray"
+                            },
+                            "default_value": "white",
+                            "wrapper": {
+                                "width": "30"
+                            }
+                        },
+                        {
+                            "key": "field_accordion_title",
+                            "label": "Title",
+                            "name": "accordion_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_accordion_items",
+                            "label": "Items",
+                            "name": "accordion_items",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Add Item",
+                            "sub_fields": [
+                                {
+                                    "key": "field_accordion_item_title",
+                                    "label": "Question",
+                                    "name": "title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_accordion_item_content",
+                                    "label": "Answer",
+                                    "name": "content",
+                                    "type": "wysiwyg",
+                                    "toolbar": "basic",
+                                    "media_upload": 0
+                                },
+                                {
+                                    "key": "field_accordion_item_open",
+                                    "label": "Default Open",
+                                    "name": "default_open",
+                                    "type": "true_false",
+                                    "ui": 1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_gallery": {
+                    "key": "layout_gallery",
+                    "name": "gallery",
+                    "label": "Gallery Grid",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_gallery_background",
+                            "label": "Background",
+                            "name": "gallery_background",
+                            "type": "select",
+                            "choices": {
+                                "white": "White",
+                                "light": "Light Gray"
+                            },
+                            "default_value": "white",
+                            "wrapper": {
+                                "width": "30"
+                            }
+                        },
+                        {
+                            "key": "field_gallery_title",
+                            "label": "Title",
+                            "name": "gallery_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_gallery_subtitle",
+                            "label": "Subtitle",
+                            "name": "gallery_subtitle",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_gallery_items",
+                            "label": "Gallery Items",
+                            "name": "gallery_items",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Add Item",
+                            "sub_fields": [
+                                {
+                                    "key": "field_gallery_item_image",
+                                    "label": "Image",
+                                    "name": "image",
+                                    "type": "image",
+                                    "return_format": "array",
+                                    "preview_size": "medium"
+                                },
+                                {
+                                    "key": "field_gallery_item_title",
+                                    "label": "Caption Title",
+                                    "name": "title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_gallery_item_description",
+                                    "label": "Caption Description",
+                                    "name": "description",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_gallery_item_link",
+                                    "label": "Link",
+                                    "name": "link",
+                                    "type": "url"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_logo_grid": {
+                    "key": "layout_logo_grid",
+                    "name": "logo_grid",
+                    "label": "Logo Grid",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_logo_grid_background",
+                            "label": "Background",
+                            "name": "logo_grid_background",
+                            "type": "select",
+                            "choices": {
+                                "white": "White",
+                                "light": "Light Gray"
+                            },
+                            "default_value": "white",
+                            "wrapper": {
+                                "width": "30"
+                            }
+                        },
+                        {
+                            "key": "field_logo_grid_title",
+                            "label": "Title",
+                            "name": "logo_grid_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_logo_grid_subtitle",
+                            "label": "Subtitle",
+                            "name": "logo_grid_subtitle",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_logo_grid_items",
+                            "label": "Logos",
+                            "name": "logo_grid_items",
+                            "type": "repeater",
+                            "layout": "table",
+                            "button_label": "Add Logo",
+                            "sub_fields": [
+                                {
+                                    "key": "field_logo_grid_svg",
+                                    "label": "Logo SVG",
+                                    "name": "logo_svg",
+                                    "type": "textarea",
+                                    "rows": 3
+                                },
+                                {
+                                    "key": "field_logo_grid_image",
+                                    "label": "Logo Image",
+                                    "name": "logo_image",
+                                    "type": "image",
+                                    "return_format": "array",
+                                    "preview_size": "medium"
+                                },
+                                {
+                                    "key": "field_logo_grid_company",
+                                    "label": "Company Name",
+                                    "name": "company_name",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_logo_grid_url",
+                                    "label": "Company URL",
+                                    "name": "company_url",
+                                    "type": "url"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_locations": {
+                    "key": "layout_locations",
+                    "name": "locations",
+                    "label": "Locations",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_locations_background",
+                            "label": "Background",
+                            "name": "locations_background",
+                            "type": "select",
+                            "choices": {
+                                "white": "White",
+                                "light": "Light Gray"
+                            },
+                            "default_value": "white",
+                            "wrapper": {
+                                "width": "30"
+                            }
+                        },
+                        {
+                            "key": "field_locations_title",
+                            "label": "Title",
+                            "name": "locations_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_locations_subtitle",
+                            "label": "Subtitle",
+                            "name": "locations_subtitle",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_locations_items",
+                            "label": "Location Cards",
+                            "name": "locations_items",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Add Location",
+                            "sub_fields": [
+                                {
+                                    "key": "field_locations_icon_svg",
+                                    "label": "Icon SVG",
+                                    "name": "location_icon_svg",
+                                    "type": "textarea",
+                                    "rows": 3
+                                },
+                                {
+                                    "key": "field_locations_icon_class",
+                                    "label": "Icon Class",
+                                    "name": "location_icon_class",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_locations_icon_image",
+                                    "label": "Icon Image",
+                                    "name": "location_icon_image",
+                                    "type": "image",
+                                    "return_format": "array",
+                                    "preview_size": "medium"
+                                },
+                                {
+                                    "key": "field_locations_name",
+                                    "label": "Location Name",
+                                    "name": "name",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_locations_designation",
+                                    "label": "Designation",
+                                    "name": "designation",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_locations_address",
+                                    "label": "Address",
+                                    "name": "address",
+                                    "type": "textarea",
+                                    "rows": 4
+                                },
+                                {
+                                    "key": "field_locations_phone",
+                                    "label": "Phone",
+                                    "name": "phone",
+                                    "type": "text",
+                                    "wrapper": {
+                                        "width": "50"
+                                    }
+                                },
+                                {
+                                    "key": "field_locations_email",
+                                    "label": "Email",
+                                    "name": "email",
+                                    "type": "email",
+                                    "wrapper": {
+                                        "width": "50"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_careers": {
+                    "key": "layout_careers",
+                    "name": "careers",
+                    "label": "Careers",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_careers_background",
+                            "label": "Background",
+                            "name": "careers_background",
+                            "type": "select",
+                            "choices": {
+                                "white": "White",
+                                "light": "Light Gray"
+                            },
+                            "default_value": "white",
+                            "wrapper": {
+                                "width": "30"
+                            }
+                        },
+                        {
+                            "key": "field_careers_title",
+                            "label": "Title",
+                            "name": "careers_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_careers_subtitle",
+                            "label": "Subtitle",
+                            "name": "careers_subtitle",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_careers_jobs",
+                            "label": "Job Listings",
+                            "name": "careers_jobs",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Add Job",
+                            "sub_fields": [
+                                {
+                                    "key": "field_careers_job_title",
+                                    "label": "Job Title",
+                                    "name": "title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_careers_job_location",
+                                    "label": "Location",
+                                    "name": "location",
+                                    "type": "text",
+                                    "wrapper": {
+                                        "width": "33"
+                                    }
+                                },
+                                {
+                                    "key": "field_careers_job_type",
+                                    "label": "Employment Type",
+                                    "name": "type",
+                                    "type": "text",
+                                    "wrapper": {
+                                        "width": "33"
+                                    }
+                                },
+                                {
+                                    "key": "field_careers_job_department",
+                                    "label": "Department",
+                                    "name": "department",
+                                    "type": "text",
+                                    "wrapper": {
+                                        "width": "34"
+                                    }
+                                },
+                                {
+                                    "key": "field_careers_job_description",
+                                    "label": "Description",
+                                    "name": "description",
+                                    "type": "textarea",
+                                    "rows": 4
+                                },
+                                {
+                                    "key": "field_careers_job_apply_label",
+                                    "label": "Apply Button Label",
+                                    "name": "apply_label",
+                                    "type": "text",
+                                    "wrapper": {
+                                        "width": "50"
+                                    }
+                                },
+                                {
+                                    "key": "field_careers_job_apply_url",
+                                    "label": "Apply Button URL",
+                                    "name": "apply_url",
+                                    "type": "url",
+                                    "wrapper": {
+                                        "width": "50"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_careers_cta_title",
+                            "label": "CTA Title",
+                            "name": "careers_cta_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_careers_cta_description",
+                            "label": "CTA Description",
+                            "name": "careers_cta_description",
+                            "type": "textarea",
+                            "rows": 3
+                        },
+                        {
+                            "key": "field_careers_cta_label",
+                            "label": "CTA Button Label",
+                            "name": "careers_cta_label",
+                            "type": "text",
+                            "wrapper": {
+                                "width": "50"
+                            }
+                        },
+                        {
+                            "key": "field_careers_cta_url",
+                            "label": "CTA Button URL",
+                            "name": "careers_cta_url",
+                            "type": "url",
+                            "wrapper": {
+                                "width": "50"
+                            }
+                        }
+                    ]
+                },
+                "layout_value_cards": {
+                    "key": "layout_value_cards",
+                    "name": "value_cards",
+                    "label": "Value Cards",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_value_cards_background",
+                            "label": "Background",
+                            "name": "value_cards_background",
+                            "type": "select",
+                            "choices": {
+                                "white": "White",
+                                "navy": "Navy"
+                            },
+                            "default_value": "white",
+                            "wrapper": {
+                                "width": "30"
+                            }
+                        },
+                        {
+                            "key": "field_value_cards_title",
+                            "label": "Title",
+                            "name": "value_cards_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_value_cards_subtitle",
+                            "label": "Subtitle",
+                            "name": "value_cards_subtitle",
+                            "type": "textarea",
+                            "rows": 4
+                        },
+                        {
+                            "key": "field_value_cards_items",
+                            "label": "Cards",
+                            "name": "value_cards_cards",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Add Card",
+                            "sub_fields": [
+                                {
+                                    "key": "field_value_cards_image",
+                                    "label": "Image",
+                                    "name": "image",
+                                    "type": "image",
+                                    "return_format": "array",
+                                    "preview_size": "medium"
+                                },
+                                {
+                                    "key": "field_value_cards_item_title",
+                                    "label": "Title",
+                                    "name": "title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_value_cards_item_description",
+                                    "label": "Description",
+                                    "name": "description",
+                                    "type": "textarea",
+                                    "rows": 4
+                                },
+                                {
+                                    "key": "field_value_cards_image_url",
+                                    "label": "Image URL",
+                                    "name": "image_url",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_value_cards_button_label",
+                            "label": "Button Label",
+                            "name": "value_cards_button_label",
+                            "type": "text",
+                            "wrapper": {
+                                "width": "50"
+                            }
+                        },
+                        {
+                            "key": "field_value_cards_button_url",
+                            "label": "Button URL",
+                            "name": "value_cards_button_url",
+                            "type": "url",
+                            "wrapper": {
+                                "width": "50"
+                            }
+                        }
+                    ]
+                },
+                "layout_product_offerings": {
+                    "key": "layout_product_offerings",
+                    "name": "product_offerings",
+                    "label": "Product Offerings",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_product_offerings_theme",
+                            "label": "Section Theme",
+                            "name": "product_offerings_theme",
+                            "type": "select",
+                            "choices": {
+                                "grey": "Grey",
+                                "navy": "Navy"
+                            },
+                            "default_value": "grey",
+                            "wrapper": {
+                                "width": "30"
+                            }
+                        },
+                        {
+                            "key": "field_product_offerings_title",
+                            "label": "Title",
+                            "name": "product_offerings_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_product_offerings_subtitle",
+                            "label": "Subtitle",
+                            "name": "product_offerings_subtitle",
+                            "type": "textarea",
+                            "rows": 4
+                        },
+                        {
+                            "key": "field_product_offerings_items",
+                            "label": "Offering Cards",
+                            "name": "product_offerings_items",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Add Card",
+                            "sub_fields": [
+                                {
+                                    "key": "field_product_offerings_icon_svg",
+                                    "label": "Icon SVG",
+                                    "name": "icon_svg",
+                                    "type": "textarea",
+                                    "rows": 3
+                                },
+                                {
+                                    "key": "field_product_offerings_icon_class",
+                                    "label": "Icon Class",
+                                    "name": "icon_class",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_product_offerings_icon_image",
+                                    "label": "Icon Image",
+                                    "name": "icon_image",
+                                    "type": "image",
+                                    "return_format": "array",
+                                    "preview_size": "medium"
+                                },
+                                {
+                                    "key": "field_product_offerings_title_field",
+                                    "label": "Title",
+                                    "name": "title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_product_offerings_description",
+                                    "label": "Description",
+                                    "name": "description",
+                                    "type": "textarea",
+                                    "rows": 3
+                                },
+                                {
+                                    "key": "field_product_offerings_icon_image_url",
+                                    "label": "Icon Image URL",
+                                    "name": "icon_image_url",
+                                    "type": "text"
+                                }
+                            ]
+                        }
+                    ]
                 }
             },
             "button_label": "Add Section"
         }
     ],
-    "location": [[{"param":"page_template","operator":"==","value":"templates/template-pagebuilder.php"}]],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "templates/template-pagebuilder.php"
+            }
+        ]
+    ],
     "menu_order": 0,
     "position": "normal",
     "style": "default",
@@ -34,6 +1291,5 @@
     "instruction_placement": "label",
     "hide_on_screen": "the_content",
     "active": true,
-    "description": "",
-    "modified": 1735737607
+    "description": ""
 }

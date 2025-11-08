@@ -1,8 +1,8 @@
 <?php
-$cards           = get_field( 'card_items' );
-$background_mod  = get_field( 'card_background' ) === 'light' ? ' bg-light' : '';
-$section_title   = get_field( 'card_section_title' );
-$section_sub     = get_field( 'card_section_subtitle' );
+$cards           = ay_aip_base_get_block_field( 'card_items', [] );
+$background_mod  = ay_aip_base_get_block_field( 'card_background' ) === 'light' ? ' bg-light' : '';
+$section_title   = ay_aip_base_get_block_field( 'card_section_title' );
+$section_sub     = ay_aip_base_get_block_field( 'card_section_subtitle' );
 ?>
 <section class="block-card-group<?php echo esc_attr( $background_mod ); ?>">
     <div class="container">

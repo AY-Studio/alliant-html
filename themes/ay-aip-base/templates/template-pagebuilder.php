@@ -7,13 +7,16 @@
 global $post;
 
 get_header();
+
 ?>
 <div class="builder-wrap">
 <?php
-while ( have_posts() ) :
-    the_post();
-    the_content();
-endwhile;
+if ( ! ay_aip_base_render_page_sections() ) :
+    while ( have_posts() ) :
+        the_post();
+        the_content();
+    endwhile;
+endif;
 ?>
 </div>
 <?php

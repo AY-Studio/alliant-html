@@ -133,6 +133,52 @@ function ay_aip_base_sanitize_font_choice( $value, $fallback = 'mulish' ) {
     return isset( $fonts[ $fallback ] ) ? $fallback : 'mulish';
 }
 
+function ay_aip_base_get_theme_asset_url( $relative_path ) {
+    $relative_path = ltrim( (string) $relative_path, '/' );
+    return trailingslashit( get_template_directory_uri() ) . $relative_path;
+}
+
+function ay_aip_base_get_icon_markup( $item, $keys = [] ) {
+    $defaults = [
+        'svg'   => 'icon_svg',
+        'image' => 'icon_image',
+        'class' => 'icon_class',
+    ];
+    $keys = wp_parse_args( $keys, $defaults );
+
+    if ( ! empty( $item[ $keys['svg'] ] ) ) {
+        return wp_kses_post( $item[ $keys['svg'] ] );
+    }
+
+    if ( ! empty( $item[ $keys['image'] ]['url'] ) ) {
+        $image = $item[ $keys['image'] ];
+        $alt   = isset( $image['alt'] ) ? $image['alt'] : ( $item['title'] ?? '' );
+        return sprintf( '<img src="%s" alt="%s">', esc_url( $image['url'] ), esc_attr( $alt ) );
+    }
+
+    if ( ! empty( $item[ $keys['class'] ] ) ) {
+        return sprintf( '<i class="%s" aria-hidden="true"></i>', esc_attr( $item[ $keys['class'] ] ) );
+    }
+
+    return '';
+}
+
+function ay_aip_base_get_block_field( $key, $default = null ) {
+    if ( function_exists( 'get_sub_field' ) ) {
+        $value = get_sub_field( $key );
+        if ( null !== $value ) {
+            return $value;
+        }
+    }
+    if ( function_exists( 'get_field' ) ) {
+        $value = get_field( $key );
+        if ( null !== $value ) {
+            return $value;
+        }
+    }
+    return $default;
+}
+
 function ay_aip_base_get_typography_size_value( $mod_key, $option_key, $default ) {
     $option_value = ay_aip_base_get_theme_option_value( $option_key );
     if ( $option_value ) {
@@ -237,6 +283,55 @@ function ay_aip_base_get_typography_settings() {
     }
 
     return $settings;
+}
+
+function ay_aip_base_render_page_sections( $page_id = 0 ) {
+    if ( ! function_exists( 'have_rows' ) ) {
+        return false;
+    }
+
+    if ( ! $page_id ) {
+        $page_id = get_the_ID();
+    }
+
+    $layout_templates = [
+        'hero'              => 'hero',
+        'hero_section'      => 'hero-section',
+        'card_grid'         => 'card-grid',
+        'stats'             => 'stats',
+        'cta_banner'        => 'cta-banner',
+        'contact_form'      => 'contact-form',
+        'team_grid'         => 'team-grid',
+        'text_content'      => 'text-content',
+        'icon_features'     => 'icon-features',
+        'values'            => 'values',
+        'value_cards'       => 'value-cards',
+        'media_content'     => 'media-content',
+        'testimonial'       => 'testimonial',
+        'pricing'           => 'pricing-table',
+        'video'             => 'video',
+        'accordion'         => 'accordion',
+        'gallery'           => 'gallery-grid',
+        'logo_grid'         => 'logo-grid',
+        'locations'         => 'locations',
+        'careers'           => 'careers',
+        'product_offerings' => 'product-offerings',
+    ];
+
+    if ( ! have_rows( 'page_sections', $page_id ) ) {
+        return false;
+    }
+
+    while ( have_rows( 'page_sections', $page_id ) ) {
+        the_row();
+        $layout = get_row_layout();
+        if ( empty( $layout_templates[ $layout ] ) ) {
+            continue;
+        }
+        get_template_part( 'template-parts/blocks/' . $layout_templates[ $layout ] );
+    }
+
+    return true;
 }
 
 function ay_aip_base_get_google_fonts_url() {

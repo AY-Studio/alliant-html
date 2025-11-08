@@ -154,7 +154,7 @@ function ay_aip_base_print_theme_tokens() {
         if ( ! isset( $typography[ $key ] ) ) {
             continue;
         }
-        $font_rules[] = $selectors . '{font-family:var(--ay-font-' . $key . ');font-size:var(--ay-font-' . $key . '-size);}';
+        $font_rules[] = $selectors . '{font-family:var(--ay-font-' . $key . ') !important;font-size:var(--ay-font-' . $key . '-size) !important;}';
     }
     $font_rules[] = $gform_selectors . '{font-family:var(--ay-font-body) !important;font-size:var(--ay-font-body-size) !important;}';
 

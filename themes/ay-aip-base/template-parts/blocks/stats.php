@@ -1,5 +1,5 @@
 <?php
-$items = get_field( 'stats_items' );
+$items = ay_aip_base_get_block_field( 'stats_items', [] );
 ?>
 <section class="block-stats">
     <div class="container">

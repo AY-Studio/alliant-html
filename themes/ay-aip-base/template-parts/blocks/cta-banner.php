@@ -1,8 +1,8 @@
 <?php
-$icon   = get_field( 'cta_icon' );
-$heading  = get_field( 'cta_heading' );
-$body     = get_field( 'cta_body' );
-$buttons  = get_field( 'cta_buttons' );
+$icon     = ay_aip_base_get_block_field( 'cta_icon' );
+$heading  = ay_aip_base_get_block_field( 'cta_heading' );
+$body     = ay_aip_base_get_block_field( 'cta_body' );
+$buttons  = ay_aip_base_get_block_field( 'cta_buttons', [] );
 ?>
 <section class="block-cta-callout">
     <div class="container">

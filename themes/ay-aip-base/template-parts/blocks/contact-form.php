@@ -1,7 +1,7 @@
 <?php
-$heading    = get_field( 'contact_heading' );
-$body       = get_field( 'contact_body' );
-$form_id    = get_field( 'contact_form_id' );
+$heading    = ay_aip_base_get_block_field( 'contact_heading' );
+$body       = ay_aip_base_get_block_field( 'contact_body' );
+$form_id    = ay_aip_base_get_block_field( 'contact_form_id' );
 ?>
 <section class="contact-form-section py-6">
     <div class="container">

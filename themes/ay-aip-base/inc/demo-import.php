@@ -87,13 +87,19 @@ function ay_aip_base_run_import() {
     $terms_content   = ay_aip_base_terms_content();
     $privacy_content = ay_aip_base_privacy_content();
 
-    $home_id    = ay_aip_base_upsert_page( 'Home', 'home', $home_content );
+    $home_id    = ay_aip_base_upsert_page( 'Home', 'home', $home_content, 'templates/template-pagebuilder.php' );
     $about_id   = ay_aip_base_upsert_page( 'About', 'about', $about_content );
     $news_id    = ay_aip_base_upsert_page( 'News & Insights', 'news', $news_content );
     $contact_id = ay_aip_base_upsert_page( 'Contact', 'contact', $contact_content );
     $terms_id   = ay_aip_base_upsert_page( 'Terms & Conditions', 'terms', $terms_content );
     $privacy_id = ay_aip_base_upsert_page( 'Privacy Policy', 'privacy-policy', $privacy_content );
-    ay_aip_base_upsert_page( 'Blocks Library', 'blocks-library', $blocks_content, 'templates/template-pagebuilder.php' );
+    $blocks_id  = ay_aip_base_upsert_page( 'Blocks', 'blocks', $blocks_content, 'templates/template-pagebuilder.php' );
+    if ( $blocks_id ) {
+        ay_aip_base_seed_blocks_builder( $blocks_id );
+    }
+    if ( $home_id ) {
+        ay_aip_base_seed_home_builder( $home_id );
+    }
 
     if ( ! $home_id ) {
         return false;
@@ -303,8 +309,7 @@ function ay_aip_base_get_demo_html( $slug ) {
 }
 
 function ay_aip_base_home_content() {
-    $html = ay_aip_base_get_demo_html( 'home' );
-    return $html ? ay_aip_base_wrap_html_block( $html ) : '';
+    return '';
 }
 
 function ay_aip_base_about_content() {
@@ -333,6 +338,541 @@ function ay_aip_base_privacy_content() {
 }
 
 function ay_aip_base_blocks_content() {
-    $html = ay_aip_base_get_demo_html( 'blocks' );
-    return $html ? ay_aip_base_wrap_html_block( $html ) : '';
+    return '';
+}
+function ay_aip_base_seed_home_builder( $page_id ) {
+    if ( ! function_exists( 'update_field' ) || ! $page_id ) {
+        return;
+    }
+
+    $sections = [
+        [
+            'acf_fc_layout'       => 'hero_section',
+            'hero_section_heading'=> 'Specialist Aviation Finance',
+            'hero_section_lead'   => 'Alliant AirFinance is an experienced commercial aviation lending platform with deep expertise in the aviation finance sector.',
+            'hero_section_button_label' => 'Contact Us',
+            'hero_section_button_url'   => '#contact',
+        ],
+        [
+            'acf_fc_layout'           => 'value_cards',
+            'value_cards_background'  => 'white',
+            'value_cards_title'       => 'Alliant Values',
+            'value_cards_subtitle'    => 'Our values are more than statements on a page — they define who we are and how we work. They guide our decisions, shape our culture, and set the standard for the impact we create. Each value reflects a commitment to our clients, our people, and our shared future.',
+            'value_cards_cards'       => [
+                [
+                    'title'       => 'We Are Global',
+                    'description' => 'Our reach spans markets and cultures, giving us the insight to navigate complexity and connect opportunities worldwide. By embracing diversity and building partnerships that last, we deliver capital and solutions aligned to our clients\' risk.',
+                    'image_url'   => 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&h=1000&fit=crop',
+                ],
+                [
+                    'title'       => 'We Are Experienced',
+                    'description' => 'Our track record spans years of guiding clients across the full aviation lifecycle—from acquisition to exit, through changing markets and evolving regulations. Experience shapes our decisions and sharpens the value we bring to every transaction.',
+                    'image_url'   => 'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?w=800&h=1000&fit=crop',
+                ],
+                [
+                    'title'       => 'We Are Innovative',
+                    'description' => 'Curiosity drives us to challenge convention and explore better ways forward. We tailor financing structures with precision, apply emerging technologies with purpose, and rethink traditional approaches where others see only risk.',
+                    'image_url'   => 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&h=1000&fit=crop',
+                ],
+            ],
+            'value_cards_button_label' => 'Learn more',
+            'value_cards_button_url'   => home_url( '/about/' ),
+        ],
+        [
+            'acf_fc_layout'             => 'product_offerings',
+            'product_offerings_theme'   => 'grey',
+            'product_offerings_title'   => 'Product Offerings',
+            'product_offerings_subtitle'=> 'Alliant AirFinance believes its full-suite of product offerings, along with Alliant AirFinance’s certainty of execution, positions Alliant AirFinance as a preferred solutions provider for counterparties.',
+            'product_offerings_items'   => [
+                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/bridge.svg' ), 'title' => 'Bridge Financing' ],
+                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/structured.svg' ), 'title' => 'Structured Credit' ],
+                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/portfolio.svg' ), 'title' => 'Portfolio Financing / Revolving Facilities' ],
+                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/payments.svg' ), 'title' => 'Pre-Delivery Payments' ],
+                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/hybrid-debt.svg' ), 'title' => 'Hybrid Debt' ],
+                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/diamond.svg' ), 'title' => 'Operating & Finance Leases' ],
+                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/aircraft.svg' ), 'title' => 'Aircraft' ],
+                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/engines.svg' ), 'title' => 'Engines' ],
+                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/frequent-flyer.svg' ), 'title' => 'Frequent Flyer Programs' ],
+                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/slots-gates.svg' ), 'title' => 'Slots Gates & Routes' ],
+                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/ground.svg' ), 'title' => 'Ground Equipment' ],
+                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/recievables.svg' ), 'title' => 'Receivables' ],
+            ],
+        ],
+    ];
+
+    update_field( 'field_page_sections_flexible', $sections, $page_id );
+}
+
+function ay_aip_base_seed_blocks_builder( $page_id ) {
+    if ( ! function_exists( 'update_field' ) || ! $page_id ) {
+        return;
+    }
+
+    $sections = [
+        [
+            'acf_fc_layout'       => 'hero',
+            'hero_variant'        => 'large',
+            'hero_layout_style'   => 'default',
+            'hero_text_mode'      => 'light',
+            'hero_heading'        => 'Your Trusted Partner in Aviation Finance',
+            'hero_subheading'     => 'Delivering flexible financing solutions for commercial airlines, business aviation, and aircraft operators worldwide.',
+            'hero_buttons'        => [
+                [
+                    'label' => 'Get Started',
+                    'url'   => home_url( '/contact/' ),
+                    'style' => 'primary',
+                ],
+                [
+                    'label' => 'Learn More',
+                    'url'   => home_url( '/about/' ),
+                    'style' => 'secondary',
+                ],
+            ],
+        ],
+        [
+            'acf_fc_layout'       => 'hero_section',
+            'hero_section_heading'=> 'Specialist Aviation Finance',
+            'hero_section_lead'   => 'Alliant AirFinance is an experienced commercial aviation lending platform with deep expertise in the aviation finance sector.',
+            'hero_section_button_label' => 'Contact Us',
+            'hero_section_button_url'   => '#contact',
+        ],
+        [
+            'acf_fc_layout'       => 'hero',
+            'hero_variant'        => 'small',
+            'hero_layout_style'   => 'default',
+            'hero_text_mode'      => 'light',
+            'hero_heading'        => 'Aviation Finance Solutions',
+            'hero_subheading'     => 'Flexible financing for commercial airlines and business aviation worldwide.',
+        ],
+        [
+            'acf_fc_layout'           => 'text_content',
+            'text_content_background'  => 'white',
+            'text_content_title'       => 'Comprehensive Aviation Finance Solutions',
+            'text_content_body'        => '<p>At Alliant AirFinance, we specialize in providing tailored financing solutions for the aviation industry. Our team combines deep industry expertise with innovative financial structuring to help clients achieve their aircraft acquisition goals.</p><p>Whether you\'re a commercial airline expanding your fleet, a private operator seeking business jet financing, or a lessor managing aircraft portfolios, we deliver customized solutions that align with your operational requirements and financial objectives.</p><p>With over three decades of experience in aviation finance, we understand the unique challenges and opportunities in this dynamic sector. Our commitment to excellence and client service has made us a trusted partner for aviation financing across the globe.</p>',
+        ],
+        [
+            'acf_fc_layout'        => 'icon_features',
+            'icon_features_background' => 'white',
+            'icon_features_title'  => 'Why Choose Alliant',
+            'icon_features_subtitle' => 'Trusted expertise in aviation finance',
+            'icon_features_items'  => [
+                [
+                    'icon_svg'    => '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>',
+                    'title'       => 'Flexible Solutions',
+                    'description' => 'Customized financing structures tailored to your specific operational and financial requirements.',
+                ],
+                [
+                    'icon_svg'    => '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+                    'title'       => 'Fast Approvals',
+                    'description' => 'Streamlined processes and quick decision-making to meet your timeline needs.',
+                ],
+                [
+                    'icon_svg'    => '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
+                    'title'       => 'Global Reach',
+                    'description' => 'International expertise with experience across multiple jurisdictions and markets.',
+                ],
+                [
+                    'icon_svg'    => '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+                    'title'       => 'Expert Team',
+                    'description' => 'Decades of combined experience in aviation finance and aircraft transactions.',
+                ],
+                [
+                    'icon_svg'    => '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
+                    'title'       => 'Proven Track Record',
+                    'description' => 'Successfully financed over $5 billion in aircraft transactions worldwide.',
+                ],
+                [
+                    'icon_svg'    => '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+                    'title'       => 'Trusted Partner',
+                    'description' => 'Long-term relationships built on transparency, integrity, and exceptional service.',
+                ],
+            ],
+        ],
+        [
+            'acf_fc_layout'          => 'value_cards',
+            'value_cards_title'      => 'Value Cards',
+            'value_cards_subtitle'   => 'Showcase gradient-backed cards with imagery and overlays.',
+            'value_cards_cards'      => [
+                [ 'title' => 'Card One', 'description' => 'Sample supporting copy.', 'image_url' => 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&h=1000&fit=crop' ],
+                [ 'title' => 'Card Two', 'description' => 'Highlight differentiators or proof points.', 'image_url' => 'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?w=800&h=1000&fit=crop' ],
+                [ 'title' => 'Card Three', 'description' => 'Keep descriptions concise.', 'image_url' => 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&h=1000&fit=crop' ],
+            ],
+            'value_cards_button_label' => 'Primary CTA',
+            'value_cards_button_url'   => home_url( '/about/' ),
+        ],
+        [
+            'acf_fc_layout'        => 'card_grid',
+            'card_section_title'   => 'Capital solutions across the lifecycle',
+            'card_section_subtitle'=> 'Deploy bespoke structures that unlock liquidity without compromising fleet flexibility.',
+            'card_background'      => 'light',
+            'card_items'           => [
+                [
+                    'icon'       => 'fas fa-plane-departure',
+                    'heading'    => 'Sale-Leasebacks',
+                    'body'       => 'Source competitive lease terms for new deliveries and mid-life aircraft.',
+                    'cta_label'  => 'Explore structure',
+                    'cta_url'    => home_url( '/about/' ),
+                ],
+                [
+                    'icon'       => 'fas fa-industry',
+                    'heading'    => 'Engine Pools',
+                    'body'       => 'Optimize shop visit timing with shared spare engine programs.',
+                    'cta_label'  => 'See program',
+                    'cta_url'    => home_url( '/contact/' ),
+                ],
+                [
+                    'icon'       => 'fas fa-chart-line',
+                    'heading'    => 'ABS Advisory',
+                    'body'       => 'Bring portfolios to market with data-backed investor materials.',
+                    'cta_label'  => 'Request deck',
+                    'cta_url'    => home_url( '/news/' ),
+                ],
+                [
+                    'icon'       => 'fas fa-briefcase',
+                    'heading'    => 'Sale-Leaseback',
+                    'body'       => 'Unlock capital from your existing fleet while maintaining operational control.',
+                    'cta_label'  => 'Learn More',
+                    'cta_url'    => home_url( '/about/' ),
+                ],
+                [
+                    'icon'       => 'fas fa-shield-alt',
+                    'heading'    => 'Structured Finance',
+                    'body'       => 'Custom solutions for complex transactions across multiple jurisdictions.',
+                    'cta_label'  => 'Learn More',
+                    'cta_url'    => home_url( '/contact/' ),
+                ],
+                [
+                    'icon'       => 'fas fa-people-group',
+                    'heading'    => 'Advisory Services',
+                    'body'       => 'Strategic consulting on fleet planning, market analysis, and transaction structuring.',
+                    'cta_label'  => 'Learn More',
+                    'cta_url'    => home_url( '/news/' ),
+                ],
+            ],
+        ],
+        [
+            'acf_fc_layout'             => 'product_offerings',
+            'product_offerings_theme'   => 'grey',
+            'product_offerings_title'   => 'Product Offerings',
+            'product_offerings_subtitle'=> 'Grey/white card grid with iconography.',
+            'product_offerings_items'   => [
+                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/bridge.svg' ), 'title' => 'Bridge Financing', 'description' => 'Short-term capital between commitments.' ],
+                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/structured.svg' ), 'title' => 'Structured Credit', 'description' => 'Layered debt stacks and hybrids.' ],
+                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/portfolio.svg' ), 'title' => 'Portfolio Financing / Revolving Facilities', 'description' => 'Revolving facilities for fleets.' ],
+                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/payments.svg' ), 'title' => 'Pre-Delivery Payments' ],
+                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/hybrid-debt.svg' ), 'title' => 'Hybrid Debt' ],
+                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/diamond.svg' ), 'title' => 'Operating & Finance Leases' ],
+                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/aircraft.svg' ), 'title' => 'Aircraft' ],
+                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/engines.svg' ), 'title' => 'Engines' ],
+                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/frequent-flyer.svg' ), 'title' => 'Frequent Flyer Programs' ],
+                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/slots-gates.svg' ), 'title' => 'Slots Gates & Routes' ],
+                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/ground.svg' ), 'title' => 'Ground Equipment' ],
+                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/recievables.svg' ), 'title' => 'Receivables' ],
+            ],
+        ],
+        [
+            'acf_fc_layout'      => 'values',
+            'values_title'       => 'Our Core Values',
+            'values_subtitle'    => 'The principles that guide everything we do',
+            'values_items'       => [
+                [
+                    'number'      => '01',
+                    'value_icon_svg' => '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+                    'title'       => 'Integrity',
+                    'description' => 'We operate with transparency and honesty in every transaction.',
+                ],
+                [
+                    'number'      => '02',
+                    'value_icon_svg' => '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>',
+                    'title'       => 'Expertise',
+                    'description' => 'Decades of aviation finance experience enable us to provide innovative solutions.',
+                ],
+                [
+                    'number'      => '03',
+                    'value_icon_svg' => '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+                    'title'       => 'Partnership',
+                    'description' => 'We view our clients as long-term partners and work collaboratively.',
+                ],
+                [
+                    'number'      => '04',
+                    'value_icon_svg' => '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
+                    'title'       => 'Excellence',
+                    'description' => 'We strive for the highest standards in service delivery.',
+                ],
+            ],
+        ],
+        [
+            'acf_fc_layout'          => 'media_content',
+            'media_content_background'=> 'white',
+            'media_content_alignment' => 'left',
+            'media_content_title'     => 'Tailored Aviation Finance Solutions',
+            'media_content_body'      => '<p>With over 30 years of experience in the aviation industry, we understand the unique challenges that come with aircraft financing.</p><p>From commercial airlines to private operators, we provide flexible financing options that help you acquire the aircraft you need to grow your business.</p>',
+            'media_content_button_label' => 'Learn More',
+            'media_content_button_url'   => home_url( '/about/' ),
+        ],
+        [
+            'acf_fc_layout'          => 'media_content',
+            'media_content_background'=> 'white',
+            'media_content_alignment' => 'right',
+            'media_content_title'     => 'Expert Team & Industry Knowledge',
+            'media_content_body'      => '<p>Our dedicated team brings together decades of combined experience in aviation finance, investment banking, and aircraft operations.</p><p>Whether you\'re looking to finance a single aircraft or an entire fleet, our experts provide the guidance and support you need.</p>',
+            'media_content_button_label' => 'Meet Our Team',
+            'media_content_button_url'   => home_url( '/about/' ),
+        ],
+        [
+            'acf_fc_layout' => 'stats',
+            'stats_items'   => [
+                [ 'value' => '$12B+', 'heading' => 'Aircraft financed' ],
+                [ 'value' => '45+', 'heading' => 'Countries supported' ],
+                [ 'value' => '120', 'heading' => 'Engine events managed annually' ],
+                [ 'value' => '98%', 'heading' => 'Client retention' ],
+            ],
+        ],
+        [
+            'acf_fc_layout'            => 'testimonial',
+            'testimonial_background'   => 'white',
+            'testimonial_quote'        => 'Alliant AirFinance provided exceptional service throughout our fleet financing process. Their deep industry knowledge and flexible approach helped us structure a deal that perfectly aligned with our operational needs.',
+            'testimonial_author_name'  => 'John Anderson',
+            'testimonial_author_title' => 'CEO, Global Air Services',
+        ],
+        [
+            'acf_fc_layout'        => 'team_grid',
+            'team_section_title'   => 'Leadership team',
+            'team_section_subtitle'=> 'Cross-functional experts spanning aircraft trading, ABS structuring, and airline operations.',
+            'team_background'      => 'light',
+            'team_members'         => [
+                [
+                    'name'  => 'Maya Chen',
+                    'title' => 'Chief Investment Officer',
+                    'bio'   => 'Leads portfolio construction and capital markets execution across commercial programs.',
+                ],
+                [
+                    'name'  => 'Luca Martinez',
+                    'title' => 'Head of Technical Services',
+                    'bio'   => 'Oversees maintenance strategy and engine event optimization for global operators.',
+                ],
+                [
+                    'name'  => 'Priya Natarajan',
+                    'title' => 'Managing Director, Advisory',
+                    'bio'   => 'Partners with airlines on balance-sheet restructuring and structured finance transactions.',
+                ],
+            ],
+        ],
+        [
+            'acf_fc_layout' => 'cta_banner',
+            'cta_icon'      => '<i class="fas fa-headset"></i>',
+            'cta_heading'   => 'Ready to structure your next aviation transaction?',
+            'cta_body'      => 'Our specialists build tailored capital stacks for airlines, OEMs, and lessors navigating volatile markets.',
+            'cta_buttons'   => [
+                [
+                    'label' => 'Schedule a call',
+                    'url'   => home_url( '/contact/' ),
+                    'style' => 'primary',
+                ],
+                [
+                    'label' => 'Download overview',
+                    'url'   => home_url( '/about/' ),
+                    'style' => 'secondary',
+                ],
+            ],
+        ],
+        [
+            'acf_fc_layout'        => 'pricing',
+            'pricing_background'   => 'white',
+            'pricing_title'        => 'Financing Solutions',
+            'pricing_subtitle'     => 'Flexible options tailored to your needs',
+            'pricing_cards'        => [
+                [
+                    'title'    => 'Direct Financing',
+                    'subtitle' => 'Traditional loan structure',
+                    'features' => [
+                        [ 'text' => 'Competitive interest rates' ],
+                        [ 'text' => 'Flexible terms up to 15 years' ],
+                        [ 'text' => 'Fixed or variable rates' ],
+                        [ 'text' => 'Quick approval process' ],
+                        [ 'text' => 'Minimal documentation' ],
+                    ],
+                    'button_label' => 'Learn More',
+                    'button_url'   => home_url( '/contact/' ),
+                    'button_style' => 'outline',
+                ],
+                [
+                    'title'    => 'Operating Lease',
+                    'subtitle' => 'Off-balance sheet solution',
+                    'featured' => 1,
+                    'badge_text' => 'Most Popular',
+                    'features' => [
+                        [ 'text' => 'Preserve capital' ],
+                        [ 'text' => 'Tax advantages' ],
+                        [ 'text' => 'Flexible end-of-lease options' ],
+                        [ 'text' => 'No balloon payment' ],
+                        [ 'text' => 'Maintenance options available' ],
+                    ],
+                    'button_label' => 'Get Started',
+                    'button_url'   => home_url( '/contact/' ),
+                    'button_style' => 'primary',
+                ],
+                [
+                    'title'    => 'Sale-Leaseback',
+                    'subtitle' => 'Unlock aircraft value',
+                    'features' => [
+                        [ 'text' => 'Immediate liquidity' ],
+                        [ 'text' => 'Maintain operational control' ],
+                        [ 'text' => 'Improve balance sheet' ],
+                        [ 'text' => 'Fund growth initiatives' ],
+                        [ 'text' => 'Transparent process' ],
+                    ],
+                    'button_label' => 'Learn More',
+                    'button_url'   => home_url( '/contact/' ),
+                    'button_style' => 'outline',
+                ],
+            ],
+        ],
+        [
+            'acf_fc_layout'      => 'video',
+            'video_background'   => 'white',
+            'video_title'        => 'See How We Work',
+            'video_url'          => 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+            'video_caption'      => 'Learn about our comprehensive approach to aviation finance and how we partner with clients worldwide.',
+        ],
+        [
+            'acf_fc_layout'      => 'accordion',
+            'accordion_title'    => 'Frequently Asked Questions',
+            'accordion_items'    => [
+                [
+                    'title'        => 'What types of aircraft financing do you offer?',
+                    'content'      => 'We provide comprehensive financing solutions for commercial jets, business aviation, cargo aircraft, and rotorcraft, including direct loans, sale-leasebacks, and structured products.',
+                    'default_open' => 1,
+                ],
+                [
+                    'title'   => 'How quickly can you close a transaction?',
+                    'content' => 'Our streamlined diligence process allows us to issue indicative terms within days and close most transactions within 30-45 days.',
+                ],
+                [
+                    'title'   => 'Do you operate globally?',
+                    'content' => 'Yes, our team supports operators across North America, Latin America, EMEA, and APAC with localized expertise.',
+                ],
+            ],
+        ],
+        [
+            'acf_fc_layout'      => 'gallery',
+            'gallery_background' => 'white',
+            'gallery_title'      => 'Our Portfolio',
+            'gallery_subtitle'   => 'Explore aircraft we have helped finance',
+            'gallery_items'      => [
+                [ 'title' => 'Commercial Aviation', 'description' => 'Narrowbody + widebody programs' ],
+                [ 'title' => 'Business Aviation', 'description' => 'Private jet financing' ],
+                [ 'title' => 'Regional Aircraft', 'description' => 'Turboprop and regional jets' ],
+                [ 'title' => 'Cargo Operations', 'description' => 'Freighter conversions' ],
+                [ 'title' => 'Rotorcraft', 'description' => 'Helicopter portfolios' ],
+                [ 'title' => 'Asset Management', 'description' => 'Full lifecycle support' ],
+            ],
+        ],
+        [
+            'acf_fc_layout'        => 'logo_grid',
+            'logo_grid_title'      => 'Trusted by Leading Aviation Companies',
+            'logo_grid_subtitle'   => 'Partners worldwide rely on our expertise',
+            'logo_grid_items'      => [
+                [ 'logo_svg' => '<svg width="120" height="40" viewBox="0 0 120 40" fill="currentColor" opacity="0.6"><text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="600">AIRLINE CO</text></svg>' ],
+                [ 'logo_svg' => '<svg width="120" height="40" viewBox="0 0 120 40" fill="currentColor" opacity="0.6"><text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="600">JET SERVICES</text></svg>' ],
+                [ 'logo_svg' => '<svg width="120" height="40" viewBox="0 0 120 40" fill="currentColor" opacity="0.6"><text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="600">SKYLINE</text></svg>' ],
+                [ 'logo_svg' => '<svg width="120" height="40" viewBox="0 0 120 40" fill="currentColor" opacity="0.6"><text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="600">GLOBAL AIR</text></svg>' ],
+                [ 'logo_svg' => '<svg width="120" height="40" viewBox="0 0 120 40" fill="currentColor" opacity="0.6"><text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="600">AVIATION+</text></svg>' ],
+                [ 'logo_svg' => '<svg width="120" height="40" viewBox="0 0 120 40" fill="currentColor" opacity="0.6"><text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="600">AERO GROUP</text></svg>' ],
+            ],
+        ],
+        [
+            'acf_fc_layout'        => 'locations',
+            'locations_title'      => 'Global Presence',
+            'locations_subtitle'   => 'Serving clients worldwide',
+            'locations_items'      => [
+                [
+                    'name'        => 'New York',
+                    'designation' => 'Headquarters',
+                    'address'     => "200 Park Avenue
+New York, NY 10166
+USA",
+                    'phone'       => '+1 212 555 0188',
+                    'email'       => 'nyc@alliantairfinance.com',
+                    'location_icon_svg' => '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+                ],
+                [
+                    'name'        => 'London',
+                    'designation' => 'EMEA Office',
+                    'address'     => "100 Bishopsgate
+London EC2N 4AG
+United Kingdom",
+                    'phone'       => '+44 20 3695 0000',
+                    'email'       => 'london@alliantairfinance.com',
+                    'location_icon_svg' => '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+                ],
+                [
+                    'name'        => 'Singapore',
+                    'designation' => 'APAC Office',
+                    'address'     => "8 Marina Boulevard #05-02
+Marina Bay Financial Centre
+Singapore 018981",
+                    'phone'       => '+65 6808 7888',
+                    'email'       => 'singapore@alliantairfinance.com',
+                    'location_icon_svg' => '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+                ],
+                [
+                    'name'        => 'Dubai',
+                    'designation' => 'Middle East Office',
+                    'address'     => "Level 14, The Gate Building
+Dubai International Financial Centre
+Dubai, UAE",
+                    'phone'       => '+971 4 363 4400',
+                    'email'       => 'dubai@alliantairfinance.com',
+                    'location_icon_svg' => '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+                ],
+            ],
+        ],
+        [
+            'acf_fc_layout'      => 'careers',
+            'careers_title'      => 'Join Our Team',
+            'careers_subtitle'   => 'Build your career in aviation finance with industry-leading experts',
+            'careers_jobs'       => [
+                [
+                    'title'       => 'Senior Vice President, Commercial Aviation',
+                    'location'    => 'New York, NY',
+                    'type'        => 'Full-time',
+                    'department'  => 'Finance',
+                    'description' => 'Lead commercial aircraft financing transactions, develop client relationships, and provide strategic guidance on fleet acquisition.',
+                    'apply_label' => 'Apply Now',
+                    'apply_url'   => home_url( '/contact/' ),
+                ],
+                [
+                    'title'       => 'Director, Asset Management',
+                    'location'    => 'London, UK',
+                    'type'        => 'Full-time',
+                    'department'  => 'Operations',
+                    'description' => 'Oversee portfolio performance, remarketing strategies, and maintenance event planning across global fleets.',
+                    'apply_label' => 'Apply Now',
+                    'apply_url'   => home_url( '/contact/' ),
+                ],
+                [
+                    'title'       => 'Vice President, Capital Markets',
+                    'location'    => 'Singapore',
+                    'type'        => 'Full-time',
+                    'department'  => 'Capital Markets',
+                    'description' => 'Execute ABS transactions, manage investor relationships, and originate structured finance mandates.',
+                    'apply_label' => 'Apply Now',
+                    'apply_url'   => home_url( '/contact/' ),
+                ],
+            ],
+            'careers_cta_title'       => "Don't see the right role?",
+            'careers_cta_description' => "We're always looking for exceptional talent. Send us your resume and we'll keep you in mind for future opportunities.",
+            'careers_cta_label'       => 'Submit Your Resume',
+            'careers_cta_url'         => home_url( '/contact/' ),
+        ],
+        [
+            'acf_fc_layout'   => 'contact_form',
+            'contact_heading' => 'Start the conversation',
+            'contact_body'    => 'Share your fleet objectives and we will tailor a financing roadmap in under five business days.',
+            'contact_form_id' => 1,
+        ],
+    ];
+
+    update_field( 'field_page_sections_flexible', $sections, $page_id );
 }

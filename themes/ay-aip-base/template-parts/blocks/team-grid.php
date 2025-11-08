@@ -1,8 +1,8 @@
 <?php
-$items         = get_field( 'team_members' );
-$bg_variant    = get_field( 'team_background' ) === 'light' ? ' bg-light' : '';
-$section_title = get_field( 'team_section_title' );
-$section_sub   = get_field( 'team_section_subtitle' );
+$items         = ay_aip_base_get_block_field( 'team_members', [] );
+$bg_variant    = ay_aip_base_get_block_field( 'team_background' ) === 'light' ? ' bg-light' : '';
+$section_title = ay_aip_base_get_block_field( 'team_section_title' );
+$section_sub   = ay_aip_base_get_block_field( 'team_section_subtitle' );
 ?>
 <section class="block-team-grid<?php echo esc_attr( $bg_variant ); ?>">
     <div class="container">
