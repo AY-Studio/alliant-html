@@ -88,7 +88,7 @@ function ay_aip_base_run_import() {
     $privacy_content = ay_aip_base_privacy_content();
 
     $home_id    = ay_aip_base_upsert_page( 'Home', 'home', $home_content, 'templates/template-pagebuilder.php' );
-    $about_id   = ay_aip_base_upsert_page( 'About', 'about', $about_content );
+    $about_id   = ay_aip_base_upsert_page( 'About', 'about', $about_content, 'templates/template-pagebuilder.php' );
     $news_id    = ay_aip_base_upsert_page( 'News & Insights', 'news', $news_content );
     $contact_id = ay_aip_base_upsert_page( 'Contact', 'contact', $contact_content );
     $terms_id   = ay_aip_base_upsert_page( 'Terms & Conditions', 'terms', $terms_content );
@@ -99,6 +99,9 @@ function ay_aip_base_run_import() {
     }
     if ( $home_id ) {
         ay_aip_base_seed_home_builder( $home_id );
+    }
+    if ( $about_id ) {
+        ay_aip_base_seed_about_builder( $about_id );
     }
 
     if ( ! $home_id ) {
@@ -313,8 +316,7 @@ function ay_aip_base_home_content() {
 }
 
 function ay_aip_base_about_content() {
-    $html = ay_aip_base_get_demo_html( 'about' );
-    return $html ? ay_aip_base_wrap_html_block( $html ) : '';
+    return '';
 }
 
 function ay_aip_base_news_content() {
@@ -396,6 +398,45 @@ function ay_aip_base_seed_home_builder( $page_id ) {
                 [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/slots-gates.svg' ), 'title' => 'Slots Gates & Routes' ],
                 [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/ground.svg' ), 'title' => 'Ground Equipment' ],
                 [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/recievables.svg' ), 'title' => 'Receivables' ],
+            ],
+        ],
+    ];
+
+    update_field( 'field_page_sections_flexible', $sections, $page_id );
+}
+
+function ay_aip_base_seed_about_builder( $page_id ) {
+    if ( ! function_exists( 'update_field' ) || ! $page_id ) {
+        return;
+    }
+
+    $theme_uri = ay_aip_base_get_theme_asset_url( '' );
+    $img_url   = trailingslashit( rtrim( $theme_uri, '/' ) ) . 'img/person.jpg';
+
+    $make_photo = function ( $alt ) use ( $img_url ) {
+        return [
+            'url'   => $img_url,
+            'alt'   => $alt,
+            'sizes' => [ 'ay_aip_base_card' => $img_url ],
+        ];
+    };
+
+    $sections = [
+        [
+            'acf_fc_layout'        => 'hero_section',
+            'hero_section_heading' => 'Alliant Mission',
+            'hero_section_lead'    => 'Alliant AirFinance believes its asset expertise and platform capabilities enable us to provide counterparties bespoke financial solutions across asset types and capital structures.',
+        ],
+        [
+            'acf_fc_layout'        => 'about_team',
+            'about_team_title'     => 'Our Team',
+            'about_team_subtitle'  => 'The Alliant team brings together deep expertise, diverse perspectives, and a shared commitment to delivering tailored solutions that help clients navigate complexity with confidence.',
+            'about_team_members'   => [
+                [ 'name' => 'Firstname Lastname', 'title' => 'Chief Executive Officer', 'photo' => $make_photo( 'Team member' ) ],
+                [ 'name' => 'Firstname Lastname', 'title' => 'Chief Financial Officer', 'photo' => $make_photo( 'Team member' ) ],
+                [ 'name' => 'Firstname Lastname', 'title' => 'Head of Aviation Finance', 'photo' => $make_photo( 'Team member' ) ],
+                [ 'name' => 'Firstname Lastname', 'title' => 'Managing Director', 'photo' => $make_photo( 'Team member' ) ],
+                [ 'name' => 'Firstname Lastname', 'title' => 'Senior Vice President', 'photo' => $make_photo( 'Team member' ) ],
             ],
         ],
     ];

@@ -302,6 +302,7 @@ function ay_aip_base_render_page_sections( $page_id = 0 ) {
         'cta_banner'        => 'cta-banner',
         'contact_form'      => 'contact-form',
         'team_grid'         => 'team-grid',
+        'about_team'        => 'about-team',
         'text_content'      => 'text-content',
         'icon_features'     => 'icon-features',
         'values'            => 'values',

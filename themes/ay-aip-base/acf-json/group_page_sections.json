@@ -1270,6 +1270,57 @@
                             ]
                         }
                     ]
+                },
+                "layout_about_team": {
+                    "key": "layout_about_team",
+                    "name": "about_team",
+                    "label": "About Team Grid",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_about_team_title",
+                            "label": "Section Title",
+                            "name": "about_team_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_about_team_subtitle",
+                            "label": "Section Subtitle",
+                            "name": "about_team_subtitle",
+                            "type": "textarea",
+                            "rows": 3
+                        },
+                        {
+                            "key": "field_about_team_members",
+                            "label": "Team Members",
+                            "name": "about_team_members",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Add Member",
+                            "sub_fields": [
+                                {
+                                    "key": "field_about_team_photo",
+                                    "label": "Photo",
+                                    "name": "photo",
+                                    "type": "image",
+                                    "return_format": "array",
+                                    "preview_size": "medium"
+                                },
+                                {
+                                    "key": "field_about_team_name",
+                                    "label": "Name",
+                                    "name": "name",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_about_team_role",
+                                    "label": "Title",
+                                    "name": "title",
+                                    "type": "text"
+                                }
+                            ]
+                        }
+                    ]
                 }
             },
             "button_label": "Add Section"
