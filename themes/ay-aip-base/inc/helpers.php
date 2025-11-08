@@ -99,12 +99,21 @@ function ay_aip_base_font_category_stack( $category ) {
     }
 }
 
-function ay_aip_base_get_font_slug( $mod_key, $option_key ) {
-    $option_value = function_exists( 'get_field' ) ? get_field( $option_key, 'option' ) : '';
+function ay_aip_base_get_font_slug( $mod_key, $option_key, $default = 'mulish', $fallback_option_key = '' ) {
+    $option_value = ay_aip_base_get_theme_option_value( $option_key );
     if ( $option_value ) {
-        return ay_aip_base_sanitize_font_choice( $option_value );
+        return ay_aip_base_sanitize_font_choice( $option_value, $default );
     }
-    return get_theme_mod( $mod_key, 'mulish' );
+
+    if ( $fallback_option_key ) {
+        $fallback_value = ay_aip_base_get_theme_option_value( $fallback_option_key );
+        if ( $fallback_value ) {
+            return ay_aip_base_sanitize_font_choice( $fallback_value, $default );
+        }
+    }
+
+    $mod_value = get_theme_mod( $mod_key, $default );
+    return ay_aip_base_sanitize_font_choice( $mod_value, $default );
 }
 
 function ay_aip_base_get_font_choice( $slug, $fallback = 'inter' ) {
@@ -115,17 +124,133 @@ function ay_aip_base_get_font_choice( $slug, $fallback = 'inter' ) {
     return $fonts[ $fallback ];
 }
 
-function ay_aip_base_sanitize_font_choice( $value ) {
+function ay_aip_base_sanitize_font_choice( $value, $fallback = 'mulish' ) {
     $fonts = ay_aip_base_get_google_fonts();
-    return isset( $fonts[ $value ] ) ? $value : 'inter';
+    if ( isset( $fonts[ $value ] ) ) {
+        return $value;
+    }
+
+    return isset( $fonts[ $fallback ] ) ? $fallback : 'mulish';
+}
+
+function ay_aip_base_get_typography_size_value( $mod_key, $option_key, $default ) {
+    $option_value = ay_aip_base_get_theme_option_value( $option_key );
+    if ( $option_value ) {
+        return sanitize_text_field( $option_value );
+    }
+    $mod_value = get_theme_mod( $mod_key, '' );
+    if ( $mod_value ) {
+        return sanitize_text_field( $mod_value );
+    }
+    return $default;
+}
+
+function ay_aip_base_get_typography_settings() {
+    $config = [
+        'body' => [
+            'option_font'      => 'theme_body_font_choice',
+            'mod_font'         => 'ay_aip_base_body_font',
+            'default_font'     => 'mulish',
+            'option_size'      => 'theme_body_font_size',
+            'mod_size'         => 'ay_aip_base_body_font_size',
+            'default_size'     => '1rem',
+            'fallback_option'  => '',
+        ],
+        'h1' => [
+            'option_font'      => 'theme_heading_h1_font_choice',
+            'mod_font'         => 'ay_aip_base_heading_font',
+            'default_font'     => 'mulish',
+            'option_size'      => 'theme_heading_h1_font_size',
+            'mod_size'         => 'ay_aip_base_heading_h1_font_size',
+            'default_size'     => 'calc(1.375rem + 1.5vw)',
+            'fallback_option'  => 'theme_heading_font_choice',
+        ],
+        'h2' => [
+            'option_font'      => 'theme_heading_h2_font_choice',
+            'mod_font'         => 'ay_aip_base_heading_font',
+            'default_font'     => 'mulish',
+            'option_size'      => 'theme_heading_h2_font_size',
+            'mod_size'         => 'ay_aip_base_heading_h2_font_size',
+            'default_size'     => 'calc(1.325rem + 0.9vw)',
+            'fallback_option'  => 'theme_heading_font_choice',
+        ],
+        'h3' => [
+            'option_font'      => 'theme_heading_h3_font_choice',
+            'mod_font'         => 'ay_aip_base_heading_font',
+            'default_font'     => 'mulish',
+            'option_size'      => 'theme_heading_h3_font_size',
+            'mod_size'         => 'ay_aip_base_heading_h3_font_size',
+            'default_size'     => 'calc(1.3rem + 0.6vw)',
+            'fallback_option'  => 'theme_heading_font_choice',
+        ],
+        'h4' => [
+            'option_font'      => 'theme_heading_h4_font_choice',
+            'mod_font'         => 'ay_aip_base_heading_font',
+            'default_font'     => 'mulish',
+            'option_size'      => 'theme_heading_h4_font_size',
+            'mod_size'         => 'ay_aip_base_heading_h4_font_size',
+            'default_size'     => 'calc(1.275rem + 0.3vw)',
+            'fallback_option'  => 'theme_heading_font_choice',
+        ],
+        'h5' => [
+            'option_font'      => 'theme_heading_h5_font_choice',
+            'mod_font'         => 'ay_aip_base_heading_font',
+            'default_font'     => 'mulish',
+            'option_size'      => 'theme_heading_h5_font_size',
+            'mod_size'         => 'ay_aip_base_heading_h5_font_size',
+            'default_size'     => '1.25rem',
+            'fallback_option'  => 'theme_heading_font_choice',
+        ],
+        'h6' => [
+            'option_font'      => 'theme_heading_h6_font_choice',
+            'mod_font'         => 'ay_aip_base_heading_font',
+            'default_font'     => 'mulish',
+            'option_size'      => 'theme_heading_h6_font_size',
+            'mod_size'         => 'ay_aip_base_heading_h6_font_size',
+            'default_size'     => '1rem',
+            'fallback_option'  => 'theme_heading_font_choice',
+        ],
+        'nav' => [
+            'option_font'      => 'theme_nav_font_choice',
+            'mod_font'         => 'ay_aip_base_nav_font',
+            'default_font'     => 'mulish',
+            'option_size'      => 'theme_nav_font_size',
+            'mod_size'         => 'ay_aip_base_nav_font_size',
+            'default_size'     => '1rem',
+            'fallback_option'  => 'theme_heading_font_choice',
+        ],
+    ];
+
+    $settings = [];
+    foreach ( $config as $key => $args ) {
+        $slug = ay_aip_base_get_font_slug(
+            $args['mod_font'],
+            $args['option_font'],
+            $args['default_font'],
+            $args['fallback_option']
+        );
+        $settings[ $key ] = [
+            'slug' => $slug,
+            'font' => ay_aip_base_get_font_choice( $slug, $args['default_font'] ),
+            'size' => ay_aip_base_get_typography_size_value( $args['mod_size'], $args['option_size'], $args['default_size'] ),
+        ];
+    }
+
+    return $settings;
 }
 
 function ay_aip_base_get_google_fonts_url() {
-    $fonts        = ay_aip_base_get_google_fonts();
-    $heading_slug = ay_aip_base_get_font_slug( 'ay_aip_base_heading_font', 'theme_heading_font_choice' );
-    $body_slug    = ay_aip_base_get_font_slug( 'ay_aip_base_body_font', 'theme_body_font_choice' );
-    $selected     = array_unique( [ $heading_slug, $body_slug ] );
+    $fonts      = ay_aip_base_get_google_fonts();
+    $typography = ay_aip_base_get_typography_settings();
+    $selected   = [];
 
+    foreach ( $typography as $setting ) {
+        if ( ! empty( $setting['slug'] ) ) {
+            $selected[] = $setting['slug'];
+        }
+    }
+
+    $selected = array_unique( $selected );
     $families = [];
     foreach ( $selected as $slug ) {
         if ( isset( $fonts[ $slug ] ) ) {

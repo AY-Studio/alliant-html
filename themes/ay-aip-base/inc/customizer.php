@@ -97,34 +97,49 @@ function ay_aip_base_customize_register( $wp_customize ) {
 
 add_action( 'wp_head', 'ay_aip_base_print_theme_tokens', 20 );
 function ay_aip_base_print_theme_tokens() {
-    $heading_font_slug = ay_aip_base_get_font_slug( 'ay_aip_base_heading_font', 'theme_heading_font_choice' );
-    $body_font_slug    = ay_aip_base_get_font_slug( 'ay_aip_base_body_font', 'theme_body_font_choice' );
-    $heading_font = ay_aip_base_get_font_choice( $heading_font_slug );
-    $body_font    = ay_aip_base_get_font_choice( $body_font_slug );
+    $typography     = ay_aip_base_get_typography_settings();
     $nav_background = ay_aip_base_get_nav_background_color();
 
     $tokens = [
-        '--ay-font-heading'   => $heading_font['stack'],
-        '--ay-font-body'      => $body_font['stack'],
-        '--bs-font-sans-serif' => $body_font['stack'],
-        '--bs-body-font-family' => $body_font['stack'],
-        '--bs-heading-font-family' => $heading_font['stack'],
-        '--ay-color-primary'  => get_theme_mod( 'ay_aip_base_primary_color', '#1f3a63' ),
-        '--ay-color-accent'   => get_theme_mod( 'ay_aip_base_accent_color', '#4a7dff' ),
-        '--ay-color-heading'  => get_theme_mod( 'ay_aip_base_heading_color', '#111827' ),
-        '--ay-color-body'     => get_theme_mod( 'ay_aip_base_body_color', '#4b5563' ),
+        '--ay-color-primary'    => get_theme_mod( 'ay_aip_base_primary_color', '#1f3a63' ),
+        '--ay-color-accent'     => get_theme_mod( 'ay_aip_base_accent_color', '#4a7dff' ),
+        '--ay-color-heading'    => get_theme_mod( 'ay_aip_base_heading_color', '#111827' ),
+        '--ay-color-body'       => get_theme_mod( 'ay_aip_base_body_color', '#4b5563' ),
         '--ay-color-background' => get_theme_mod( 'ay_aip_base_background_color', '#ffffff' ),
-        '--ay-nav-background' => $nav_background,
+        '--ay-nav-background'   => $nav_background,
     ];
+
+    foreach ( $typography as $key => $data ) {
+        $tokens[ '--ay-font-' . $key ]       = $data['font']['stack'];
+        $tokens[ '--ay-font-' . $key . '-size' ] = $data['size'];
+    }
+
+    if ( isset( $typography['h1'] ) ) {
+        $tokens['--ay-font-heading']        = $typography['h1']['font']['stack'];
+        $tokens['--bs-heading-font-family'] = $typography['h1']['font']['stack'];
+    }
+    if ( isset( $typography['body'] ) ) {
+        $tokens['--ay-font-body']         = $typography['body']['font']['stack'];
+        $tokens['--bs-font-sans-serif']   = $typography['body']['font']['stack'];
+        $tokens['--bs-body-font-family']  = $typography['body']['font']['stack'];
+    }
     echo "<style id='ay-aip-base-design-tokens'>:root";
     echo '{';
     foreach ( $tokens as $var => $value ) {
         echo esc_html( $var ) . ':' . $value . ';'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     }
     echo "}</style>"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-    $heading_selectors = 'h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6';
-    $body_selectors    = 'body, button, input, optgroup, select, textarea, .navbar .navbar-nav .nav-link, .tooltip, .popover';
-    $gform_selectors   = implode(
+    $selector_map = [
+        'body' => 'body, button, input, optgroup, select, textarea, .tooltip, .popover',
+        'nav'  => '.navbar .navbar-nav .nav-link',
+        'h1'   => 'h1, .h1',
+        'h2'   => 'h2, .h2',
+        'h3'   => 'h3, .h3',
+        'h4'   => 'h4, .h4',
+        'h5'   => 'h5, .h5',
+        'h6'   => 'h6, .h6',
+    ];
+    $gform_selectors = implode(
         ',',
         [
             '.gform_wrapper.gravity-theme .ginput_container input[type=text]',
@@ -133,11 +148,17 @@ function ay_aip_base_print_theme_tokens() {
             '.gform_wrapper.gravity-theme .ginput_container textarea',
         ]
     );
-    echo "<style id='ay-aip-base-font-overrides'>";
-    echo $heading_selectors . '{font-family:var(--ay-font-heading);}';
-    echo $body_selectors . '{font-family:var(--ay-font-body);}';
-    echo $gform_selectors . '{font-family:var(--ay-font-body) !important;}';
-    echo '</style>';
+
+    $font_rules = [];
+    foreach ( $selector_map as $key => $selectors ) {
+        if ( ! isset( $typography[ $key ] ) ) {
+            continue;
+        }
+        $font_rules[] = $selectors . '{font-family:var(--ay-font-' . $key . ');font-size:var(--ay-font-' . $key . '-size);}';
+    }
+    $font_rules[] = $gform_selectors . '{font-family:var(--ay-font-body) !important;font-size:var(--ay-font-body-size) !important;}';
+
+    echo "<style id='ay-aip-base-font-overrides'>" . implode( '', $font_rules ) . '</style>';
     echo "<style id='ay-aip-base-nav-style'>.navbar{background-color:var(--ay-nav-background);}html.is-animating{background-color:var(--ay-nav-background);}</style>";
 }
 

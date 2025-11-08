@@ -24,8 +24,19 @@ add_action( 'acf/init', function () {
     }
 } );
 
-add_filter( 'acf/load_field/name=theme_heading_font_choice', 'ay_aip_base_populate_font_choices' );
-add_filter( 'acf/load_field/name=theme_body_font_choice', 'ay_aip_base_populate_font_choices' );
+foreach ( [
+    'theme_heading_font_choice',
+    'theme_body_font_choice',
+    'theme_heading_h1_font_choice',
+    'theme_heading_h2_font_choice',
+    'theme_heading_h3_font_choice',
+    'theme_heading_h4_font_choice',
+    'theme_heading_h5_font_choice',
+    'theme_heading_h6_font_choice',
+    'theme_nav_font_choice',
+] as $font_field_name ) {
+    add_filter( "acf/load_field/name={$font_field_name}", 'ay_aip_base_populate_font_choices' );
+}
 function ay_aip_base_populate_font_choices( $field ) {
     $choices = ay_aip_base_get_font_choices_dropdown();
     if ( ! empty( $choices ) ) {

@@ -3,32 +3,12 @@
     "title": "Theme Settings",
     "fields": [
         {
-            "key": "field_theme_heading_font_choice",
-            "label": "Heading Font",
-            "name": "theme_heading_font_choice",
-            "type": "select",
-            "choices": {},
-            "default_value": "mulish",
-            "wrapper": {
-                "width": "50"
-            },
-            "ui": 1,
-            "return_format": "value",
-            "ajax": 0
-        },
-        {
-            "key": "field_theme_body_font_choice",
-            "label": "Body Font",
-            "name": "theme_body_font_choice",
-            "type": "select",
-            "choices": {},
-            "default_value": "mulish",
-            "wrapper": {
-                "width": "50"
-            },
-            "ui": 1,
-            "return_format": "value",
-            "ajax": 0
+            "key": "field_theme_general_tab",
+            "label": "General",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
         },
         {
             "key": "field_theme_primary_color",
@@ -91,6 +71,302 @@
             "wrapper": {
                 "width": "100"
             }
+        },
+        {
+            "key": "field_theme_fonts_tab",
+            "label": "Fonts",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_theme_fonts_heading_message",
+            "label": "Global Heading Fallback",
+            "name": "",
+            "type": "message",
+            "message": "Used whenever an individual heading font is left blank.",
+            "wrapper": {
+                "width": "100"
+            }
+        },
+        {
+            "key": "field_theme_heading_font_choice",
+            "label": "Heading Font",
+            "name": "theme_heading_font_choice",
+            "type": "select",
+            "choices": {},
+            "default_value": "mulish",
+            "wrapper": {
+                "width": "50"
+            },
+            "ui": 1,
+            "return_format": "value",
+            "ajax": 0
+        },
+        {
+            "key": "field_theme_body_section_message",
+            "label": "Body Typography",
+            "name": "",
+            "type": "message",
+            "wrapper": {
+                "width": "100"
+            }
+        },
+        {
+            "key": "field_theme_body_font_choice",
+            "label": "Font",
+            "name": "theme_body_font_choice",
+            "type": "select",
+            "choices": {},
+            "default_value": "mulish",
+            "wrapper": {
+                "width": "50"
+            },
+            "ui": 1,
+            "return_format": "value",
+            "ajax": 0
+        },
+        {
+            "key": "field_theme_body_font_size",
+            "label": "Size",
+            "name": "theme_body_font_size",
+            "type": "text",
+            "default_value": "1rem",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_theme_h1_section_message",
+            "label": "H1 Typography",
+            "name": "",
+            "type": "message",
+            "wrapper": {
+                "width": "100"
+            }
+        },
+        {
+            "key": "field_theme_heading_h1_font_choice",
+            "label": "Font",
+            "name": "theme_heading_h1_font_choice",
+            "type": "select",
+            "choices": {},
+            "default_value": "mulish",
+            "wrapper": {
+                "width": "50"
+            },
+            "ui": 1,
+            "return_format": "value",
+            "ajax": 0
+        },
+        {
+            "key": "field_theme_heading_h1_font_size",
+            "label": "Size",
+            "name": "theme_heading_h1_font_size",
+            "type": "text",
+            "default_value": "calc(1.375rem + 1.5vw)",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_theme_h2_section_message",
+            "label": "H2 Typography",
+            "name": "",
+            "type": "message",
+            "wrapper": {
+                "width": "100"
+            }
+        },
+        {
+            "key": "field_theme_heading_h2_font_choice",
+            "label": "Font",
+            "name": "theme_heading_h2_font_choice",
+            "type": "select",
+            "choices": {},
+            "default_value": "mulish",
+            "wrapper": {
+                "width": "50"
+            },
+            "ui": 1,
+            "return_format": "value",
+            "ajax": 0
+        },
+        {
+            "key": "field_theme_heading_h2_font_size",
+            "label": "Size",
+            "name": "theme_heading_h2_font_size",
+            "type": "text",
+            "default_value": "calc(1.325rem + 0.9vw)",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_theme_h3_section_message",
+            "label": "H3 Typography",
+            "name": "",
+            "type": "message",
+            "wrapper": {
+                "width": "100"
+            }
+        },
+        {
+            "key": "field_theme_heading_h3_font_choice",
+            "label": "Font",
+            "name": "theme_heading_h3_font_choice",
+            "type": "select",
+            "choices": {},
+            "default_value": "mulish",
+            "wrapper": {
+                "width": "50"
+            },
+            "ui": 1,
+            "return_format": "value",
+            "ajax": 0
+        },
+        {
+            "key": "field_theme_heading_h3_font_size",
+            "label": "Size",
+            "name": "theme_heading_h3_font_size",
+            "type": "text",
+            "default_value": "calc(1.3rem + 0.6vw)",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_theme_h4_section_message",
+            "label": "H4 Typography",
+            "name": "",
+            "type": "message",
+            "wrapper": {
+                "width": "100"
+            }
+        },
+        {
+            "key": "field_theme_heading_h4_font_choice",
+            "label": "Font",
+            "name": "theme_heading_h4_font_choice",
+            "type": "select",
+            "choices": {},
+            "default_value": "mulish",
+            "wrapper": {
+                "width": "50"
+            },
+            "ui": 1,
+            "return_format": "value",
+            "ajax": 0
+        },
+        {
+            "key": "field_theme_heading_h4_font_size",
+            "label": "Size",
+            "name": "theme_heading_h4_font_size",
+            "type": "text",
+            "default_value": "calc(1.275rem + 0.3vw)",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_theme_h5_section_message",
+            "label": "H5 Typography",
+            "name": "",
+            "type": "message",
+            "wrapper": {
+                "width": "100"
+            }
+        },
+        {
+            "key": "field_theme_heading_h5_font_choice",
+            "label": "Font",
+            "name": "theme_heading_h5_font_choice",
+            "type": "select",
+            "choices": {},
+            "default_value": "mulish",
+            "wrapper": {
+                "width": "50"
+            },
+            "ui": 1,
+            "return_format": "value",
+            "ajax": 0
+        },
+        {
+            "key": "field_theme_heading_h5_font_size",
+            "label": "Size",
+            "name": "theme_heading_h5_font_size",
+            "type": "text",
+            "default_value": "1.25rem",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_theme_h6_section_message",
+            "label": "H6 Typography",
+            "name": "",
+            "type": "message",
+            "wrapper": {
+                "width": "100"
+            }
+        },
+        {
+            "key": "field_theme_heading_h6_font_choice",
+            "label": "Font",
+            "name": "theme_heading_h6_font_choice",
+            "type": "select",
+            "choices": {},
+            "default_value": "mulish",
+            "wrapper": {
+                "width": "50"
+            },
+            "ui": 1,
+            "return_format": "value",
+            "ajax": 0
+        },
+        {
+            "key": "field_theme_heading_h6_font_size",
+            "label": "Size",
+            "name": "theme_heading_h6_font_size",
+            "type": "text",
+            "default_value": "1rem",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_theme_nav_section_message",
+            "label": "Header Menu Typography",
+            "name": "",
+            "type": "message",
+            "wrapper": {
+                "width": "100"
+            }
+        },
+        {
+            "key": "field_theme_nav_font_choice",
+            "label": "Font",
+            "name": "theme_nav_font_choice",
+            "type": "select",
+            "choices": {},
+            "default_value": "mulish",
+            "wrapper": {
+                "width": "50"
+            },
+            "ui": 1,
+            "return_format": "value",
+            "ajax": 0
+        },
+        {
+            "key": "field_theme_nav_font_size",
+            "label": "Size",
+            "name": "theme_nav_font_size",
+            "type": "text",
+            "default_value": "1rem",
+            "wrapper": {
+                "width": "50"
+            }
         }
     ],
     "location": [
@@ -110,5 +386,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1762553581
+    "modified": 1733273100
 }
