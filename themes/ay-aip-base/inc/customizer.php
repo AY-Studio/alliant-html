@@ -157,6 +157,9 @@ function ay_aip_base_print_theme_tokens() {
         $font_rules[] = $selectors . '{font-family:var(--ay-font-' . $key . ') !important;font-size:var(--ay-font-' . $key . '-size) !important;}';
     }
     $font_rules[] = $gform_selectors . '{font-family:var(--ay-font-body) !important;font-size:var(--ay-font-body-size) !important;}';
+    $font_rules[] = '.page-section .page-title{font-size:2rem !important;}';
+    $font_rules[] = '@media (min-width:768px){.page-section .page-title{font-size:2.5rem !important;}}';
+    $font_rules[] = '.page-section .page-content h2,.page-section .page-content .h2{font-size:1.75rem !important;}';
 
     echo "<style id='ay-aip-base-font-overrides'>" . implode( '', $font_rules ) . '</style>';
     echo "<style id='ay-aip-base-nav-style'>.navbar{background-color:var(--ay-nav-background);}html.is-animating{background-color:var(--ay-nav-background);}</style>";
