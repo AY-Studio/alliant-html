@@ -49,21 +49,13 @@
                             "rows": 3
                         },
                         {
-                            "key": "field_hero_section_button_label",
-                            "label": "Button Label",
-                            "name": "hero_section_button_label",
-                            "type": "text",
+                            "key": "field_hero_section_cta_link",
+                            "label": "CTA Link",
+                            "name": "cta_link",
+                            "type": "link",
+                            "return_format": "array",
                             "wrapper": {
-                                "width": "50"
-                            }
-                        },
-                        {
-                            "key": "field_hero_section_button_url",
-                            "label": "Button URL",
-                            "name": "hero_section_button_url",
-                            "type": "url",
-                            "wrapper": {
-                                "width": "50"
+                                "width": ""
                             }
                         }
                     ]
@@ -1157,12 +1149,6 @@
                                     "name": "description",
                                     "type": "textarea",
                                     "rows": 4
-                                },
-                                {
-                                    "key": "field_value_cards_image_url",
-                                    "label": "Image URL",
-                                    "name": "image_url",
-                                    "type": "text"
                                 }
                             ]
                         },
@@ -1260,12 +1246,6 @@
                                     "name": "description",
                                     "type": "textarea",
                                     "rows": 3
-                                },
-                                {
-                                    "key": "field_product_offerings_icon_image_url",
-                                    "label": "Icon Image URL",
-                                    "name": "icon_image_url",
-                                    "type": "text"
                                 }
                             ]
                         }
@@ -1427,5 +1407,6 @@
     "instruction_placement": "label",
     "hide_on_screen": "the_content",
     "active": true,
-    "description": ""
+    "description": "",
+    "modified": 1762721563
 }

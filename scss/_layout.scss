@@ -81,7 +81,8 @@
     padding: 2rem 1.5rem;
 
     .card-text {
-      font-size: 0.9rem;
+      font-size: 1rem;
+      font-weight: 300;
       line-height: 1.6;
       margin-bottom: 0;
       color: $white;
@@ -112,20 +113,19 @@
   // Value cards (Alliant Values section) - white text on navy background
   .value-card {
     .card-title {
-      font-size: 1.5rem;
+      font-size: 2rem !important;
       font-weight: 600;
       margin-bottom: 1rem;
       color: $white;
       letter-spacing: normal;
       text-transform: none;
-
-      @media (min-width: 768px) {
-        font-size: 1.75rem;
-      }
     }
 
     .card-text {
+      font-size: 1rem;
+      font-weight: 300;
       color: $white;
+      line-height: 1.6;
     }
   }
 }
@@ -136,13 +136,42 @@
 
   .card {
     .card-title {
-      font-size: 0.9rem;
+      font-size: 1.5rem;
       font-weight: 600;
-      letter-spacing: 0.05em;
+      letter-spacing: normal;
       color: $alliant-navy;
-      margin-bottom: 0;
-      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      text-transform: none;
     }
+  }
+}
+
+.section-white .value-card {
+  .card-title {
+    font-size: 2rem !important;
+    font-weight: 600;
+    color: $white;
+    text-transform: none;
+  }
+
+  .card-text {
+    font-size: 1rem;
+    font-weight: 300;
+    color: $white;
+  }
+}
+
+.product-offerings {
+  .card-title {
+    font-size: 1.5rem !important;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: $alliant-navy;
+  }
+
+  &.group-navy .card-title {
+    color: $white;
   }
 }
 

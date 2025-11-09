@@ -38,7 +38,7 @@ $items    = ay_aip_base_get_block_field( 'values_items', [] );
                             <div class="value-icon"><?php echo $icon_markup; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
                         <?php endif; ?>
                         <?php if ( ! empty( $item['title'] ) ) : ?>
-                            <h3 class="value-title"><?php echo esc_html( $item['title'] ); ?></h3>
+                            <h3 class="value-title pb-3"><?php echo esc_html( $item['title'] ); ?></h3>
                         <?php endif; ?>
                         <?php if ( ! empty( $item['description'] ) ) : ?>
                             <p class="value-description"><?php echo esc_html( $item['description'] ); ?></p>

@@ -1264,17 +1264,32 @@
   }
 
   .value-title {
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-size: 2rem !important;
+    font-weight: 600;
     color: $white;
     margin-bottom: 1rem;
   }
 
   .value-description {
-    font-size: 0.95rem;
+    font-size: 1rem;
+    font-weight: 300;
     color: rgba($white, 0.9);
     line-height: 1.7;
     margin: 0;
+  }
+}
+
+.product-offerings {
+  .card-title {
+    font-size: 1.5rem !important;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: $alliant-navy;
+  }
+
+  &.group-navy .card-title {
+    color: $white;
   }
 }
 

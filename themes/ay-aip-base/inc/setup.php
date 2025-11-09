@@ -92,3 +92,10 @@ function ay_aip_base_disable_gutenberg( $use_block_editor, $post_type ) {
 }
 
 add_filter( 'use_widgets_block_editor', '__return_false' );
+
+add_filter( 'upload_mimes', 'ay_aip_base_allow_svg_uploads' );
+function ay_aip_base_allow_svg_uploads( $mimes ) {
+    $mimes['svg']  = 'image/svg+xml';
+    $mimes['svgz'] = 'image/svg+xml';
+    return $mimes;
+}

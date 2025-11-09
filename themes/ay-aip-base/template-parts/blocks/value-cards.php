@@ -32,28 +32,37 @@ if ( 'navy' === $background ) {
                 <?php
                 $delay = 100;
                 foreach ( $cards as $card ) :
-                    $image = $card['image'] ?? null;
-                    if ( ! $image && ! empty( $card['image_url'] ) ) {
-                        $image = [
-                            'url' => $card['image_url'],
-                            'alt' => $card['title'] ?? '',
-                        ];
-                    }
-                    if ( ! $image ) {
-                        $image = [
-                            'url' => ay_aip_base_get_theme_asset_url( 'img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg' ),
-                            'alt' => $card['title'] ?? '',
-                        ];
-                    }
+                    $image_field = $card['image'] ?? null;
                     ?>
                     <div class="col-12 col-lg-4" data-aos="fade" data-aos-delay="<?php echo esc_attr( $delay ); ?>">
                         <div class="card border-0 value-card h-100">
-                            <?php if ( $image ) : ?>
-                                <img src="<?php echo esc_url( $image['url'] ); ?>" class="card-img-top" alt="<?php echo esc_attr( $image['alt'] ?? ( $card['title'] ?? '' ) ); ?>">
-                            <?php endif; ?>
+                            <?php
+                            $image_html = '';
+                            if ( $image_field ) {
+                                $image_id = is_array( $image_field ) && isset( $image_field['ID'] ) ? $image_field['ID'] : $image_field;
+                                $image_id = absint( $image_id );
+                                if ( $image_id ) {
+                                    $image_html = wp_get_attachment_image(
+                                        $image_id,
+                                        'ay_aip_base_card',
+                                        false,
+                                        [
+                                            'class' => 'card-img-top',
+                                            'alt'   => esc_attr( $card['title'] ?? get_post_meta( $image_id, '_wp_attachment_image_alt', true ) ),
+                                        ]
+                                    );
+                                }
+                            }
+                            if ( ! $image_html ) {
+                                $placeholder = ay_aip_base_get_theme_asset_url( 'img/value-card-1.jpg' );
+                                $alt         = isset( $card['title'] ) ? esc_attr( $card['title'] ) : esc_attr__( 'Value card image', 'ay-aip-base' );
+                                $image_html  = '<img src="' . esc_url( $placeholder ) . '" class="card-img-top" alt="' . $alt . '">';
+                            }
+                            echo $image_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                            ?>
                             <div class="card-body card-overlay text-center">
                                 <?php if ( ! empty( $card['title'] ) ) : ?>
-                                    <h3 class="card-title"><?php echo esc_html( $card['title'] ); ?></h3>
+                                    <h3 class="card-title pb-3"><?php echo esc_html( $card['title'] ); ?></h3>
                                 <?php endif; ?>
                                 <?php if ( ! empty( $card['description'] ) ) : ?>
                                     <p class="card-text"><?php echo esc_html( $card['description'] ); ?></p>

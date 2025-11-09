@@ -4,9 +4,9 @@ $title    = ay_aip_base_get_block_field( 'product_offerings_title' );
 $subtitle = ay_aip_base_get_block_field( 'product_offerings_subtitle' );
 $items    = ay_aip_base_get_block_field( 'product_offerings_items', [] );
 
-$section_class = 'section group-grey';
+$section_class = 'section group-grey product-offerings';
 if ( 'navy' === $theme ) {
-    $section_class = 'section group-navy';
+    $section_class = 'section group-navy product-offerings';
 }
 ?>
 <section class="<?php echo esc_attr( $section_class ); ?>">
@@ -33,19 +33,28 @@ if ( 'navy' === $theme ) {
                 foreach ( $items as $item ) :
                     $delay = $delay_cycle[ $index % count( $delay_cycle ) ];
                     $icon_markup = '';
-                    if ( ! empty( $item['icon_image']['url'] ) ) {
-                        $icon_markup = sprintf(
-                            '<img src="%s" alt="%s">',
-                            esc_url( $item['icon_image']['url'] ),
-                            esc_attr( $item['icon_image']['alt'] ?? ( $item['title'] ?? '' ) )
-                        );
+                    if ( ! empty( $item['icon_image'] ) ) {
+                        $icon_id = is_array( $item['icon_image'] ) && isset( $item['icon_image']['ID'] ) ? $item['icon_image']['ID'] : $item['icon_image'];
+                        $icon_id = absint( $icon_id );
+                        if ( $icon_id ) {
+                            $icon_markup = wp_get_attachment_image(
+                                $icon_id,
+                                'full',
+                                false,
+                                [
+                                    'alt'   => esc_attr( $item['title'] ?? get_post_meta( $icon_id, '_wp_attachment_image_alt', true ) ),
+                                    'class' => 'img-fluid',
+                                ]
+                            );
+                        }
                     } elseif ( ! empty( $item['icon_image_url'] ) ) {
                         $icon_markup = sprintf(
                             '<img src="%s" alt="%s">',
                             esc_url( $item['icon_image_url'] ),
                             esc_attr( $item['title'] ?? '' )
                         );
-                    } else {
+                    }
+                    if ( ! $icon_markup ) {
                         $icon_markup = ay_aip_base_get_icon_markup(
                             $item,
                             [
@@ -54,6 +63,10 @@ if ( 'navy' === $theme ) {
                                 'class' => 'icon_class',
                             ]
                         );
+                    }
+                    if ( ! $icon_markup ) {
+                        $fallback = ay_aip_base_get_theme_asset_url( 'img/ico/bridge.svg' );
+                        $icon_markup = '<img src="' . esc_url( $fallback ) . '" alt="' . esc_attr__( 'Product icon', 'ay-aip-base' ) . '" class="img-fluid">';
                     }
                     ?>
                     <div class="col-12 col-sm-6 col-lg-4" data-aos="fade" data-aos-delay="<?php echo esc_attr( $delay ); ?>">

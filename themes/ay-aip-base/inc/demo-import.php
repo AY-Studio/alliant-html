@@ -125,7 +125,7 @@ function ay_aip_base_run_import() {
 
 function ay_aip_base_run_reset() {
     $demo_posts = get_posts( [
-        'post_type'      => [ 'page', 'post' ],
+        'post_type'      => [ 'page', 'post', 'attachment' ],
         'post_status'    => 'any',
         'meta_key'       => '_ay_aip_base_demo',
         'meta_value'     => 1,
@@ -157,6 +157,9 @@ function ay_aip_base_run_reset() {
     }
 
     remove_theme_mod( 'nav_menu_locations' );
+
+    delete_option( 'ay_aip_base_demo_media' );
+    delete_option( 'ay_aip_base_media_migrated' );
 }
 
 function ay_aip_base_upsert_page( $title, $slug, $content, $template = '' ) {
@@ -314,6 +317,165 @@ function ay_aip_base_get_demo_html( $slug ) {
     return trim( $html );
 }
 
+function ay_aip_base_import_demo_image( $source, $title = '' ) {
+    static $cache  = [];
+    static $stored = null;
+
+    if ( empty( $source ) ) {
+        return 0;
+    }
+    if ( isset( $cache[ $source ] ) ) {
+        return $cache[ $source ];
+    }
+
+    if ( null === $stored ) {
+        $stored = get_option( 'ay_aip_base_demo_media', [] );
+        if ( ! is_array( $stored ) ) {
+            $stored = [];
+        }
+    }
+
+    $key = md5( $source );
+    if ( isset( $stored[ $key ] ) ) {
+        $attachment_id = absint( $stored[ $key ] );
+        if ( $attachment_id && get_post( $attachment_id ) ) {
+            $cache[ $source ] = $attachment_id;
+            return $attachment_id;
+        }
+    }
+
+    if ( ! function_exists( 'media_handle_sideload' ) ) {
+        require_once ABSPATH . 'wp-admin/includes/file.php';
+        require_once ABSPATH . 'wp-admin/includes/media.php';
+        require_once ABSPATH . 'wp-admin/includes/image.php';
+    }
+
+    $is_remote = filter_var( $source, FILTER_VALIDATE_URL );
+    $tmp       = '';
+    if ( $is_remote ) {
+        $tmp = download_url( $source );
+        if ( is_wp_error( $tmp ) ) {
+            return 0;
+        }
+        $filename = wp_basename( parse_url( $source, PHP_URL_PATH ) );
+        if ( ! $filename ) {
+            $filename = 'demo-media-' . time() . '.jpg';
+        }
+    } else {
+        $path = $source;
+        if ( 0 !== strpos( $path, '/' ) ) {
+            $path = AY_AIP_BASE_DIR . '/' . ltrim( $path, '/' );
+        }
+        if ( ! file_exists( $path ) ) {
+            return 0;
+        }
+        $filename = wp_basename( $path );
+        $tmp      = wp_tempnam( $filename );
+        if ( ! $tmp || ! copy( $path, $tmp ) ) {
+            return 0;
+        }
+    }
+
+    $file_array = [
+        'name'     => sanitize_file_name( $filename ),
+        'tmp_name' => $tmp,
+    ];
+
+    $attachment_id = media_handle_sideload( $file_array, 0, $title );
+    if ( is_wp_error( $attachment_id ) ) {
+        @unlink( $tmp );
+        return 0;
+    }
+
+    update_post_meta( $attachment_id, '_ay_aip_base_demo', 1 );
+    $stored[ $key ] = $attachment_id;
+    update_option( 'ay_aip_base_demo_media', $stored );
+    $cache[ $source ] = $attachment_id;
+
+    return $attachment_id;
+}
+
+function ay_aip_base_get_demo_value_card_images() {
+    return [
+        'global'      => ay_aip_base_import_demo_image( 'img/value-card-1.jpg', 'Value Card - Global' ),
+        'experienced' => ay_aip_base_import_demo_image( 'img/value-card-2.jpg', 'Value Card - Experienced' ),
+        'innovative'  => ay_aip_base_import_demo_image( 'img/value-card-3.jpg', 'Value Card - Innovative' ),
+    ];
+}
+
+function ay_aip_base_get_demo_product_icons() {
+    return [
+        'bridge'        => ay_aip_base_import_demo_image( 'img/ico/bridge.svg', 'Bridge Financing Icon' ),
+        'structured'    => ay_aip_base_import_demo_image( 'img/ico/structured.svg', 'Structured Credit Icon' ),
+        'portfolio'     => ay_aip_base_import_demo_image( 'img/ico/portfolio.svg', 'Portfolio Financing Icon' ),
+        'payments'      => ay_aip_base_import_demo_image( 'img/ico/payments.svg', 'Pre-Delivery Payments Icon' ),
+        'hybrid'        => ay_aip_base_import_demo_image( 'img/ico/hybrid-debt.svg', 'Hybrid Debt Icon' ),
+        'leases'        => ay_aip_base_import_demo_image( 'img/ico/diamond.svg', 'Operating & Finance Leases Icon' ),
+        'aircraft'      => ay_aip_base_import_demo_image( 'img/ico/aircraft.svg', 'Aircraft Icon' ),
+        'engines'       => ay_aip_base_import_demo_image( 'img/ico/engines.svg', 'Engines Icon' ),
+        'ffp'           => ay_aip_base_import_demo_image( 'img/ico/frequent-flyer.svg', 'Frequent Flyer Programs Icon' ),
+        'slots'         => ay_aip_base_import_demo_image( 'img/ico/slots-gates.svg', 'Slots, Gates & Routes Icon' ),
+        'ground'        => ay_aip_base_import_demo_image( 'img/ico/ground.svg', 'Ground Equipment Icon' ),
+        'receivables'   => ay_aip_base_import_demo_image( 'img/ico/recievables.svg', 'Receivables Icon' ),
+    ];
+}
+
+function ay_aip_base_match_value_image_key( $title ) {
+    $title = strtolower( $title );
+    if ( false !== strpos( $title, 'global' ) ) {
+        return 'global';
+    }
+    if ( false !== strpos( $title, 'experienced' ) ) {
+        return 'experienced';
+    }
+    if ( false !== strpos( $title, 'innovative' ) ) {
+        return 'innovative';
+    }
+    return '';
+}
+
+function ay_aip_base_match_product_icon_key( $title ) {
+    $map = [
+        'bridge-financing'                      => 'bridge',
+        'structured-credit'                     => 'structured',
+        'portfolio-financing-revolving-facilities' => 'portfolio',
+        'pre-delivery-payments'                 => 'payments',
+        'hybrid-debt'                           => 'hybrid',
+        'operating-finance-leases'              => 'leases',
+        'aircraft'                              => 'aircraft',
+        'engines'                               => 'engines',
+        'frequent-flyer-programs'               => 'ffp',
+        'slots-gates-routes'                    => 'slots',
+        'ground-equipment'                      => 'ground',
+        'receivables'                           => 'receivables',
+        'sale-leasebacks'                       => 'bridge',
+        'sale-leaseback'                        => 'bridge',
+        'engine-pools'                          => 'engines',
+        'abs-advisory'                          => 'structured',
+        'structured-finance'                    => 'structured',
+        'advisory-services'                     => 'ffp',
+        'specialized-financing'                 => 'hybrid',
+    ];
+    $slug = sanitize_title( $title );
+    return $map[ $slug ] ?? '';
+}
+
+function ay_aip_base_make_link_field( $url = '', $title = '', $target = '_self' ) {
+    $url   = trim( $url );
+    $title = trim( $title );
+    $target = $target ?: '_self';
+
+    if ( '' === $url && '' === $title ) {
+        return null;
+    }
+
+    return [
+        'url'    => $url ? esc_url_raw( $url ) : '',
+        'title'  => $title,
+        'target' => $target,
+    ];
+}
+
 function ay_aip_base_home_content() {
     return '';
 }
@@ -349,13 +511,15 @@ function ay_aip_base_seed_home_builder( $page_id ) {
         return;
     }
 
+    $value_images  = ay_aip_base_get_demo_value_card_images();
+    $product_icons = ay_aip_base_get_demo_product_icons();
+
     $sections = [
         [
             'acf_fc_layout'       => 'hero_section',
             'hero_section_heading'=> 'Specialist Aviation Finance',
             'hero_section_lead'   => 'Alliant AirFinance is an experienced commercial aviation lending platform with deep expertise in the aviation finance sector.',
-            'hero_section_button_label' => 'Contact Us',
-            'hero_section_button_url'   => '#contact',
+            'cta_link'            => ay_aip_base_make_link_field( '#contact', 'Contact Us' ),
         ],
         [
             'acf_fc_layout'           => 'value_cards',
@@ -366,17 +530,17 @@ function ay_aip_base_seed_home_builder( $page_id ) {
                 [
                     'title'       => 'We Are Global',
                     'description' => 'Our reach spans markets and cultures, giving us the insight to navigate complexity and connect opportunities worldwide. By embracing diversity and building partnerships that last, we deliver capital and solutions aligned to our clients\' risk.',
-                    'image_url'   => 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&h=1000&fit=crop',
+                    'image'       => $value_images['global'],
                 ],
                 [
                     'title'       => 'We Are Experienced',
                     'description' => 'Our track record spans years of guiding clients across the full aviation lifecycle—from acquisition to exit, through changing markets and evolving regulations. Experience shapes our decisions and sharpens the value we bring to every transaction.',
-                    'image_url'   => 'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?w=800&h=1000&fit=crop',
+                    'image'       => $value_images['experienced'],
                 ],
                 [
                     'title'       => 'We Are Innovative',
                     'description' => 'Curiosity drives us to challenge convention and explore better ways forward. We tailor financing structures with precision, apply emerging technologies with purpose, and rethink traditional approaches where others see only risk.',
-                    'image_url'   => 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&h=1000&fit=crop',
+                    'image'       => $value_images['innovative'],
                 ],
             ],
             'value_cards_button_label' => 'Learn more',
@@ -388,18 +552,18 @@ function ay_aip_base_seed_home_builder( $page_id ) {
             'product_offerings_title'   => 'Product Offerings',
             'product_offerings_subtitle'=> 'Alliant AirFinance believes its full-suite of product offerings, along with Alliant AirFinance’s certainty of execution, positions Alliant AirFinance as a preferred solutions provider for counterparties.',
             'product_offerings_items'   => [
-                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/bridge.svg' ), 'title' => 'Bridge Financing' ],
-                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/structured.svg' ), 'title' => 'Structured Credit' ],
-                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/portfolio.svg' ), 'title' => 'Portfolio Financing / Revolving Facilities' ],
-                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/payments.svg' ), 'title' => 'Pre-Delivery Payments' ],
-                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/hybrid-debt.svg' ), 'title' => 'Hybrid Debt' ],
-                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/diamond.svg' ), 'title' => 'Operating & Finance Leases' ],
-                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/aircraft.svg' ), 'title' => 'Aircraft' ],
-                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/engines.svg' ), 'title' => 'Engines' ],
-                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/frequent-flyer.svg' ), 'title' => 'Frequent Flyer Programs' ],
-                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/slots-gates.svg' ), 'title' => 'Slots Gates & Routes' ],
-                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/ground.svg' ), 'title' => 'Ground Equipment' ],
-                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/recievables.svg' ), 'title' => 'Receivables' ],
+                [ 'icon_image' => $product_icons['bridge'], 'title' => 'Bridge Financing' ],
+                [ 'icon_image' => $product_icons['structured'], 'title' => 'Structured Credit' ],
+                [ 'icon_image' => $product_icons['portfolio'], 'title' => 'Portfolio Financing / Revolving Facilities' ],
+                [ 'icon_image' => $product_icons['payments'], 'title' => 'Pre-Delivery Payments' ],
+                [ 'icon_image' => $product_icons['hybrid'], 'title' => 'Hybrid Debt' ],
+                [ 'icon_image' => $product_icons['leases'], 'title' => 'Operating & Finance Leases' ],
+                [ 'icon_image' => $product_icons['aircraft'], 'title' => 'Aircraft' ],
+                [ 'icon_image' => $product_icons['engines'], 'title' => 'Engines' ],
+                [ 'icon_image' => $product_icons['ffp'], 'title' => 'Frequent Flyer Programs' ],
+                [ 'icon_image' => $product_icons['slots'], 'title' => 'Slots Gates & Routes' ],
+                [ 'icon_image' => $product_icons['ground'], 'title' => 'Ground Equipment' ],
+                [ 'icon_image' => $product_icons['receivables'], 'title' => 'Receivables' ],
             ],
         ],
     ];
@@ -456,8 +620,6 @@ function ay_aip_base_seed_contact_builder( $page_id ) {
             'acf_fc_layout'        => 'hero_section',
             'hero_section_heading' => 'Contact Alliant AirFinance',
             'hero_section_lead'    => 'To learn more about our services or discuss how we can support your equipment financing needs, feel free to get in touch with our team today.',
-            'hero_section_button_label' => '',
-            'hero_section_button_url'   => '',
         ],
         [
             'acf_fc_layout'   => 'contact_form',
@@ -474,6 +636,9 @@ function ay_aip_base_seed_blocks_builder( $page_id ) {
     if ( ! function_exists( 'update_field' ) || ! $page_id ) {
         return;
     }
+
+    $value_images  = ay_aip_base_get_demo_value_card_images();
+    $product_icons = ay_aip_base_get_demo_product_icons();
 
     $sections = [
         [
@@ -500,8 +665,7 @@ function ay_aip_base_seed_blocks_builder( $page_id ) {
             'acf_fc_layout'       => 'hero_section',
             'hero_section_heading'=> 'Specialist Aviation Finance',
             'hero_section_lead'   => 'Alliant AirFinance is an experienced commercial aviation lending platform with deep expertise in the aviation finance sector.',
-            'hero_section_button_label' => 'Contact Us',
-            'hero_section_button_url'   => '#contact',
+            'cta_link'            => ay_aip_base_make_link_field( '#contact', 'Contact Us' ),
         ],
         [
             'acf_fc_layout'       => 'hero',
@@ -560,9 +724,9 @@ function ay_aip_base_seed_blocks_builder( $page_id ) {
             'value_cards_title'      => 'Value Cards',
             'value_cards_subtitle'   => 'Showcase gradient-backed cards with imagery and overlays.',
             'value_cards_cards'      => [
-                [ 'title' => 'Card One', 'description' => 'Sample supporting copy.', 'image_url' => 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&h=1000&fit=crop' ],
-                [ 'title' => 'Card Two', 'description' => 'Highlight differentiators or proof points.', 'image_url' => 'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?w=800&h=1000&fit=crop' ],
-                [ 'title' => 'Card Three', 'description' => 'Keep descriptions concise.', 'image_url' => 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&h=1000&fit=crop' ],
+                [ 'title' => 'Card One', 'description' => 'Sample supporting copy.', 'image' => $value_images['global'] ],
+                [ 'title' => 'Card Two', 'description' => 'Highlight differentiators or proof points.', 'image' => $value_images['experienced'] ],
+                [ 'title' => 'Card Three', 'description' => 'Keep descriptions concise.', 'image' => $value_images['innovative'] ],
             ],
             'value_cards_button_label' => 'Primary CTA',
             'value_cards_button_url'   => home_url( '/about/' ),
@@ -623,18 +787,18 @@ function ay_aip_base_seed_blocks_builder( $page_id ) {
             'product_offerings_title'   => 'Product Offerings',
             'product_offerings_subtitle'=> 'Grey/white card grid with iconography.',
             'product_offerings_items'   => [
-                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/bridge.svg' ), 'title' => 'Bridge Financing', 'description' => 'Short-term capital between commitments.' ],
-                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/structured.svg' ), 'title' => 'Structured Credit', 'description' => 'Layered debt stacks and hybrids.' ],
-                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/portfolio.svg' ), 'title' => 'Portfolio Financing / Revolving Facilities', 'description' => 'Revolving facilities for fleets.' ],
-                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/payments.svg' ), 'title' => 'Pre-Delivery Payments' ],
-                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/hybrid-debt.svg' ), 'title' => 'Hybrid Debt' ],
-                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/diamond.svg' ), 'title' => 'Operating & Finance Leases' ],
-                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/aircraft.svg' ), 'title' => 'Aircraft' ],
-                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/engines.svg' ), 'title' => 'Engines' ],
-                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/frequent-flyer.svg' ), 'title' => 'Frequent Flyer Programs' ],
-                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/slots-gates.svg' ), 'title' => 'Slots Gates & Routes' ],
-                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/ground.svg' ), 'title' => 'Ground Equipment' ],
-                [ 'icon_image_url' => ay_aip_base_get_theme_asset_url( 'img/ico/recievables.svg' ), 'title' => 'Receivables' ],
+                [ 'icon_image' => $product_icons['bridge'], 'title' => 'Bridge Financing', 'description' => 'Short-term capital between commitments.' ],
+                [ 'icon_image' => $product_icons['structured'], 'title' => 'Structured Credit', 'description' => 'Layered debt stacks and hybrids.' ],
+                [ 'icon_image' => $product_icons['portfolio'], 'title' => 'Portfolio Financing / Revolving Facilities', 'description' => 'Revolving facilities for fleets.' ],
+                [ 'icon_image' => $product_icons['payments'], 'title' => 'Pre-Delivery Payments' ],
+                [ 'icon_image' => $product_icons['hybrid'], 'title' => 'Hybrid Debt' ],
+                [ 'icon_image' => $product_icons['leases'], 'title' => 'Operating & Finance Leases' ],
+                [ 'icon_image' => $product_icons['aircraft'], 'title' => 'Aircraft' ],
+                [ 'icon_image' => $product_icons['engines'], 'title' => 'Engines' ],
+                [ 'icon_image' => $product_icons['ffp'], 'title' => 'Frequent Flyer Programs' ],
+                [ 'icon_image' => $product_icons['slots'], 'title' => 'Slots Gates & Routes' ],
+                [ 'icon_image' => $product_icons['ground'], 'title' => 'Ground Equipment' ],
+                [ 'icon_image' => $product_icons['receivables'], 'title' => 'Receivables' ],
             ],
         ],
         [
@@ -942,4 +1106,95 @@ Dubai, UAE",
     ];
 
     update_field( 'field_page_sections_flexible', $sections, $page_id );
+}
+
+add_action( 'admin_init', 'ay_aip_base_migrate_demo_media_attachments', 20 );
+function ay_aip_base_migrate_demo_media_attachments() {
+    if ( ! function_exists( 'get_field' ) || ! current_user_can( 'manage_options' ) ) {
+        return;
+    }
+    if ( get_option( 'ay_aip_base_media_migrated' ) ) {
+        return;
+    }
+
+    $posts = get_posts( [
+        'post_type'      => 'page',
+        'post_status'    => 'any',
+        'meta_key'       => '_ay_aip_base_demo',
+        'meta_value'     => 1,
+        'posts_per_page' => -1,
+        'fields'         => 'ids',
+    ] );
+
+    if ( empty( $posts ) ) {
+        return;
+    }
+
+    $value_images   = ay_aip_base_get_demo_value_card_images();
+    $value_sequence = array_values( array_filter( $value_images ) );
+    $product_icons  = ay_aip_base_get_demo_product_icons();
+
+    $value_images   = ay_aip_base_get_demo_value_card_images();
+    $value_sequence = array_values( array_filter( $value_images ) );
+    $product_icons  = ay_aip_base_get_demo_product_icons();
+
+    foreach ( $posts as $post_id ) {
+        $sections = get_field( 'page_sections', $post_id );
+        if ( empty( $sections ) || ! is_array( $sections ) ) {
+            continue;
+        }
+        $modified = false;
+
+        foreach ( $sections as &$section ) {
+            if ( 'value_cards' === ( $section['acf_fc_layout'] ?? '' ) && ! empty( $section['value_cards_cards'] ) ) {
+                $index = 0;
+                foreach ( $section['value_cards_cards'] as &$card ) {
+                    if ( ! empty( $card['image'] ) ) {
+                        continue;
+                    }
+                    $key = '';
+                    if ( ! empty( $card['title'] ) ) {
+                        $key = ay_aip_base_match_value_image_key( $card['title'] );
+                    }
+                    if ( $key && ! empty( $value_images[ $key ] ) ) {
+                        $card['image'] = $value_images[ $key ];
+                        $modified      = true;
+                        continue;
+                    }
+                    if ( $value_sequence ) {
+                        $card['image'] = $value_sequence[ $index % count( $value_sequence ) ];
+                        $index++;
+                        $modified = true;
+                    }
+                }
+            }
+            if ( 'product_offerings' === ( $section['acf_fc_layout'] ?? '' ) && ! empty( $section['product_offerings_items'] ) ) {
+                foreach ( $section['product_offerings_items'] as &$item ) {
+                    if ( ! empty( $item['icon_image'] ) ) {
+                        continue;
+                    }
+                    $key = '';
+                    if ( ! empty( $item['title'] ) ) {
+                        $key = ay_aip_base_match_product_icon_key( $item['title'] );
+                    }
+                    if ( $key && ! empty( $product_icons[ $key ] ) ) {
+                        $item['icon_image'] = $product_icons[ $key ];
+                        $modified           = true;
+                        continue;
+                    }
+                    if ( ! empty( $product_icons ) ) {
+                        $item['icon_image'] = reset( $product_icons );
+                        $modified           = true;
+                    }
+                }
+            }
+        }
+        unset( $section );
+
+        if ( $modified ) {
+            update_field( 'field_page_sections_flexible', $sections, $post_id );
+        }
+    }
+
+    update_option( 'ay_aip_base_media_migrated', time() );
 }
