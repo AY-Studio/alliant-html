@@ -1321,6 +1321,91 @@
                             ]
                         }
                     ]
+                },
+                "layout_contact_info": {
+                    "key": "layout_contact_info",
+                    "name": "contact_info",
+                    "label": "Contact Info Block",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_contact_info_title",
+                            "label": "Section Title",
+                            "name": "contact_info_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_contact_info_subtitle",
+                            "label": "Section Subtitle",
+                            "name": "contact_info_subtitle",
+                            "type": "textarea",
+                            "rows": 3
+                        },
+                        {
+                            "key": "field_contact_info_cards",
+                            "label": "Information Cards",
+                            "name": "contact_info_cards",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Add Card",
+                            "sub_fields": [
+                                {
+                                    "key": "field_contact_info_icon_svg",
+                                    "label": "Icon SVG",
+                                    "name": "icon_svg",
+                                    "type": "textarea",
+                                    "rows": 3
+                                },
+                                {
+                                    "key": "field_contact_info_title_text",
+                                    "label": "Title",
+                                    "name": "title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_contact_info_body",
+                                    "label": "Body",
+                                    "name": "body",
+                                    "type": "textarea",
+                                    "rows": 4
+                                },
+                                {
+                                    "key": "field_contact_info_icon_class",
+                                    "label": "Icon Class",
+                                    "name": "icon_class",
+                                    "type": "text"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_contact_form_block": {
+                    "key": "layout_contact_form_block",
+                    "name": "contact_form_block",
+                    "label": "Contact Form Block",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_contact_form_title",
+                            "label": "Form Title",
+                            "name": "contact_form_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_contact_form_body",
+                            "label": "Form Copy",
+                            "name": "contact_form_body",
+                            "type": "textarea",
+                            "rows": 3
+                        },
+                        {
+                            "key": "field_contact_form_id",
+                            "label": "Gravity Form ID",
+                            "name": "contact_form_id",
+                            "type": "number",
+                            "default_value": ""
+                        }
+                    ]
                 }
             },
             "button_label": "Add Section"

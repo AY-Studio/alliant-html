@@ -90,7 +90,7 @@ function ay_aip_base_run_import() {
     $home_id    = ay_aip_base_upsert_page( 'Home', 'home', $home_content, 'templates/template-pagebuilder.php' );
     $about_id   = ay_aip_base_upsert_page( 'About', 'about', $about_content, 'templates/template-pagebuilder.php' );
     $news_id    = ay_aip_base_upsert_page( 'News & Insights', 'news', $news_content );
-    $contact_id = ay_aip_base_upsert_page( 'Contact', 'contact', $contact_content );
+    $contact_id = ay_aip_base_upsert_page( 'Contact', 'contact', $contact_content, 'templates/template-pagebuilder.php' );
     $terms_id   = ay_aip_base_upsert_page( 'Terms & Conditions', 'terms', $terms_content );
     $privacy_id = ay_aip_base_upsert_page( 'Privacy Policy', 'privacy-policy', $privacy_content );
     $blocks_id  = ay_aip_base_upsert_page( 'Blocks', 'blocks', $blocks_content, 'templates/template-pagebuilder.php' );
@@ -102,6 +102,9 @@ function ay_aip_base_run_import() {
     }
     if ( $about_id ) {
         ay_aip_base_seed_about_builder( $about_id );
+    }
+    if ( $contact_id ) {
+        ay_aip_base_seed_contact_builder( $contact_id );
     }
 
     if ( ! $home_id ) {
@@ -325,8 +328,7 @@ function ay_aip_base_news_content() {
 }
 
 function ay_aip_base_contact_content() {
-    $html = ay_aip_base_get_demo_html( 'contact' );
-    return $html ? ay_aip_base_wrap_html_block( $html ) : '';
+    return '';
 }
 
 function ay_aip_base_terms_content() {
@@ -438,6 +440,30 @@ function ay_aip_base_seed_about_builder( $page_id ) {
                 [ 'name' => 'Firstname Lastname', 'title' => 'Managing Director', 'photo' => $make_photo( 'Team member' ) ],
                 [ 'name' => 'Firstname Lastname', 'title' => 'Senior Vice President', 'photo' => $make_photo( 'Team member' ) ],
             ],
+        ],
+    ];
+
+    update_field( 'field_page_sections_flexible', $sections, $page_id );
+}
+
+function ay_aip_base_seed_contact_builder( $page_id ) {
+    if ( ! function_exists( 'update_field' ) || ! $page_id ) {
+        return;
+    }
+
+    $sections = [
+        [
+            'acf_fc_layout'        => 'hero_section',
+            'hero_section_heading' => 'Contact Alliant AirFinance',
+            'hero_section_lead'    => 'To learn more about our services or discuss how we can support your equipment financing needs, feel free to get in touch with our team today.',
+            'hero_section_button_label' => '',
+            'hero_section_button_url'   => '',
+        ],
+        [
+            'acf_fc_layout'   => 'contact_form',
+            'contact_heading' => 'Send Us A Message',
+            'contact_body'    => 'The Alliant team brings together deep expertise, diverse perspectives, and a shared commitment to delivering tailored solutions that help clients navigate complexity with confidence.',
+            'contact_form_id' => 0,
         ],
     ];
 

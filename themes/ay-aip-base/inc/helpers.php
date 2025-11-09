@@ -307,6 +307,9 @@ function ay_aip_base_render_page_sections( $page_id = 0 ) {
         'icon_features'     => 'icon-features',
         'values'            => 'values',
         'value_cards'       => 'value-cards',
+        'product_offerings' => 'product-offerings',
+        'contact_info'      => 'contact-info',
+        'contact_form_block'=> 'contact-form-block',
         'media_content'     => 'media-content',
         'testimonial'       => 'testimonial',
         'pricing'           => 'pricing-table',
@@ -316,7 +319,6 @@ function ay_aip_base_render_page_sections( $page_id = 0 ) {
         'logo_grid'         => 'logo-grid',
         'locations'         => 'locations',
         'careers'           => 'careers',
-        'product_offerings' => 'product-offerings',
     ];
 
     if ( ! have_rows( 'page_sections', $page_id ) ) {
