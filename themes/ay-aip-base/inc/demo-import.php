@@ -576,16 +576,7 @@ function ay_aip_base_seed_about_builder( $page_id ) {
         return;
     }
 
-    $theme_uri = ay_aip_base_get_theme_asset_url( '' );
-    $img_url   = trailingslashit( rtrim( $theme_uri, '/' ) ) . 'img/person.jpg';
-
-    $make_photo = function ( $alt ) use ( $img_url ) {
-        return [
-            'url'   => $img_url,
-            'alt'   => $alt,
-            'sizes' => [ 'ay_aip_base_card' => $img_url ],
-        ];
-    };
+    $person_image = ay_aip_base_import_demo_image( 'img/person.jpg', 'Team Member' );
 
     $sections = [
         [
@@ -598,11 +589,11 @@ function ay_aip_base_seed_about_builder( $page_id ) {
             'about_team_title'     => 'Our Team',
             'about_team_subtitle'  => 'The Alliant team brings together deep expertise, diverse perspectives, and a shared commitment to delivering tailored solutions that help clients navigate complexity with confidence.',
             'about_team_members'   => [
-                [ 'name' => 'Firstname Lastname', 'title' => 'Chief Executive Officer', 'photo' => $make_photo( 'Team member' ) ],
-                [ 'name' => 'Firstname Lastname', 'title' => 'Chief Financial Officer', 'photo' => $make_photo( 'Team member' ) ],
-                [ 'name' => 'Firstname Lastname', 'title' => 'Head of Aviation Finance', 'photo' => $make_photo( 'Team member' ) ],
-                [ 'name' => 'Firstname Lastname', 'title' => 'Managing Director', 'photo' => $make_photo( 'Team member' ) ],
-                [ 'name' => 'Firstname Lastname', 'title' => 'Senior Vice President', 'photo' => $make_photo( 'Team member' ) ],
+                [ 'name' => 'Firstname Lastname', 'title' => 'Chief Executive Officer', 'photo' => $person_image ],
+                [ 'name' => 'Firstname Lastname', 'title' => 'Chief Financial Officer', 'photo' => $person_image ],
+                [ 'name' => 'Firstname Lastname', 'title' => 'Head of Aviation Finance', 'photo' => $person_image ],
+                [ 'name' => 'Firstname Lastname', 'title' => 'Managing Director', 'photo' => $person_image ],
+                [ 'name' => 'Firstname Lastname', 'title' => 'Senior Vice President', 'photo' => $person_image ],
             ],
         ],
     ];
