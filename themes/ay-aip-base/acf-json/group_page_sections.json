@@ -242,17 +242,30 @@
                             "button_label": "Add Feature",
                             "sub_fields": [
                                 {
-                                    "key": "field_icon_features_icon_svg",
-                                    "label": "Icon SVG",
-                                    "name": "icon_svg",
-                                    "type": "textarea",
-                                    "rows": 3
-                                },
-                                {
-                                    "key": "field_icon_features_icon_class",
-                                    "label": "Icon Class",
-                                    "name": "icon_class",
-                                    "type": "text"
+                                    "key": "field_icon_features_icon_name",
+                                    "label": "Font Awesome Icon",
+                                    "name": "icon_name",
+                                    "type": "select",
+                                    "instructions": "Choose the Font Awesome icon to display (solid style).",
+                                    "required": 0,
+                                    "choices": {
+                                        "solid:sliders": "Sliders",
+                                        "solid:gauge-high": "Gauge High",
+                                        "solid:globe": "Globe",
+                                        "solid:people-group": "People Group",
+                                        "solid:chart-line": "Chart Line",
+                                        "solid:handshake": "Handshake",
+                                        "solid:shield": "Shield",
+                                        "solid:lightbulb": "Lightbulb",
+                                        "solid:bolt": "Bolt"
+                                    },
+                                    "default_value": "solid:sliders",
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "ui": 1,
+                                    "ajax": 0,
+                                    "return_format": "value",
+                                    "placeholder": "solid:sliders"
                                 },
                                 {
                                     "key": "field_icon_features_icon_image",
@@ -1405,8 +1418,10 @@
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
-    "hide_on_screen": "the_content",
+    "hide_on_screen": [
+        "the_content"
+    ],
     "active": true,
     "description": "",
-    "modified": 1762721563
+    "modified": 1762729111
 }

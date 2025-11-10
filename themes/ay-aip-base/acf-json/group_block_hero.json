@@ -70,22 +70,12 @@
             "button_label": "Add Button",
             "sub_fields": [
                 {
-                    "key": "field_hero_button_label",
-                    "label": "Label",
-                    "name": "label",
-                    "type": "text",
-                    "wrapper": {
-                        "width": "40"
-                    }
-                },
-                {
-                    "key": "field_hero_button_url",
-                    "label": "URL",
-                    "name": "url",
-                    "type": "url",
-                    "wrapper": {
-                        "width": "40"
-                    }
+                    "key": "field_hero_button_link",
+                    "label": "Link",
+                    "name": "link",
+                    "type": "link",
+                    "return_format": "array",
+                    "required": 1
                 },
                 {
                     "key": "field_hero_button_style",
@@ -135,5 +125,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1735737601
+    "modified": 1762728439
 }

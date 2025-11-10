@@ -1,21 +1,21 @@
 # Current Status
 
-- `AY AIP Base` theme mirrors the exported HTML (header/nav, `#swup`, footer) across all main pages.
-- Demo importer seeds Home/About/Insights/Contact/Terms/Privacy/Blocks with the exact HTML snippets plus menus, `/news/{slug}` permalinks, and sample posts.
-- Swup + AOS transitions, sticky/shrinking navbar, Classic Editor enforcement, and fallback logos are in place; the nav background color is theme-configurable.
-- Fonts now pull from Google Fonts via the official API (requires API key in Theme Settings) with a searchable dropdown in both Customizer and Theme Settings.
-- Blocks Library demo page includes hero variants, Product Offerings, Team Grid, etc., giving us a reference for future blockization.
-- News archive (`/news/`) uses the Swup hero layout; single posts use the exported article markup including share buttons.
+- The demo importer/remover is fully idempotent and now uploads all referenced media (value cards, product offerings, team photos, SVG icons) as real attachments tagged with the demo flag. Resetting content cleans up menus, attachments, and stored media caches.
+- Import work is preset-aware: the default “Alliant” preset reproduces the reference site 1:1, while a brand-agnostic “Default Starter Content” preset shares the same structure with generic copy (via text filtering) so we can spin up other client demos quickly.
+- Presets can be selected from the importer UI, stored in options, and the current preset is available to builders/seeders via helper functions. The importer UI hides the Classic editor when using the page-builder template.
+- Blocks (Hero, Value Cards, Product Offerings, Icon Features, Contact Form, About Team, etc.) all run off attachment fields, Font Awesome selects, and shared typography so both the HTML reference and WP theme stay in sync.
+- Panini build + SCSS stay aligned with the theme (hero weights, product offerings typography, pagination partial, etc.), and Swup/AOS, sticky nav, Google Fonts picker, and news permalinks continue to match the reference.
 
 # Next Steps
 
-1. **Componentize Page Sections**
-   - Convert each static section (hero, values, product offerings, stats, CTA, team, etc.) into discrete ACF blocks / block patterns so pages are assembled from components instead of raw HTML.
-   - Ensure those blocks mirror the HTML reference 1:1 to preserve styling.
-2. **Rebuild Pages via Blocks**
-   - Recreate Home/About/Contact/Insights/Blocks pages using the new blocks or flexible-content layouts, and update the importer to place those blocks rather than dumping HTML.
-3. **CMS Enhancements**
-   - Add any missing global settings (e.g., nav CTA, section backgrounds) to Theme Settings.
-4. **Documentation & QA**
-   - Update README/theme docs to explain how to use the new blocks, Theme Settings, and importer workflow.
-   - Regression test Swup transitions, sticky nav, Gutenberg disablement, and responsive layouts after the refactor.
+1. **Preset Architecture Enhancements**
+   - Add more preset slots (e.g., “Finance Default”, “Leasing Default”) and allow preset-specific overrides for menus/pages so multiple brands can coexist without code edits.
+   - Externalize preset data (JSON/YAML) so future starter sites can drop in their own copy/assets without touching PHP.
+2. **HTML Content Parity for Presets**
+   - Introduce neutral HTML fragments (news/contact/legal) for the Default preset so no Alliant references remain anywhere.
+   - Ensure migration helpers cover any legacy fields when switching presets mid-project.
+3. **Documentation & UX**
+   - Document the preset workflow (how to add/edit presets, expected file locations, how media is cached) in README/Theme docs.
+   - Surface the active preset + description inside the importer page and maybe WP dashboard so editors know what’s loaded.
+4. **QA & Future Blocks**
+   - Regression-test preset switching (import/remove cycles) and pagination, then continue componentizing any remaining static sections into reusable blocks/patterns.
