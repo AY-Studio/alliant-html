@@ -34,6 +34,23 @@ function ay_aip_base_render_import_page() {
         <form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="margin-bottom:2rem;">
             <?php wp_nonce_field( 'ay_aip_base_import_demo' ); ?>
             <input type="hidden" name="action" value="ay_aip_base_import_demo">
+            <?php
+            $presets        = ay_aip_base_get_demo_presets();
+            $current_preset = ay_aip_base_get_selected_preset();
+            ?>
+            <p>
+                <label for="ay_aip_base_preset"><strong><?php esc_html_e( 'Starter Content Preset', 'ay-aip-base' ); ?></strong></label><br>
+                <select id="ay_aip_base_preset" name="ay_aip_base_preset">
+                    <?php foreach ( $presets as $key => $preset ) : ?>
+                        <option value="<?php echo esc_attr( $key ); ?>" <?php selected( $current_preset, $key ); ?>>
+                            <?php echo esc_html( $preset['label'] ); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+                <?php if ( isset( $presets[ $current_preset ] ) ) : ?>
+                    <span class="description" style="display:block;margin-top:0.5rem;"><?php echo esc_html( $presets[ $current_preset ]['description'] ); ?></span>
+                <?php endif; ?>
+            </p>
             <p>
                 <button type="submit" class="button button-primary" onclick="return confirm('<?php echo esc_js( __( 'This will create demo pages, posts, and menus. Continue?', 'ay-aip-base' ) ); ?>');">
                     <?php esc_html_e( 'Import Starter Content', 'ay-aip-base' ); ?>
@@ -51,6 +68,349 @@ function ay_aip_base_render_import_page() {
     <?php
 }
 
+function ay_aip_base_get_demo_presets() {
+    return [
+        'alliant' => [
+            'label'       => __( 'Alliant Starter Content', 'ay-aip-base' ),
+            'description' => __( 'Exact replica of the Alliant AirFinance experience.', 'ay-aip-base' ),
+        ],
+        'default' => [
+            'label'       => __( 'Default Starter Content', 'ay-aip-base' ),
+            'description' => __( 'Brand-agnostic aviation finance starter with placeholder copy.', 'ay-aip-base' ),
+        ],
+    ];
+}
+
+function ay_aip_base_sanitize_preset( $preset ) {
+    $preset  = sanitize_key( $preset );
+    $presets = ay_aip_base_get_demo_presets();
+    return isset( $presets[ $preset ] ) ? $preset : 'alliant';
+}
+
+function ay_aip_base_get_selected_preset() {
+    $saved = get_option( 'ay_aip_base_selected_preset', 'alliant' );
+    return ay_aip_base_sanitize_preset( $saved );
+}
+
+function ay_aip_base_set_selected_preset( $preset ) {
+    update_option( 'ay_aip_base_selected_preset', ay_aip_base_sanitize_preset( $preset ) );
+}
+
+function ay_aip_base_set_current_preset( $preset ) {
+    $GLOBALS['ay_aip_base_current_preset'] = ay_aip_base_sanitize_preset( $preset );
+}
+
+function ay_aip_base_get_current_preset() {
+    if ( isset( $GLOBALS['ay_aip_base_current_preset'] ) ) {
+        return $GLOBALS['ay_aip_base_current_preset'];
+    }
+    return ay_aip_base_get_selected_preset();
+}
+
+function ay_aip_base_get_default_replacements() {
+    return [
+        'Alliant AirFinance’s' => 'Luminary Aviation’s',
+        'Alliant AirFinance'   => 'Luminary Aviation',
+        'Alliant'              => 'Luminary',
+        'ALLIANT'              => 'LUMINARY',
+        'AIP Capital'          => 'Aero Partners',
+        'AIP'                  => 'Aero',
+        'AIP CAPITAL'          => 'AERO PARTNERS',
+    ];
+}
+
+function ay_aip_base_filter_preset_content( $value ) {
+    if ( 'default' !== ay_aip_base_get_current_preset() ) {
+        return $value;
+    }
+
+    if ( is_array( $value ) ) {
+        foreach ( $value as $key => $sub_value ) {
+            $value[ $key ] = ay_aip_base_filter_preset_content( $sub_value );
+        }
+        return $value;
+    }
+
+    if ( is_string( $value ) ) {
+        $replacements = ay_aip_base_get_default_replacements();
+        return str_replace( array_keys( $replacements ), array_values( $replacements ), $value );
+    }
+
+    return $value;
+}
+
+function ay_aip_base_is_default_preset() {
+    return 'default' === ay_aip_base_get_current_preset();
+}
+
+function ay_aip_base_get_lorem_text( $paragraphs = 3 ) {
+    $paragraphs = max( 1, (int) $paragraphs );
+    $chunks     = [];
+    for ( $i = 0; $i < $paragraphs; $i++ ) {
+        $chunks[] = ay_aip_base_generate_lorem_block( 110 );
+    }
+    return implode( "\n\n", $chunks );
+}
+
+function ay_aip_base_get_lorem_sentences() {
+    return [
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        'Integer vitae libero eu augue malesuada aliquam quis nec nisi.',
+        'Suspendisse potenti curabitur imperdiet purus nec pellentesque fermentum.',
+        'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.',
+        'Mauris ac ex vitae massa volutpat gravida in id est.',
+        'Donec fringilla nisl at scelerisque rhoncus quam elit pretium arcu.',
+        'Curabitur sodales nisi sit amet libero posuere eget lacinia ipsum luctus.',
+        'Praesent fermentum nibh a risus sollicitudin vitae tincidunt sapien dignissim.',
+        'Etiam bibendum lectus non consequat gravida.',
+        'Nullam tincidunt erat sit amet eros rhoncus non auctor mi tristique.',
+    ];
+}
+
+function ay_aip_base_generate_lorem_block( $word_target = 120 ) {
+    $sentences = ay_aip_base_get_lorem_sentences();
+    $paragraph = [];
+    $word_count = 0;
+    $i = 0;
+    while ( $word_count < $word_target ) {
+        $sentence    = $sentences[ $i % count( $sentences ) ];
+        $paragraph[] = $sentence;
+        $word_count += str_word_count( $sentence );
+        $i++;
+    }
+    return implode( ' ', $paragraph );
+}
+
+function ay_aip_base_generate_lorem_wp_content( $word_target = 500 ) {
+    $paragraphs = ceil( max( 100, $word_target ) / 110 );
+    $chunks     = [];
+    for ( $i = 0; $i < $paragraphs; $i++ ) {
+        $chunks[] = '<!-- wp:paragraph --><p>' . ay_aip_base_generate_lorem_block( 110 ) . '</p><!-- /wp:paragraph -->';
+    }
+    return implode( '', $chunks );
+}
+
+function ay_aip_base_apply_default_section_overrides( $sections ) {
+    if ( ! ay_aip_base_is_default_preset() ) {
+        return $sections;
+    }
+
+    $value_titles   = [ 'Value Title One', 'Value Title Two', 'Value Title Three' ];
+    $value_desc     = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae libero sed neque ultrices pretium.';
+    $icon_titles    = [ 'Icon Title One', 'Icon Title Two', 'Icon Title Three', 'Icon Title Four', 'Icon Title Five', 'Icon Title Six' ];
+    $icon_desc      = 'Praesent vel augue ut neque pharetra porta a eget lorem.';
+    $offering_desc  = 'Placeholder copy describing this offering. Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+
+    foreach ( $sections as &$section ) {
+        $layout = $section['acf_fc_layout'] ?? '';
+        switch ( $layout ) {
+            case 'hero':
+                $section['hero_heading']    = ay_aip_base_is_default_preset() ? __( 'Sample Title', 'ay-aip-base' ) : 'Aviation Capital Solutions';
+                $section['hero_subheading'] = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.';
+                if ( empty( $section['hero_text_color'] ) ) {
+                    $section['hero_text_color'] = '#ffffff';
+                }
+                if ( ! empty( $section['hero_buttons'] ) ) {
+                    foreach ( $section['hero_buttons'] as $index => &$button ) {
+                        $label                  = 0 === $index ? __( 'Get Started', 'ay-aip-base' ) : __( 'View Capabilities', 'ay-aip-base' );
+                        $button['link']['title'] = $label;
+                        if ( empty( $button['link']['url'] ) ) {
+                            $button['link']['url'] = '#';
+                        }
+                        if ( empty( $button['button_style_type'] ) ) {
+                            $button['button_style_type'] = 0 === $index ? 'solid' : 'outline';
+                        }
+                    }
+                    unset( $button );
+                }
+                break;
+            case 'hero_section':
+                if ( ay_aip_base_is_default_preset() ) {
+                    $current = strtolower( $section['hero_section_heading'] ?? '' );
+                    if ( false !== strpos( $current, 'news' ) ) {
+                        $section['hero_section_heading'] = __( 'News & Insights', 'ay-aip-base' );
+                    } elseif ( false !== strpos( $current, 'contact' ) ) {
+                        $section['hero_section_heading'] = __( 'Contact Us', 'ay-aip-base' );
+                    } elseif ( false !== strpos( $current, 'about' ) || false !== strpos( $current, 'mission' ) ) {
+                        $section['hero_section_heading'] = __( 'About Us', 'ay-aip-base' );
+                    } else {
+                        $section['hero_section_heading'] = __( 'Sample Title', 'ay-aip-base' );
+                    }
+                } else {
+                    $section['hero_section_heading'] = 'Partner With Our Team';
+                }
+                $section['hero_section_lead']    = 'Phasellus pulvinar leo nec purus placerat, et efficitur risus scelerisque.';
+                if ( isset( $section['cta_link'] ) ) {
+                    $section['cta_link']['title'] = __( 'Connect With Us', 'ay-aip-base' );
+                    if ( empty( $section['cta_link']['url'] ) ) {
+                        $section['cta_link']['url'] = '#';
+                    }
+                }
+                if ( empty( $section['hero_section_text_color'] ) ) {
+                    $section['hero_section_text_color'] = '#ffffff';
+                }
+                if ( empty( $section['hero_section_button_style_type'] ) ) {
+                    $section['hero_section_button_style_type'] = 'outline';
+                }
+                break;
+            case 'value_cards':
+                $section['value_cards_title']     = __( 'Our Core Values', 'ay-aip-base' );
+                $section['value_cards_subtitle']  = 'Fusce tristique sapien vitae quam molestie, in luctus mi mollis.';
+                if ( ! empty( $section['value_cards_cards'] ) ) {
+                    foreach ( $section['value_cards_cards'] as $idx => &$card ) {
+                        $card['title']       = $value_titles[ $idx % count( $value_titles ) ];
+                        $card['description'] = $value_desc;
+                    }
+                    unset( $card );
+                }
+                break;
+            case 'icon_features':
+                $section['icon_features_title']    = __( 'Icon Feature Highlights', 'ay-aip-base' );
+                $section['icon_features_subtitle'] = 'Sed sed enim aliquet, tincidunt sem sed, fermentum diam.';
+                if ( ! empty( $section['icon_features_items'] ) ) {
+                    foreach ( $section['icon_features_items'] as $idx => &$item ) {
+                        $item['title']       = $icon_titles[ $idx % count( $icon_titles ) ];
+                        $item['description'] = $icon_desc;
+                        $item['icon_name']   = $item['icon_name'] ?? 'solid:circle';
+                    }
+                    unset( $item );
+                }
+                break;
+            case 'product_offerings':
+                $section['product_offerings_title']    = __( 'Product Offerings', 'ay-aip-base' );
+                $section['product_offerings_subtitle'] = 'Integer sagittis libero ut lorem iaculis, sed feugiat turpis tempus.';
+                if ( ! empty( $section['product_offerings_items'] ) ) {
+                    foreach ( $section['product_offerings_items'] as $idx => &$item ) {
+                        $item['title']       = sprintf( 'Offering Title %02d', $idx + 1 );
+                        $item['description'] = $offering_desc;
+                    }
+                    unset( $item );
+                }
+                break;
+            case 'text_content':
+                $section['text_content_title'] = __( 'Component Title', 'ay-aip-base' );
+                $section['text_content_body']  = '<p>' . ay_aip_base_get_lorem_text( 1 ) . '</p>';
+                break;
+            case 'contact_form':
+                $section['contact_heading'] = __( 'Start a Conversation', 'ay-aip-base' );
+                $section['contact_body']    = 'Vivamus convallis leo nec dui placerat, non hendrerit nulla laoreet.';
+                break;
+            case 'about_team':
+                if ( ! empty( $section['about_team_members'] ) ) {
+                    foreach ( $section['about_team_members'] as $idx => &$member ) {
+                        $member['name']  = sprintf( 'Team Member %02d', $idx + 1 );
+                        $member['title'] = __( 'Leadership', 'ay-aip-base' );
+                    }
+                    unset( $member );
+                }
+                break;
+            case 'card_grid':
+                if ( ! empty( $section['card_items'] ) ) {
+                    foreach ( $section['card_items'] as $idx => &$item ) {
+                        $item['heading'] = sprintf( 'Card Heading %02d', $idx + 1 );
+                        $item['body']    = 'Suspendisse in magna arcu. Integer ac sem et turpis porta ullamcorper.';
+                    }
+                    unset( $item );
+                }
+                break;
+        }
+    }
+    unset( $section );
+
+    return $sections;
+}
+
+function ay_aip_base_prepare_sections_for_save( $sections ) {
+    return ay_aip_base_apply_default_section_overrides( ay_aip_base_filter_preset_content( $sections ) );
+}
+
+function ay_aip_base_apply_theme_color_defaults( $preset ) {
+    $preset = ay_aip_base_sanitize_preset( $preset );
+    if ( 'default' === $preset ) {
+        $colors = [
+            'primary'        => '#333333',
+            'accent'         => '#f5a623',
+            'nav'            => '#333333',
+            'heading'        => '#222222',
+            'body'           => '#4b4b4b',
+            'card_bg'        => '#ffffff',
+            'card_text'      => '#333333',
+            'news_card_bg'   => '#ffffff',
+            'news_card_text' => '#333333',
+        ];
+    } else {
+        $colors = [
+            'primary'        => '#1f3a63',
+            'accent'         => '#4a7dff',
+            'nav'            => '#223a69',
+            'heading'        => '#1f3a63',
+            'body'           => '#223a69',
+            'card_bg'        => '#223a69',
+            'card_text'      => '#ffffff',
+            'news_card_bg'   => '#ffffff',
+            'news_card_text' => '#223a69',
+        ];
+    }
+
+    $option_map = [
+        'theme_primary_color'        => 'primary',
+        'theme_accent_color'         => 'accent',
+        'theme_nav_background'       => 'nav',
+        'theme_heading_color'        => 'heading',
+        'theme_body_color'           => 'body',
+        'theme_card_background'      => 'card_bg',
+        'theme_card_text'            => 'card_text',
+        'theme_news_card_background' => 'news_card_bg',
+        'theme_news_card_text'       => 'news_card_text',
+    ];
+
+    foreach ( $option_map as $option_key => $color_key ) {
+        if ( isset( $colors[ $color_key ] ) ) {
+            ay_aip_base_update_theme_option( $option_key, $colors[ $color_key ] );
+        }
+    }
+
+    $theme_mod_map = [
+        'ay_aip_base_primary_color'        => 'primary',
+        'ay_aip_base_accent_color'         => 'accent',
+        'ay_aip_base_nav_background'       => 'nav',
+        'ay_aip_base_heading_color'        => 'heading',
+        'ay_aip_base_body_color'           => 'body',
+        'ay_aip_base_card_background'      => 'card_bg',
+        'ay_aip_base_card_text'            => 'card_text',
+        'ay_aip_base_news_card_background' => 'news_card_bg',
+        'ay_aip_base_news_card_text'       => 'news_card_text',
+    ];
+
+    foreach ( $theme_mod_map as $theme_mod => $color_key ) {
+        if ( isset( $colors[ $color_key ] ) ) {
+            set_theme_mod( $theme_mod, $colors[ $color_key ] );
+        }
+    }
+
+    if ( 'default' === $preset ) {
+        $logo_url = ay_aip_base_get_theme_asset_url( 'img/logo-sample.jpg' );
+        ay_aip_base_update_theme_option( 'theme_header_logo', [
+            'ID'  => 0,
+            'url' => $logo_url,
+            'alt' => __( 'Sample Logo', 'ay-aip-base' ),
+        ] );
+        ay_aip_base_update_theme_option( 'theme_footer_logo', [
+            'ID'  => 0,
+            'url' => $logo_url,
+            'alt' => __( 'Sample Logo', 'ay-aip-base' ),
+        ] );
+    }
+}
+
+function ay_aip_base_update_theme_option( $key, $value ) {
+    if ( function_exists( 'update_field' ) && acf_get_field( $key, 'option' ) ) {
+        update_field( $key, $value, 'option' );
+    } else {
+        update_option( $key, $value );
+    }
+}
+
 add_action( 'admin_post_ay_aip_base_import_demo', 'ay_aip_base_handle_import' );
 function ay_aip_base_handle_import() {
     if ( ! current_user_can( 'manage_options' ) ) {
@@ -58,7 +418,11 @@ function ay_aip_base_handle_import() {
     }
     check_admin_referer( 'ay_aip_base_import_demo' );
 
-    $result = ay_aip_base_run_import();
+    $preset = isset( $_POST['ay_aip_base_preset'] ) ? sanitize_text_field( wp_unslash( $_POST['ay_aip_base_preset'] ) ) : ay_aip_base_get_selected_preset();
+    $preset = ay_aip_base_sanitize_preset( $preset );
+    ay_aip_base_set_selected_preset( $preset );
+
+    $result = ay_aip_base_run_import( $preset );
     $status = $result ? 'success' : 'error';
     wp_safe_redirect( add_query_arg( 'ay-import', $status, admin_url( 'themes.php?page=ay-aip-base-import' ) ) );
     exit;
@@ -75,9 +439,14 @@ function ay_aip_base_handle_reset() {
     exit;
 }
 
-function ay_aip_base_run_import() {
+function ay_aip_base_run_import( $preset = '' ) {
     require_once ABSPATH . 'wp-admin/includes/taxonomy.php';
     require_once ABSPATH . 'wp-admin/includes/post.php';
+
+    if ( empty( $preset ) ) {
+        $preset = ay_aip_base_get_selected_preset();
+    }
+    ay_aip_base_set_current_preset( $preset );
 
     $home_content    = ay_aip_base_home_content();
     $about_content   = ay_aip_base_about_content();
@@ -119,6 +488,7 @@ function ay_aip_base_run_import() {
 
     ay_aip_base_create_posts();
     ay_aip_base_setup_menus( $home_id, $about_id, $news_id, $contact_id, $terms_id, $privacy_id );
+    ay_aip_base_apply_theme_color_defaults( $preset );
 
     return true;
 }
@@ -186,7 +556,7 @@ function ay_aip_base_upsert_page( $title, $slug, $content, $template = '' ) {
 }
 
 function ay_aip_base_create_posts() {
-    $samples = [
+    $samples = ay_aip_base_is_default_preset() ? ay_aip_base_get_default_post_samples() : [
         [
             'title'   => 'Engine Leasing Outlook 2025',
             'content' => '<!-- wp:paragraph --><p>Engine aftermarket demand is driving new leasing structures as operators seek flexible maintenance solutions.</p><!-- /wp:paragraph -->',
@@ -219,9 +589,19 @@ function ay_aip_base_create_posts() {
         ] );
         if ( $post_id && ! is_wp_error( $post_id ) ) {
             update_post_meta( $post_id, '_ay_aip_base_demo', 1 );
-            update_post_meta( $post_id, 'ay_source_html', $sample['html'] ?? '' );
         }
     }
+}
+
+function ay_aip_base_get_default_post_samples() {
+    $samples = [];
+    for ( $i = 1; $i <= 4; $i++ ) {
+        $samples[] = [
+            'title'   => sprintf( 'Article Title %02d', $i ),
+            'content' => ay_aip_base_generate_lorem_wp_content( 520 ),
+        ];
+    }
+    return $samples;
 }
 
 function ay_aip_base_setup_menus( $home_id, $about_id, $news_id, $contact_id, $terms_id, $privacy_id ) {
@@ -460,6 +840,19 @@ function ay_aip_base_match_product_icon_key( $title ) {
     return $map[ $slug ] ?? '';
 }
 
+function ay_aip_base_match_icon_feature_icon( $title ) {
+    $map = [
+        'flexible-solutions'   => 'solid:sliders',
+        'fast-approvals'       => 'solid:gauge-high',
+        'global-reach'         => 'solid:globe',
+        'expert-team'          => 'solid:people-group',
+        'proven-track-record'  => 'solid:chart-line',
+        'trusted-partner'      => 'solid:handshake',
+    ];
+    $slug = sanitize_title( $title );
+    return $map[ $slug ] ?? '';
+}
+
 function ay_aip_base_make_link_field( $url = '', $title = '', $target = '_self' ) {
     $url   = trim( $url );
     $title = trim( $title );
@@ -477,30 +870,30 @@ function ay_aip_base_make_link_field( $url = '', $title = '', $target = '_self' 
 }
 
 function ay_aip_base_home_content() {
-    return '';
+    return ay_aip_base_filter_preset_content( '' );
 }
 
 function ay_aip_base_about_content() {
-    return '';
+    return ay_aip_base_filter_preset_content( '' );
 }
 
 function ay_aip_base_news_content() {
     $html = ay_aip_base_get_demo_html( 'news' );
-    return $html ? ay_aip_base_wrap_html_block( $html ) : '';
+    return ay_aip_base_filter_preset_content( $html ? ay_aip_base_wrap_html_block( $html ) : '' );
 }
 
 function ay_aip_base_contact_content() {
-    return '';
+    return ay_aip_base_filter_preset_content( '' );
 }
 
 function ay_aip_base_terms_content() {
     $html = ay_aip_base_get_demo_html( 'terms' );
-    return $html ? ay_aip_base_wrap_html_block( $html ) : '';
+    return ay_aip_base_filter_preset_content( $html ? ay_aip_base_wrap_html_block( $html ) : '' );
 }
 
 function ay_aip_base_privacy_content() {
     $html = ay_aip_base_get_demo_html( 'privacy' );
-    return $html ? ay_aip_base_wrap_html_block( $html ) : '';
+    return ay_aip_base_filter_preset_content( $html ? ay_aip_base_wrap_html_block( $html ) : '' );
 }
 
 function ay_aip_base_blocks_content() {
@@ -513,12 +906,18 @@ function ay_aip_base_seed_home_builder( $page_id ) {
 
     $value_images  = ay_aip_base_get_demo_value_card_images();
     $product_icons = ay_aip_base_get_demo_product_icons();
+    $hero_bg_image = ay_aip_base_import_demo_image( 'img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg', 'Hero Background' );
 
     $sections = [
         [
             'acf_fc_layout'       => 'hero_section',
             'hero_section_heading'=> 'Specialist Aviation Finance',
             'hero_section_lead'   => 'Alliant AirFinance is an experienced commercial aviation lending platform with deep expertise in the aviation finance sector.',
+            'hero_section_background_image' => $hero_bg_image,
+            'hero_section_overlay_color' => '#223a69',
+            'hero_section_overlay_opacity' => 70,
+            'hero_section_text_color' => '#ffffff',
+            'hero_section_button_style_type' => 'outline',
             'cta_link'            => ay_aip_base_make_link_field( '#contact', 'Contact Us' ),
         ],
         [
@@ -568,7 +967,9 @@ function ay_aip_base_seed_home_builder( $page_id ) {
         ],
     ];
 
-    update_field( 'field_page_sections_flexible', $sections, $page_id );
+    $sections = ay_aip_base_filter_preset_content( $sections );
+    $sections = ay_aip_base_filter_preset_content( $sections );
+    update_field( 'field_page_sections_flexible', ay_aip_base_prepare_sections_for_save( $sections ), $page_id );
 }
 
 function ay_aip_base_seed_about_builder( $page_id ) {
@@ -576,13 +977,19 @@ function ay_aip_base_seed_about_builder( $page_id ) {
         return;
     }
 
-    $person_image = ay_aip_base_import_demo_image( 'img/person.jpg', 'Team Member' );
+    $person_image  = ay_aip_base_import_demo_image( 'img/person.jpg', 'Team Member' );
+    $hero_bg_image = ay_aip_base_import_demo_image( 'img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg', 'Hero Background' );
 
     $sections = [
         [
             'acf_fc_layout'        => 'hero_section',
             'hero_section_heading' => 'Alliant Mission',
             'hero_section_lead'    => 'Alliant AirFinance believes its asset expertise and platform capabilities enable us to provide counterparties bespoke financial solutions across asset types and capital structures.',
+            'hero_section_background_image' => $hero_bg_image,
+            'hero_section_overlay_color' => '#223a69',
+            'hero_section_overlay_opacity' => 70,
+            'hero_section_text_color' => '#ffffff',
+            'hero_section_button_style_type' => 'outline',
         ],
         [
             'acf_fc_layout'        => 'about_team',
@@ -598,7 +1005,8 @@ function ay_aip_base_seed_about_builder( $page_id ) {
         ],
     ];
 
-    update_field( 'field_page_sections_flexible', $sections, $page_id );
+    $sections = ay_aip_base_filter_preset_content( $sections );
+    update_field( 'field_page_sections_flexible', ay_aip_base_prepare_sections_for_save( $sections ), $page_id );
 }
 
 function ay_aip_base_seed_contact_builder( $page_id ) {
@@ -606,11 +1014,18 @@ function ay_aip_base_seed_contact_builder( $page_id ) {
         return;
     }
 
+    $hero_bg_image = ay_aip_base_import_demo_image( 'img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg', 'Hero Background' );
+
     $sections = [
         [
             'acf_fc_layout'        => 'hero_section',
             'hero_section_heading' => 'Contact Alliant AirFinance',
             'hero_section_lead'    => 'To learn more about our services or discuss how we can support your equipment financing needs, feel free to get in touch with our team today.',
+            'hero_section_background_image' => $hero_bg_image,
+            'hero_section_overlay_color' => '#223a69',
+            'hero_section_overlay_opacity' => 70,
+            'hero_section_text_color' => '#ffffff',
+            'hero_section_button_style_type' => 'outline',
         ],
         [
             'acf_fc_layout'   => 'contact_form',
@@ -620,7 +1035,8 @@ function ay_aip_base_seed_contact_builder( $page_id ) {
         ],
     ];
 
-    update_field( 'field_page_sections_flexible', $sections, $page_id );
+    $sections = ay_aip_base_filter_preset_content( $sections );
+    update_field( 'field_page_sections_flexible', ay_aip_base_prepare_sections_for_save( $sections ), $page_id );
 }
 
 function ay_aip_base_seed_blocks_builder( $page_id ) {
@@ -630,6 +1046,7 @@ function ay_aip_base_seed_blocks_builder( $page_id ) {
 
     $value_images  = ay_aip_base_get_demo_value_card_images();
     $product_icons = ay_aip_base_get_demo_product_icons();
+    $hero_bg_image = ay_aip_base_import_demo_image( 'img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg', 'Hero Background' );
 
     $sections = [
         [
@@ -637,18 +1054,19 @@ function ay_aip_base_seed_blocks_builder( $page_id ) {
             'hero_variant'        => 'large',
             'hero_layout_style'   => 'default',
             'hero_text_mode'      => 'light',
+            'hero_text_color'     => '#ffffff',
             'hero_heading'        => 'Your Trusted Partner in Aviation Finance',
             'hero_subheading'     => 'Delivering flexible financing solutions for commercial airlines, business aviation, and aircraft operators worldwide.',
             'hero_buttons'        => [
                 [
-                    'label' => 'Get Started',
-                    'url'   => home_url( '/contact/' ),
+                    'link'  => ay_aip_base_make_link_field( home_url( '/contact/' ), 'Get Started' ),
                     'style' => 'primary',
+                    'button_style_type'       => 'solid',
                 ],
                 [
-                    'label' => 'Learn More',
-                    'url'   => home_url( '/about/' ),
+                    'link'  => ay_aip_base_make_link_field( home_url( '/about/' ), 'Learn More' ),
                     'style' => 'secondary',
+                    'button_style_type'       => 'outline',
                 ],
             ],
         ],
@@ -656,6 +1074,11 @@ function ay_aip_base_seed_blocks_builder( $page_id ) {
             'acf_fc_layout'       => 'hero_section',
             'hero_section_heading'=> 'Specialist Aviation Finance',
             'hero_section_lead'   => 'Alliant AirFinance is an experienced commercial aviation lending platform with deep expertise in the aviation finance sector.',
+            'hero_section_background_image' => $hero_bg_image,
+            'hero_section_overlay_color' => '#223a69',
+            'hero_section_overlay_opacity' => 70,
+            'hero_section_text_color' => '#ffffff',
+            'hero_section_button_style_type' => 'outline',
             'cta_link'            => ay_aip_base_make_link_field( '#contact', 'Contact Us' ),
         ],
         [
@@ -663,6 +1086,7 @@ function ay_aip_base_seed_blocks_builder( $page_id ) {
             'hero_variant'        => 'small',
             'hero_layout_style'   => 'default',
             'hero_text_mode'      => 'light',
+            'hero_text_color'     => '#ffffff',
             'hero_heading'        => 'Aviation Finance Solutions',
             'hero_subheading'     => 'Flexible financing for commercial airlines and business aviation worldwide.',
         ],
@@ -679,32 +1103,32 @@ function ay_aip_base_seed_blocks_builder( $page_id ) {
             'icon_features_subtitle' => 'Trusted expertise in aviation finance',
             'icon_features_items'  => [
                 [
-                    'icon_svg'    => '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>',
+                    'icon_name' => 'solid:sliders',
                     'title'       => 'Flexible Solutions',
                     'description' => 'Customized financing structures tailored to your specific operational and financial requirements.',
                 ],
                 [
-                    'icon_svg'    => '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+                    'icon_name' => 'solid:gauge-high',
                     'title'       => 'Fast Approvals',
                     'description' => 'Streamlined processes and quick decision-making to meet your timeline needs.',
                 ],
                 [
-                    'icon_svg'    => '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
+                    'icon_name' => 'solid:globe',
                     'title'       => 'Global Reach',
                     'description' => 'International expertise with experience across multiple jurisdictions and markets.',
                 ],
                 [
-                    'icon_svg'    => '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+                    'icon_name' => 'solid:people-group',
                     'title'       => 'Expert Team',
                     'description' => 'Decades of combined experience in aviation finance and aircraft transactions.',
                 ],
                 [
-                    'icon_svg'    => '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
+                    'icon_name' => 'solid:chart-line',
                     'title'       => 'Proven Track Record',
                     'description' => 'Successfully financed over $5 billion in aircraft transactions worldwide.',
                 ],
                 [
-                    'icon_svg'    => '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+                    'icon_name' => 'solid:handshake',
                     'title'       => 'Trusted Partner',
                     'description' => 'Long-term relationships built on transparency, integrity, and exceptional service.',
                 ],
@@ -1096,7 +1520,7 @@ Dubai, UAE",
         ],
     ];
 
-    update_field( 'field_page_sections_flexible', $sections, $page_id );
+    update_field( 'field_page_sections_flexible', ay_aip_base_prepare_sections_for_save( $sections ), $page_id );
 }
 
 add_action( 'admin_init', 'ay_aip_base_migrate_demo_media_attachments', 20 );
@@ -1179,11 +1603,27 @@ function ay_aip_base_migrate_demo_media_attachments() {
                     }
                 }
             }
+            if ( 'icon_features' === ( $section['acf_fc_layout'] ?? '' ) && ! empty( $section['icon_features_items'] ) ) {
+                foreach ( $section['icon_features_items'] as &$item ) {
+                    if ( ! empty( $item['icon_name'] ) ) {
+                        continue;
+                    }
+                    $key = '';
+                    if ( ! empty( $item['title'] ) ) {
+                        $key = ay_aip_base_match_icon_feature_icon( $item['title'] );
+                    }
+                    if ( $key ) {
+                        $item['icon_name'] = $key;
+                        $modified          = true;
+                    }
+                }
+                unset( $item );
+            }
         }
         unset( $section );
 
         if ( $modified ) {
-            update_field( 'field_page_sections_flexible', $sections, $post_id );
+            update_field( 'field_page_sections_flexible', ay_aip_base_prepare_sections_for_save( $sections ), $post_id );
         }
     }
 

@@ -140,11 +140,32 @@ function ay_aip_base_get_theme_asset_url( $relative_path ) {
 
 function ay_aip_base_get_icon_markup( $item, $keys = [] ) {
     $defaults = [
+        'fa'    => 'icon_name',
         'svg'   => 'icon_svg',
         'image' => 'icon_image',
         'class' => 'icon_class',
     ];
     $keys = wp_parse_args( $keys, $defaults );
+
+    if ( ! empty( $item[ $keys['fa'] ] ) ) {
+        $value = trim( (string) $item[ $keys['fa'] ] );
+        if ( $value ) {
+            $style = 'fa-solid';
+            $icon  = $value;
+            if ( false !== strpos( $value, ':' ) ) {
+                list( $style, $icon ) = array_pad( explode( ':', $value, 2 ), 2, '' );
+                $style = trim( $style ) ? 'fa-' . trim( $style ) : 'fa-solid';
+            }
+            $icon = trim( str_replace( 'fa-', '', $icon ) );
+            if ( $icon ) {
+                return sprintf(
+                    '<span class="%1$s fa-%2$s" aria-hidden="true"></span>',
+                    esc_attr( $style ),
+                    esc_attr( $icon )
+                );
+            }
+        }
+    }
 
     if ( ! empty( $item[ $keys['svg'] ] ) ) {
         return wp_kses_post( $item[ $keys['svg'] ] );
@@ -385,8 +406,232 @@ function ay_aip_base_get_theme_color( $customizer_key, $option_key, $default ) {
     return $default;
 }
 
+function ay_aip_base_hex_to_rgb_components( $hex, $fallback = '0, 0, 0' ) {
+    $hex = trim( (string) $hex );
+    if ( '' === $hex ) {
+        return $fallback;
+    }
+    if ( '#' === $hex[0] ) {
+        $hex = substr( $hex, 1 );
+    }
+    if ( 3 === strlen( $hex ) ) {
+        $hex = sprintf(
+            '%1$s%1$s%2$s%2$s%3$s%3$s',
+            substr( $hex, 0, 1 ),
+            substr( $hex, 1, 1 ),
+            substr( $hex, 2, 1 )
+        );
+    }
+    if ( 6 !== strlen( $hex ) ) {
+        return $fallback;
+    }
+    $red   = hexdec( substr( $hex, 0, 2 ) );
+    $green = hexdec( substr( $hex, 2, 2 ) );
+    $blue  = hexdec( substr( $hex, 4, 2 ) );
+    return sprintf( '%d, %d, %d', $red, $green, $blue );
+}
+
+function ay_aip_base_hex_to_rgba( $color, $opacity = 1 ) {
+    $color = trim( (string) $color );
+
+    // If already in rgba format, return as is
+    if ( preg_match( '/^rgba?\(/', $color ) ) {
+        return $color;
+    }
+
+    // If in rgb format, convert to rgba
+    if ( preg_match( '/^rgb\((\d+),\s*(\d+),\s*(\d+)\)/', $color, $matches ) ) {
+        return sprintf( 'rgba(%d, %d, %d, %s)', $matches[1], $matches[2], $matches[3], $opacity );
+    }
+
+    // Convert hex to rgba
+    $hex = $color;
+    if ( '#' === $hex[0] ) {
+        $hex = substr( $hex, 1 );
+    }
+
+    if ( 3 === strlen( $hex ) ) {
+        $hex = sprintf(
+            '%1$s%1$s%2$s%2$s%3$s%3$s',
+            substr( $hex, 0, 1 ),
+            substr( $hex, 1, 1 ),
+            substr( $hex, 2, 1 )
+        );
+    }
+
+    if ( 6 !== strlen( $hex ) ) {
+        return sprintf( 'rgba(34, 58, 105, %s)', $opacity );
+    }
+
+    $red   = hexdec( substr( $hex, 0, 2 ) );
+    $green = hexdec( substr( $hex, 2, 2 ) );
+    $blue  = hexdec( substr( $hex, 4, 2 ) );
+
+    return sprintf( 'rgba(%d, %d, %d, %s)', $red, $green, $blue, $opacity );
+}
+
+function ay_aip_base_get_primary_color_default() {
+    return ay_aip_base_is_default_preset() ? '#333333' : '#1f3a63';
+}
+
+function ay_aip_base_get_accent_color_default() {
+    return ay_aip_base_is_default_preset() ? '#f5a623' : '#4a7dff';
+}
+
+function ay_aip_base_get_heading_color_default() {
+    return ay_aip_base_is_default_preset() ? '#222222' : '#1f3a63';
+}
+
+function ay_aip_base_get_body_color_default() {
+    return ay_aip_base_is_default_preset() ? '#4b4b4b' : '#223a69';
+}
+
+function ay_aip_base_get_card_background_default() {
+    return ay_aip_base_is_default_preset() ? '#ffffff' : '#223a69';
+}
+
+function ay_aip_base_get_card_text_default() {
+    return ay_aip_base_is_default_preset() ? '#333333' : '#ffffff';
+}
+
+function ay_aip_base_get_news_card_background_default() {
+    return '#ffffff';
+}
+
+function ay_aip_base_get_news_card_text_default() {
+    return ay_aip_base_is_default_preset() ? '#333333' : '#223a69';
+}
+
+function ay_aip_base_get_primary_color() {
+    return ay_aip_base_get_theme_color( 'ay_aip_base_primary_color', 'theme_primary_color', ay_aip_base_get_primary_color_default() );
+}
+
+function ay_aip_base_get_accent_color() {
+    return ay_aip_base_get_theme_color( 'ay_aip_base_accent_color', 'theme_accent_color', ay_aip_base_get_accent_color_default() );
+}
+
+function ay_aip_base_get_heading_color() {
+    return ay_aip_base_get_theme_color( 'ay_aip_base_heading_color', 'theme_heading_color', ay_aip_base_get_heading_color_default() );
+}
+
+function ay_aip_base_get_body_color() {
+    return ay_aip_base_get_theme_color( 'ay_aip_base_body_color', 'theme_body_color', ay_aip_base_get_body_color_default() );
+}
+
+function ay_aip_base_get_card_background_color() {
+    return ay_aip_base_get_theme_color( 'ay_aip_base_card_background', 'theme_card_background', ay_aip_base_get_card_background_default() );
+}
+
+function ay_aip_base_get_card_text_color() {
+    return ay_aip_base_get_theme_color( 'ay_aip_base_card_text', 'theme_card_text', ay_aip_base_get_card_text_default() );
+}
+
+function ay_aip_base_get_news_card_background_color() {
+    return ay_aip_base_get_theme_color( 'ay_aip_base_news_card_background', 'theme_news_card_background', ay_aip_base_get_news_card_background_default() );
+}
+
+function ay_aip_base_get_news_card_text_color() {
+    return ay_aip_base_get_theme_color( 'ay_aip_base_news_card_text', 'theme_news_card_text', ay_aip_base_get_news_card_text_default() );
+}
+
 function ay_aip_base_get_nav_background_color() {
-    return ay_aip_base_get_theme_color( 'ay_aip_base_nav_background', 'theme_nav_background', '#223a69' );
+    $default = ay_aip_base_is_default_preset() ? '#333333' : '#223a69';
+    return ay_aip_base_get_theme_color( 'ay_aip_base_nav_background', 'theme_nav_background', $default );
+}
+
+function ay_aip_base_get_header_logo( $default = '' ) {
+    $logo = ay_aip_base_get_theme_option_value( 'theme_header_logo' );
+    if ( ! empty( $logo['url'] ) ) {
+        return $logo;
+    }
+    if ( ay_aip_base_is_default_preset() ) {
+        return [
+            'url' => ay_aip_base_get_theme_asset_url( 'img/logo-sample.jpg' ),
+            'alt' => __( 'Site logo', 'ay-aip-base' ),
+        ];
+    }
+    return $default ? [ 'url' => $default, 'alt' => __( 'Site logo', 'ay-aip-base' ) ] : null;
+}
+
+function ay_aip_base_get_footer_logo( $default = '' ) {
+    $logo = ay_aip_base_get_theme_option_value( 'theme_footer_logo' );
+    if ( ! empty( $logo['url'] ) ) {
+        return $logo;
+    }
+    if ( ay_aip_base_is_default_preset() ) {
+        return [
+            'url' => ay_aip_base_get_theme_asset_url( 'img/logo-sample.jpg' ),
+            'alt' => __( 'Site logo', 'ay-aip-base' ),
+        ];
+    }
+    return $default ? [ 'url' => $default, 'alt' => __( 'Site logo', 'ay-aip-base' ) ] : null;
+}
+
+function ay_aip_base_get_button_style_tokens( $settings = [], $defaults = [] ) {
+    $type   = isset( $settings['button_style_type'] ) ? $settings['button_style_type'] : ( $defaults['type'] ?? '' );
+    $legacy = isset( $settings['style'] ) ? $settings['style'] : '';
+
+    if ( ! in_array( $type, [ 'solid', 'outline' ], true ) ) {
+        if ( 'secondary' === $legacy || 'outline' === $legacy ) {
+            $type = 'outline';
+        } elseif ( 'solid' === $legacy || 'primary' === $legacy ) {
+            $type = 'solid';
+        } else {
+            $type = $defaults['type'] ?? 'solid';
+        }
+    }
+
+    $background_value   = isset( $settings['button_background_color'] ) ? sanitize_text_field( $settings['button_background_color'] ) : '';
+    $border_value       = isset( $settings['button_border_color'] ) ? sanitize_text_field( $settings['button_border_color'] ) : '';
+    $text_value         = isset( $settings['button_text_color'] ) ? sanitize_text_field( $settings['button_text_color'] ) : '';
+    $hover_text_value   = isset( $settings['button_hover_text_color'] ) ? sanitize_text_field( $settings['button_hover_text_color'] ) : '';
+    $hover_bg_value     = isset( $settings['button_hover_background_color'] ) ? sanitize_text_field( $settings['button_hover_background_color'] ) : '';
+    $hover_border_value = isset( $settings['button_hover_border_color'] ) ? sanitize_text_field( $settings['button_hover_border_color'] ) : '';
+
+    $has_custom_style = ( '' !== $background_value ) || ( '' !== $border_value ) || ( '' !== $text_value );
+    $has_custom_hover = ( '' !== $hover_text_value ) || ( '' !== $hover_bg_value ) || ( '' !== $hover_border_value );
+
+    $styles = [];
+    $hover_styles = [];
+
+    if ( $has_custom_style ) {
+        // For outline buttons, only set background if explicitly provided
+        if ( '' !== $background_value ) {
+            $styles[] = 'background-color:' . esc_attr( $background_value );
+        } elseif ( 'outline' === $type ) {
+            $styles[] = 'background-color:transparent';
+        }
+
+        if ( '' !== $border_value ) {
+            $styles[] = 'border-color:' . esc_attr( $border_value );
+            $styles[] = 'border-width:2px';
+        }
+        if ( '' !== $text_value ) {
+            $styles[] = 'color:' . esc_attr( $text_value );
+        }
+    }
+
+    // Set default hover colors if custom style exists but no hover colors specified
+    if ( $has_custom_style ) {
+        // Use custom hover colors if provided, otherwise use defaults
+        $final_hover_bg     = '' !== $hover_bg_value ? $hover_bg_value : '#ffffff';
+        $final_hover_border = '' !== $hover_border_value ? $hover_border_value : $border_value;
+        $final_hover_text   = '' !== $hover_text_value ? $hover_text_value : '#223a69';
+
+        $hover_styles[] = '--btn-hover-bg:' . esc_attr( $final_hover_bg );
+        if ( '' !== $final_hover_border ) {
+            $hover_styles[] = '--btn-hover-border:' . esc_attr( $final_hover_border );
+        }
+        $hover_styles[] = '--btn-hover-color:' . esc_attr( $final_hover_text );
+    }
+
+    $all_styles = array_merge( $styles, $hover_styles );
+    $style_attr = $all_styles ? ' style="' . implode( ';', $all_styles ) . '"' : '';
+
+    return [
+        'type'  => $type,
+        'style' => $style_attr,
+    ];
 }
 
 function ay_aip_base_get_font_choices_dropdown() {
