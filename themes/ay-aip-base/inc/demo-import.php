@@ -328,15 +328,15 @@ function ay_aip_base_apply_theme_color_defaults( $preset ) {
     $preset = ay_aip_base_sanitize_preset( $preset );
     if ( 'default' === $preset ) {
         $colors = [
-            'primary'        => '#333333',
+            'primary'        => '#000000',
             'accent'         => '#f5a623',
-            'nav'            => '#333333',
+            'nav'            => '#000000',
             'heading'        => '#222222',
             'body'           => '#4b4b4b',
             'card_bg'        => '#ffffff',
-            'card_text'      => '#333333',
+            'card_text'      => '#000000',
             'news_card_bg'   => '#ffffff',
-            'news_card_text' => '#333333',
+            'news_card_text' => '#000000',
         ];
     } else {
         $colors = [

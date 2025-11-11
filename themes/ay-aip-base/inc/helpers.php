@@ -471,7 +471,7 @@ function ay_aip_base_hex_to_rgba( $color, $opacity = 1 ) {
 }
 
 function ay_aip_base_get_primary_color_default() {
-    return ay_aip_base_is_default_preset() ? '#333333' : '#1f3a63';
+    return ay_aip_base_is_default_preset() ? '#000000' : '#1f3a63';
 }
 
 function ay_aip_base_get_accent_color_default() {
@@ -491,7 +491,7 @@ function ay_aip_base_get_card_background_default() {
 }
 
 function ay_aip_base_get_card_text_default() {
-    return ay_aip_base_is_default_preset() ? '#333333' : '#ffffff';
+    return ay_aip_base_is_default_preset() ? '#000000' : '#ffffff';
 }
 
 function ay_aip_base_get_news_card_background_default() {
@@ -499,7 +499,7 @@ function ay_aip_base_get_news_card_background_default() {
 }
 
 function ay_aip_base_get_news_card_text_default() {
-    return ay_aip_base_is_default_preset() ? '#333333' : '#223a69';
+    return ay_aip_base_is_default_preset() ? '#000000' : '#223a69';
 }
 
 function ay_aip_base_get_primary_color() {
@@ -535,7 +535,7 @@ function ay_aip_base_get_news_card_text_color() {
 }
 
 function ay_aip_base_get_nav_background_color() {
-    $default = ay_aip_base_is_default_preset() ? '#333333' : '#223a69';
+    $default = ay_aip_base_is_default_preset() ? '#000000' : '#223a69';
     return ay_aip_base_get_theme_color( 'ay_aip_base_nav_background', 'theme_nav_background', $default );
 }
 
