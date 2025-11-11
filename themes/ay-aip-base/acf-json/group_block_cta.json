@@ -2,16 +2,123 @@
     "key": "group_block_cta",
     "title": "Block: CTA Banner",
     "fields": [
-        {"key":"field_cta_icon","label":"Icon SVG","name":"cta_icon","type":"textarea","rows":5,"instructions":"Optional SVG markup or icon HTML."},
-        {"key":"field_cta_heading","label":"Heading","name":"cta_heading","type":"text"},
-        {"key":"field_cta_body","label":"Body","name":"cta_body","type":"textarea","rows":3},
-        {"key":"field_cta_buttons","label":"Buttons","name":"cta_buttons","type":"repeater","layout":"row","button_label":"Add Button","sub_fields":[
-            {"key":"field_cta_button_label","label":"Label","name":"label","type":"text","wrapper":{"width":"40"}},
-            {"key":"field_cta_button_url","label":"URL","name":"url","type":"url","wrapper":{"width":"40"}},
-            {"key":"field_cta_button_style","label":"Style","name":"style","type":"select","choices":{"primary":"Primary","secondary":"Secondary"},"wrapper":{"width":"20"},"default_value":"primary"}
-        ]}
+        {
+            "key": "field_cta_content_tab",
+            "label": "Content",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_cta_icon_image",
+            "label": "Icon Image",
+            "name": "cta_icon_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "instructions": "Upload an icon image (optional).",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_cta_icon_class",
+            "label": "Icon Class (FontAwesome)",
+            "name": "cta_icon_class",
+            "type": "text",
+            "instructions": "Or enter FontAwesome classes (e.g., fa-regular fa-clock fa-lg).",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_cta_heading",
+            "label": "Heading",
+            "name": "cta_heading",
+            "type": "text"
+        },
+        {
+            "key": "field_cta_body",
+            "label": "Body",
+            "name": "cta_body",
+            "type": "textarea",
+            "rows": 3
+        },
+        {
+            "key": "field_cta_buttons",
+            "label": "Buttons",
+            "name": "cta_buttons",
+            "type": "repeater",
+            "layout": "row",
+            "button_label": "Add Button",
+            "max": 2,
+            "sub_fields": [
+                {
+                    "key": "field_cta_button_label",
+                    "label": "Label",
+                    "name": "label",
+                    "type": "text",
+                    "wrapper": {
+                        "width": "40"
+                    }
+                },
+                {
+                    "key": "field_cta_button_url",
+                    "label": "URL",
+                    "name": "url",
+                    "type": "url",
+                    "wrapper": {
+                        "width": "40"
+                    }
+                },
+                {
+                    "key": "field_cta_button_style",
+                    "label": "Style",
+                    "name": "style",
+                    "type": "select",
+                    "choices": {
+                        "primary": "Primary",
+                        "secondary": "Secondary"
+                    },
+                    "wrapper": {
+                        "width": "20"
+                    },
+                    "default_value": "primary"
+                }
+            ]
+        },
+        {
+            "key": "field_cta_style_tab",
+            "label": "Style",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_cta_background",
+            "label": "Background Color",
+            "name": "cta_background",
+            "type": "select",
+            "choices": {
+                "white": "White",
+                "light": "Light Gray",
+                "navy": "Navy"
+            },
+            "default_value": "navy",
+            "wrapper": {
+                "width": "50"
+            }
+        }
     ],
-    "location": [[{"param":"block","operator":"==","value":"acf/cta-banner"}]],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/cta-banner"
+            }
+        ]
+    ],
     "menu_order": 0,
     "position": "normal",
     "style": "default",
@@ -20,5 +127,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1735738804
+    "modified": 1762862469
 }

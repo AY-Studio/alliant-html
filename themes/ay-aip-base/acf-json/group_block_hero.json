@@ -3,15 +3,20 @@
     "title": "Block: Hero",
     "fields": [
         {
-            "key": "field_hero_layout_style",
-            "label": "Layout Style",
-            "name": "hero_layout_style",
-            "type": "select",
-            "choices": {
-                "default": "Default",
-                "compact": "Compact"
-            },
-            "default_value": "default"
+            "key": "field_hero_content_tab",
+            "label": "Content",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_hero_layout_settings_group",
+            "label": "Layout Settings",
+            "name": "",
+            "type": "message",
+            "message": "",
+            "new_lines": "",
+            "esc_html": 0
         },
         {
             "key": "field_hero_variant",
@@ -23,30 +28,39 @@
                 "small": "Small"
             },
             "default_value": "large",
-            "layout": "horizontal"
-        },
-        {
-            "key": "field_hero_text_mode",
-            "label": "Text Mode",
-            "name": "hero_text_mode",
-            "type": "select",
-            "choices": {
-                "light": "Light",
-                "dark": "Dark"
-            },
-            "default_value": "dark",
+            "layout": "horizontal",
             "wrapper": {
                 "width": "50"
             }
+        },
+        {
+            "key": "field_hero_layout_style",
+            "label": "Layout Style",
+            "name": "hero_layout_style",
+            "type": "select",
+            "choices": {
+                "default": "Default",
+                "compact": "Compact"
+            },
+            "default_value": "default",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_hero_content_group",
+            "label": "Content",
+            "name": "",
+            "type": "message",
+            "message": "",
+            "new_lines": "",
+            "esc_html": 0
         },
         {
             "key": "field_hero_eyebrow",
             "label": "Eyebrow",
             "name": "hero_eyebrow",
-            "type": "text",
-            "wrapper": {
-                "width": "50"
-            }
+            "type": "text"
         },
         {
             "key": "field_hero_heading",
@@ -68,6 +82,8 @@
             "type": "repeater",
             "layout": "row",
             "button_label": "Add Button",
+            "max": 2,
+            "instructions": "Add up to 2 buttons. First button defaults to solid style, second to outline.",
             "sub_fields": [
                 {
                     "key": "field_hero_button_link",
@@ -76,20 +92,6 @@
                     "type": "link",
                     "return_format": "array",
                     "required": 1
-                },
-                {
-                    "key": "field_hero_button_style",
-                    "label": "Style",
-                    "name": "style",
-                    "type": "select",
-                    "choices": {
-                        "primary": "Primary",
-                        "secondary": "Secondary"
-                    },
-                    "wrapper": {
-                        "width": "20"
-                    },
-                    "default_value": "primary"
                 },
                 {
                     "key": "field_hero_button_style_tab",
@@ -107,30 +109,62 @@
                         "solid": "Solid",
                         "outline": "Outline"
                     },
-                    "default_value": "solid"
+                    "default_value": "solid",
+                    "instructions": "Leave blank to use smart defaults (1st button: solid, 2nd: outline)."
+                },
+                {
+                    "key": "field_hero_button_colors_group",
+                    "label": "Button Colors",
+                    "name": "",
+                    "type": "message",
+                    "message": "Leave colors blank to use smart defaults based on button position.",
+                    "new_lines": "",
+                    "esc_html": 0
                 },
                 {
                     "key": "field_hero_button_bg_color",
-                    "label": "Background Color",
+                    "label": "Background",
                     "name": "button_background_color",
                     "type": "color_picker",
-                    "instructions": "Leave blank to use the default background for the selected type."
+                    "wrapper": {
+                        "width": "33"
+                    }
                 },
                 {
                     "key": "field_hero_button_border_color",
-                    "label": "Border Color",
+                    "label": "Border",
                     "name": "button_border_color",
                     "type": "color_picker",
-                    "default_value": "#ffffff"
+                    "wrapper": {
+                        "width": "33"
+                    }
                 },
                 {
                     "key": "field_hero_button_text_color",
-                    "label": "Text Color",
+                    "label": "Text",
                     "name": "button_text_color",
                     "type": "color_picker",
-                    "default_value": "#ffffff"
+                    "wrapper": {
+                        "width": "33"
+                    }
                 }
             ]
+        },
+        {
+            "key": "field_hero_style_tab",
+            "label": "Style",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_hero_background_group",
+            "label": "Background & Overlay",
+            "name": "",
+            "type": "message",
+            "message": "",
+            "new_lines": "",
+            "esc_html": 0
         },
         {
             "key": "field_hero_background_image",
@@ -138,21 +172,66 @@
             "name": "hero_background_image",
             "type": "image",
             "return_format": "array",
-            "preview_size": "medium"
+            "preview_size": "medium",
+            "instructions": "Leave blank to use the default hero background image."
         },
         {
             "key": "field_hero_overlay_color",
             "label": "Overlay Color",
             "name": "hero_overlay_color",
-            "type": "color_picker"
+            "type": "color_picker",
+            "instructions": "Leave blank for no overlay.",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_hero_overlay_opacity",
+            "label": "Overlay Opacity",
+            "name": "hero_overlay_opacity",
+            "type": "range",
+            "default_value": 30,
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "instructions": "Set the opacity level (0-100%). Default is 30%.",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_hero_text_colors_group",
+            "label": "Text Colors",
+            "name": "",
+            "type": "message",
+            "message": "",
+            "new_lines": "",
+            "esc_html": 0
+        },
+        {
+            "key": "field_hero_text_mode",
+            "label": "Text Mode",
+            "name": "hero_text_mode",
+            "type": "select",
+            "choices": {
+                "light": "Light (white text)",
+                "dark": "Dark (navy text)"
+            },
+            "default_value": "light",
+            "instructions": "Quick preset for text color.",
+            "wrapper": {
+                "width": "50"
+            }
         },
         {
             "key": "field_hero_text_color",
-            "label": "Text Color",
+            "label": "Custom Text Color",
             "name": "hero_text_color",
             "type": "color_picker",
-            "default_value": "#ffffff",
-            "instructions": "Controls the heading and description color."
+            "instructions": "Override the text mode with a custom color.",
+            "wrapper": {
+                "width": "50"
+            }
         }
     ],
     "location": [
@@ -172,5 +251,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1762818599
+    "modified": 1762858998
 }

@@ -433,7 +433,7 @@
                                     "name": "icon_image",
                                     "type": "image",
                                     "return_format": "array",
-                                    "preview_size": "medium"
+                                    "preview_size": "thumbnail"
                                 },
                                 {
                                     "key": "field_icon_features_item_title",
@@ -485,25 +485,26 @@
                                     "type": "text"
                                 },
                                 {
-                                    "key": "field_values_icon_svg",
-                                    "label": "Icon SVG",
-                                    "name": "value_icon_svg",
-                                    "type": "textarea",
-                                    "rows": 3
-                                },
-                                {
-                                    "key": "field_values_icon_class",
-                                    "label": "Icon Class",
-                                    "name": "value_icon_class",
-                                    "type": "text"
-                                },
-                                {
                                     "key": "field_values_icon_image",
                                     "label": "Icon Image",
                                     "name": "value_icon_image",
                                     "type": "image",
                                     "return_format": "array",
-                                    "preview_size": "medium"
+                                    "preview_size": "thumbnail",
+                                    "instructions": "Upload an icon image (optional).",
+                                    "wrapper": {
+                                        "width": "50"
+                                    }
+                                },
+                                {
+                                    "key": "field_values_icon_class",
+                                    "label": "Icon Class (FontAwesome)",
+                                    "name": "value_icon_class",
+                                    "type": "text",
+                                    "instructions": "Or enter FontAwesome classes (e.g., fa-solid fa-star fa-lg).",
+                                    "wrapper": {
+                                        "width": "50"
+                                    }
                                 },
                                 {
                                     "key": "field_values_item_title",
@@ -655,7 +656,7 @@
                             "name": "testimonial_author_image",
                             "type": "image",
                             "return_format": "array",
-                            "preview_size": "medium",
+                            "preview_size": "thumbnail",
                             "wrapper": {
                                 "width": "34"
                             }
@@ -931,7 +932,7 @@
                                     "name": "image",
                                     "type": "image",
                                     "return_format": "array",
-                                    "preview_size": "medium"
+                                    "preview_size": "thumbnail"
                                 },
                                 {
                                     "key": "field_gallery_item_title",
@@ -1008,7 +1009,7 @@
                                     "name": "logo_image",
                                     "type": "image",
                                     "return_format": "array",
-                                    "preview_size": "medium"
+                                    "preview_size": "thumbnail"
                                 },
                                 {
                                     "key": "field_logo_grid_company",
@@ -1067,25 +1068,26 @@
                             "button_label": "Add Location",
                             "sub_fields": [
                                 {
-                                    "key": "field_locations_icon_svg",
-                                    "label": "Icon SVG",
-                                    "name": "location_icon_svg",
-                                    "type": "textarea",
-                                    "rows": 3
-                                },
-                                {
-                                    "key": "field_locations_icon_class",
-                                    "label": "Icon Class",
-                                    "name": "location_icon_class",
-                                    "type": "text"
-                                },
-                                {
                                     "key": "field_locations_icon_image",
                                     "label": "Icon Image",
                                     "name": "location_icon_image",
                                     "type": "image",
                                     "return_format": "array",
-                                    "preview_size": "medium"
+                                    "preview_size": "thumbnail",
+                                    "instructions": "Upload an icon image (optional).",
+                                    "wrapper": {
+                                        "width": "50"
+                                    }
+                                },
+                                {
+                                    "key": "field_locations_icon_class",
+                                    "label": "Icon Class (FontAwesome)",
+                                    "name": "location_icon_class",
+                                    "type": "text",
+                                    "instructions": "Or enter FontAwesome classes (e.g., fa-solid fa-location-dot fa-lg).",
+                                    "wrapper": {
+                                        "width": "50"
+                                    }
                                 },
                                 {
                                     "key": "field_locations_name",
@@ -1301,7 +1303,7 @@
                                     "name": "image",
                                     "type": "image",
                                     "return_format": "array",
-                                    "preview_size": "medium"
+                                    "preview_size": "thumbnail"
                                 },
                                 {
                                     "key": "field_value_cards_item_title",
@@ -1446,7 +1448,7 @@
                                     "name": "icon_image",
                                     "type": "image",
                                     "return_format": "array",
-                                    "preview_size": "medium"
+                                    "preview_size": "thumbnail"
                                 },
                                 {
                                     "key": "field_product_offerings_title_field",
@@ -1694,11 +1696,26 @@
                             "button_label": "Add Card",
                             "sub_fields": [
                                 {
-                                    "key": "field_contact_info_icon_svg",
-                                    "label": "Icon SVG",
-                                    "name": "icon_svg",
-                                    "type": "textarea",
-                                    "rows": 3
+                                    "key": "field_contact_info_icon_image",
+                                    "label": "Icon Image",
+                                    "name": "icon_image",
+                                    "type": "image",
+                                    "return_format": "array",
+                                    "preview_size": "thumbnail",
+                                    "instructions": "Upload an icon image (optional).",
+                                    "wrapper": {
+                                        "width": "50"
+                                    }
+                                },
+                                {
+                                    "key": "field_contact_info_icon_class",
+                                    "label": "Icon Class (FontAwesome)",
+                                    "name": "icon_class",
+                                    "type": "text",
+                                    "instructions": "Or enter FontAwesome classes (e.g., fa-solid fa-envelope fa-lg).",
+                                    "wrapper": {
+                                        "width": "50"
+                                    }
                                 },
                                 {
                                     "key": "field_contact_info_title_text",
@@ -1712,12 +1729,6 @@
                                     "name": "body",
                                     "type": "textarea",
                                     "rows": 4
-                                },
-                                {
-                                    "key": "field_contact_info_icon_class",
-                                    "label": "Icon Class",
-                                    "name": "icon_class",
-                                    "type": "text"
                                 }
                             ]
                         }
@@ -1774,5 +1785,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1762858762
+    "modified": 1762862469
 }

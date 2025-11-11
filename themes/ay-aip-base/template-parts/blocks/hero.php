@@ -1,19 +1,34 @@
 <?php
-$eyebrow    = ay_aip_base_get_block_field( 'hero_eyebrow' );
-$title      = ay_aip_base_get_block_field( 'hero_heading' );
-$subhead    = ay_aip_base_get_block_field( 'hero_subheading' );
-$buttons    = ay_aip_base_get_block_field( 'hero_buttons' );
-$bg_image   = ay_aip_base_get_block_field( 'hero_background_image' );
-$overlay    = ay_aip_base_get_block_field( 'hero_overlay_color' );
-$variant    = ay_aip_base_get_block_field( 'hero_variant', 'large' );
-$layout     = ay_aip_base_get_block_field( 'hero_layout_style', 'default' );
-$text_mode  = ay_aip_base_get_block_field( 'hero_text_mode', 'dark' );
-$text_color = ay_aip_base_get_block_field( 'hero_text_color' );
+$eyebrow         = ay_aip_base_get_block_field( 'hero_eyebrow' );
+$title           = ay_aip_base_get_block_field( 'hero_heading' );
+$subhead         = ay_aip_base_get_block_field( 'hero_subheading' );
+$buttons         = ay_aip_base_get_block_field( 'hero_buttons' );
+$bg_image        = ay_aip_base_get_block_field( 'hero_background_image' );
+$overlay_color   = ay_aip_base_get_block_field( 'hero_overlay_color' );
+$overlay_opacity = ay_aip_base_get_block_field( 'hero_overlay_opacity' );
+$variant         = ay_aip_base_get_block_field( 'hero_variant', 'large' );
+$layout          = ay_aip_base_get_block_field( 'hero_layout_style', 'default' );
+$text_mode       = ay_aip_base_get_block_field( 'hero_text_mode', 'light' );
+$text_color      = ay_aip_base_get_block_field( 'hero_text_color' );
 
 if ( ! $text_color ) {
     $text_color = ( 'light' === $text_mode ) ? '#ffffff' : ay_aip_base_get_heading_color();
 }
 $text_color_attr = $text_color ? ' style="color:' . esc_attr( $text_color ) . ';"' : '';
+
+// Build overlay style
+$overlay_style = '';
+if ( $overlay_color ) {
+    if ( ! $overlay_opacity ) {
+        $overlay_opacity = 30;
+    }
+    if ( function_exists( 'ay_aip_base_hex_to_rgba' ) ) {
+        $overlay_rgba = ay_aip_base_hex_to_rgba( $overlay_color, $overlay_opacity / 100 );
+        $overlay_style = 'background:' . esc_attr( $overlay_rgba ) . ';';
+    } else {
+        $overlay_style = 'background:' . esc_attr( $overlay_color ) . ';';
+    }
+}
 
 if ( ! $bg_image ) {
     $bg_image = [
@@ -38,7 +53,7 @@ $show_buttons = ( 'small' !== $variant ) && $buttons;
     <div class="hero-background">
         <?php echo $bg_markup; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
     </div>
-    <div class="hero-overlay" style="<?php echo $overlay ? 'background:' . esc_attr( $overlay ) . ';' : ''; ?>"></div>
+    <div class="hero-overlay" style="<?php echo esc_attr( $overlay_style ); ?>"></div>
     <div class="hero-content">
         <div class="container">
             <div class="row justify-content-center">

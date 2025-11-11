@@ -2,18 +2,107 @@
     "key": "group_block_team_grid",
     "title": "Block: Team Grid",
     "fields": [
-        {"key":"field_team_section_title","label":"Section Title","name":"team_section_title","type":"text"},
-        {"key":"field_team_section_subtitle","label":"Section Subtitle","name":"team_section_subtitle","type":"textarea","rows":2},
-        {"key":"field_team_background","label":"Background","name":"team_background","type":"select","choices":{"white":"White","light":"Light Gray"},"default_value":"white"},
-        {"key":"field_team_members","label":"Team Members","name":"team_members","type":"repeater","layout":"block","button_label":"Add Member","sub_fields":[
-            {"key":"field_team_photo","label":"Photo","name":"photo","type":"image","return_format":"array","preview_size":"medium","wrapper":{"width":"30"}},
-            {"key":"field_team_name","label":"Name","name":"name","type":"text","wrapper":{"width":"35"}},
-            {"key":"field_team_title","label":"Title","name":"title","type":"text","wrapper":{"width":"35"}},
-            {"key":"field_team_bio","label":"Bio","name":"bio","type":"textarea","rows":3},
-            {"key":"field_team_linkedin","label":"LinkedIn URL","name":"linkedin","type":"url"}
-        ]}
+        {
+            "key": "field_team_content_tab",
+            "label": "Content",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_team_section_title",
+            "label": "Section Title",
+            "name": "team_section_title",
+            "type": "text"
+        },
+        {
+            "key": "field_team_section_subtitle",
+            "label": "Section Subtitle",
+            "name": "team_section_subtitle",
+            "type": "textarea",
+            "rows": 2
+        },
+        {
+            "key": "field_team_members",
+            "label": "Team Members",
+            "name": "team_members",
+            "type": "repeater",
+            "layout": "block",
+            "button_label": "Add Member",
+            "sub_fields": [
+                {
+                    "key": "field_team_photo",
+                    "label": "Photo",
+                    "name": "photo",
+                    "type": "image",
+                    "return_format": "array",
+                    "preview_size": "thumbnail"
+                },
+                {
+                    "key": "field_team_name",
+                    "label": "Name",
+                    "name": "name",
+                    "type": "text",
+                    "wrapper": {
+                        "width": "50"
+                    }
+                },
+                {
+                    "key": "field_team_title",
+                    "label": "Title",
+                    "name": "title",
+                    "type": "text",
+                    "wrapper": {
+                        "width": "50"
+                    }
+                },
+                {
+                    "key": "field_team_bio",
+                    "label": "Bio",
+                    "name": "bio",
+                    "type": "textarea",
+                    "rows": 3
+                },
+                {
+                    "key": "field_team_linkedin",
+                    "label": "LinkedIn URL",
+                    "name": "linkedin",
+                    "type": "url"
+                }
+            ]
+        },
+        {
+            "key": "field_team_style_tab",
+            "label": "Style",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_team_background",
+            "label": "Background Color",
+            "name": "team_background",
+            "type": "select",
+            "choices": {
+                "white": "White",
+                "light": "Light Gray",
+                "navy": "Navy"
+            },
+            "default_value": "white",
+            "wrapper": {
+                "width": "50"
+            }
+        }
     ],
-    "location": [[{"param":"block","operator":"==","value":"acf/team-grid"}]],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/team-grid"
+            }
+        ]
+    ],
     "menu_order": 0,
     "position": "normal",
     "style": "default",
@@ -22,5 +111,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1735739006
+    "modified": 1762858998
 }
