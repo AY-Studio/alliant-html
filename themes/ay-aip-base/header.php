@@ -14,7 +14,14 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
         <div class="navbar-brand">
-            <?php if ( has_custom_logo() ) : ?>
+            <?php
+            $header_logo = ay_aip_base_get_header_logo( get_template_directory_uri() . '/img/alliant-logo-header.svg' );
+            if ( $header_logo ) :
+                ?>
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="navbar-brand__image">
+                    <img src="<?php echo esc_url( $header_logo['url'] ); ?>" alt="<?php echo esc_attr( $header_logo['alt'] ?? get_bloginfo( 'name' ) ); ?>" width="235" height="50">
+                </a>
+            <?php elseif ( has_custom_logo() ) : ?>
                 <?php the_custom_logo(); ?>
             <?php else : ?>
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="navbar-brand__image">

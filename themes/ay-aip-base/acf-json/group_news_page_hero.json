@@ -1,0 +1,80 @@
+{
+    "key": "group_news_page_hero",
+    "title": "News Page Hero",
+    "fields": [
+        {
+            "key": "field_news_hero_heading",
+            "label": "Heading",
+            "name": "news_hero_heading",
+            "type": "text",
+            "default_value": "News & Insights"
+        },
+        {
+            "key": "field_news_hero_subheading",
+            "label": "Subheading",
+            "name": "news_hero_subheading",
+            "type": "textarea",
+            "rows": 3,
+            "default_value": "Discover the latest news, announcements, insights, and updates from the AIP Capital and Alliant AirFinance team."
+        },
+        {
+            "key": "field_news_hero_background_image",
+            "label": "Background Image",
+            "name": "news_hero_background_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "instructions": "Upload a background image for the hero section."
+        },
+        {
+            "key": "field_news_hero_overlay_color",
+            "label": "Overlay Color",
+            "name": "news_hero_overlay_color",
+            "type": "color_picker",
+            "default_value": "#223a69",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_news_hero_overlay_opacity",
+            "label": "Overlay Opacity",
+            "name": "news_hero_overlay_opacity",
+            "type": "range",
+            "default_value": 70,
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "instructions": "Set the opacity level (0-100%). Default is 70%.",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_news_hero_text_color",
+            "label": "Text Color",
+            "name": "news_hero_text_color",
+            "type": "color_picker",
+            "default_value": "#ffffff",
+            "instructions": "Controls the heading and subheading color."
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_type",
+                "operator": "==",
+                "value": "posts_page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Configure the hero section for the News & Insights page.",
+    "modified": 1762818599
+}

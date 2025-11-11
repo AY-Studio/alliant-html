@@ -19,6 +19,19 @@
 @import 'forms';
 @import 'blocks';
 
+:root {
+  --ay-color-primary: #1f3a63;
+  --ay-color-accent: #4a7dff;
+  --ay-color-heading: #111827;
+  --ay-color-body: #223a69;
+  --ay-color-background: #ffffff;
+  --ay-card-background: #223a69;
+  --ay-card-text: #ffffff;
+  --ay-news-card-background: #ffffff;
+  --ay-news-card-text: #223a69;
+  --ay-nav-background: #223a69;
+}
+
 // 4. Additional global styles
 html,
 body {
@@ -27,7 +40,7 @@ body {
 
 body {
   font-family: $font-family-sans-serif;
-  color: $body-color;
+  color: var(--ay-color-body, $body-color);
   overflow-x: hidden;
 }
 
@@ -66,4 +79,12 @@ html.is-animating .transition-fade {
 
 html.is-animating {
   background-color: $alliant-navy;
+}
+
+.card-title {
+  color: var(--ay-color-heading, $alliant-navy);
+}
+
+.card-text {
+  color: var(--ay-color-body, $body-color);
 }

@@ -1,18 +1,31 @@
 <?php
-$background = ay_aip_base_get_block_field( 'value_cards_background', 'white' );
-$title      = ay_aip_base_get_block_field( 'value_cards_title' );
-$subtitle   = ay_aip_base_get_block_field( 'value_cards_subtitle' );
-$cards      = ay_aip_base_get_block_field( 'value_cards_cards', [] );
-$cta_label  = ay_aip_base_get_block_field( 'value_cards_button_label' );
-$cta_url    = ay_aip_base_get_block_field( 'value_cards_button_url' );
+$background        = ay_aip_base_get_block_field( 'value_cards_background', 'white' );
+$show_pattern      = ay_aip_base_get_block_field( 'value_cards_show_pattern', true );
+$pattern_position  = ay_aip_base_get_block_field( 'value_cards_pattern_position', 'top-right' );
+$title             = ay_aip_base_get_block_field( 'value_cards_title' );
+$subtitle          = ay_aip_base_get_block_field( 'value_cards_subtitle' );
+$cards             = ay_aip_base_get_block_field( 'value_cards_cards', [] );
+$cta_label         = ay_aip_base_get_block_field( 'value_cards_button_label' );
+$cta_url           = ay_aip_base_get_block_field( 'value_cards_button_url' );
 
+// Determine section class based on background
 $section_class = 'section section-white';
-if ( 'navy' === $background ) {
+if ( 'light' === $background ) {
+    $section_class = 'section section-light';
+} elseif ( 'navy' === $background ) {
     $section_class = 'section group-navy';
+}
+
+// Build pattern class if pattern is enabled
+$pattern_class = '';
+if ( $show_pattern ) {
+    $pattern_class = 'diagonal-lines pattern-' . esc_attr( $pattern_position );
 }
 ?>
 <section class="<?php echo esc_attr( $section_class ); ?>">
-    <div class="diagonal-lines"></div>
+    <?php if ( $show_pattern ) : ?>
+        <div class="<?php echo esc_attr( $pattern_class ); ?>"></div>
+    <?php endif; ?>
     <div class="container">
         <?php if ( $title || $subtitle ) : ?>
             <div class="row">

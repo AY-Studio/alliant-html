@@ -5,14 +5,58 @@
 
 global $wp_query;
 
+// Get the posts page ID
+$posts_page_id = get_option( 'page_for_posts' );
+
+// Get hero fields
+$heading           = get_field( 'news_hero_heading', $posts_page_id );
+$subheading        = get_field( 'news_hero_subheading', $posts_page_id );
+$background_image  = get_field( 'news_hero_background_image', $posts_page_id );
+$overlay_color     = get_field( 'news_hero_overlay_color', $posts_page_id );
+$overlay_opacity   = get_field( 'news_hero_overlay_opacity', $posts_page_id );
+$text_color        = get_field( 'news_hero_text_color', $posts_page_id );
+
+// Set defaults
+if ( ! $heading ) {
+    $heading = __( 'News & Insights', 'ay-aip-base' );
+}
+if ( ! $subheading ) {
+    $subheading = __( 'Discover the latest news, announcements, insights, and updates from the AIP Capital and Alliant AirFinance team.', 'ay-aip-base' );
+}
+if ( ! $overlay_color ) {
+    $overlay_color = '#223a69';
+}
+if ( ! $overlay_opacity ) {
+    $overlay_opacity = 70;
+}
+if ( ! $text_color ) {
+    $text_color = '#ffffff';
+}
+
+// Get background image URL
+$bg_image_url = '';
+if ( $background_image && is_array( $background_image ) && ! empty( $background_image['url'] ) ) {
+    $bg_image_url = $background_image['url'];
+} else {
+    $bg_image_url = get_template_directory_uri() . '/img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg';
+}
+
+// Convert overlay color to rgba
+if ( function_exists( 'ay_aip_base_hex_to_rgba' ) ) {
+    $overlay_rgba = ay_aip_base_hex_to_rgba( $overlay_color, $overlay_opacity / 100 );
+} else {
+    $overlay_rgba = 'rgba(34, 58, 105, 0.7)';
+}
+
 get_header();
 ?>
-<section class="hero-section">
-    <div class="container">
+<section class="hero-section position-relative" style="background-image: url('<?php echo esc_url( $bg_image_url ); ?>'); background-size: cover; background-position: center; min-height: 400px; display: flex; align-items: center;">
+    <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: <?php echo esc_attr( $overlay_rgba ); ?>;"></div>
+    <div class="container position-relative" style="z-index: 2;">
         <div class="row">
-            <div class="col-12">
-                <h1><?php esc_html_e( 'News & Insights', 'ay-aip-base' ); ?></h1>
-                <p class="lead"><?php esc_html_e( 'Discover the latest news, announcements, insights, and updates from the AIP Capital and Alliant AirFinance team.', 'ay-aip-base' ); ?></p>
+            <div class="col-12 text-center">
+                <h1 class="display-4 fw-bold mb-3" style="color: <?php echo esc_attr( $text_color ); ?>;"><?php echo esc_html( $heading ); ?></h1>
+                <p class="lead" style="color: <?php echo esc_attr( $text_color ); ?>; max-width: 800px; margin: 0 auto;"><?php echo esc_html( $subheading ); ?></p>
             </div>
         </div>
     </div>

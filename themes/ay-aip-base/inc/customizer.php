@@ -99,14 +99,36 @@ add_action( 'wp_head', 'ay_aip_base_print_theme_tokens', 20 );
 function ay_aip_base_print_theme_tokens() {
     $typography     = ay_aip_base_get_typography_settings();
     $nav_background = ay_aip_base_get_nav_background_color();
+    $primary_color  = ay_aip_base_get_primary_color();
+    $accent_color   = ay_aip_base_get_accent_color();
+    $heading_color  = ay_aip_base_get_heading_color();
+    $body_color     = ay_aip_base_get_body_color();
+    $card_background = ay_aip_base_get_card_background_color();
+    $card_text       = ay_aip_base_get_card_text_color();
+    $news_card_background = ay_aip_base_get_news_card_background_color();
+    $news_card_text       = ay_aip_base_get_news_card_text_color();
+    $body_rgb       = ay_aip_base_hex_to_rgb_components( $body_color, '34, 58, 105' );
+    $accent_rgb     = ay_aip_base_hex_to_rgb_components( $accent_color, '74, 125, 255' );
+    $primary_rgb    = ay_aip_base_hex_to_rgb_components( $primary_color, '34, 58, 105' );
 
     $tokens = [
-        '--ay-color-primary'    => get_theme_mod( 'ay_aip_base_primary_color', '#1f3a63' ),
-        '--ay-color-accent'     => get_theme_mod( 'ay_aip_base_accent_color', '#4a7dff' ),
-        '--ay-color-heading'    => get_theme_mod( 'ay_aip_base_heading_color', '#111827' ),
-        '--ay-color-body'       => get_theme_mod( 'ay_aip_base_body_color', '#4b5563' ),
-        '--ay-color-background' => get_theme_mod( 'ay_aip_base_background_color', '#ffffff' ),
-        '--ay-nav-background'   => $nav_background,
+        '--ay-color-primary'         => $primary_color,
+        '--ay-color-accent'          => $accent_color,
+        '--ay-color-heading'         => $heading_color,
+        '--ay-color-body'            => $body_color,
+        '--ay-color-background'      => get_theme_mod( 'ay_aip_base_background_color', '#ffffff' ),
+        '--ay-card-background'       => $card_background,
+        '--ay-card-text'             => $card_text,
+        '--ay-news-card-background'  => $news_card_background,
+        '--ay-news-card-text'        => $news_card_text,
+        '--ay-nav-background'        => $nav_background,
+        '--bs-body-color'            => $body_color,
+        '--bs-body-color-rgb'        => $body_rgb,
+        '--bs-heading-color'         => $heading_color,
+        '--bs-link-color'            => $accent_color,
+        '--bs-link-color-rgb'        => $accent_rgb,
+        '--bs-link-hover-color'      => $primary_color,
+        '--bs-link-hover-color-rgb'  => $primary_rgb,
     ];
 
     foreach ( $typography as $key => $data ) {
@@ -161,8 +183,22 @@ function ay_aip_base_print_theme_tokens() {
     $font_rules[] = '@media (min-width:768px){.page-section .page-title{font-size:2.5rem !important;}}';
     $font_rules[] = '.page-section .page-content h2,.page-section .page-content .h2{font-size:1.75rem !important;}';
 
+    $color_rules = [];
+    $color_rules[] = 'body{color:var(--ay-color-body);}';
+    $color_rules[] = '.footer, .footer-nav__link{color:var(--ay-color-body);}';
+    $color_rules[] = 'h1,h2,h3,h4,h5,h6,.section-title{color:var(--ay-color-heading);}';
+    $color_rules[] = '.value-card,.value-card .card-overlay{background-color:var(--ay-card-background);color:var(--ay-card-text);}';
+    $color_rules[] = '.value-card .card-title,.value-card .card-text{color:var(--ay-card-text);}';
+    $color_rules[] = '.news-card{background-color:var(--ay-news-card-background);color:var(--ay-news-card-text);}';
+    $color_rules[] = '.news-card .card-title,.news-card .card-text,.news-card .read-more,.news-card .news-date{color:var(--ay-news-card-text);}';
+    $color_rules[] = '.btn-primary,.hero-section .btn{background-color:var(--ay-color-primary);border-color:var(--ay-color-primary);color:#fff;}';
+    $color_rules[] = '.btn-outline-primary{border-color:var(--ay-color-primary);color:var(--ay-color-primary);}';
+    $color_rules[] = '.btn-outline-primary:hover{background-color:var(--ay-color-primary);border-color:var(--ay-color-primary);color:#fff;}';
+    $color_rules[] = '.link, a{color:var(--ay-color-accent);}';
+
     echo "<style id='ay-aip-base-font-overrides'>" . implode( '', $font_rules ) . '</style>';
     echo "<style id='ay-aip-base-nav-style'>.navbar{background-color:var(--ay-nav-background);}html.is-animating{background-color:var(--ay-nav-background);}</style>";
+    echo "<style id='ay-aip-base-color-overrides'>" . implode( '', $color_rules ) . '</style>';
 }
 
 add_action( 'customize_controls_enqueue_scripts', 'ay_aip_base_customize_assets' );

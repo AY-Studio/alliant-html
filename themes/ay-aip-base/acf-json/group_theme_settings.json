@@ -11,6 +11,30 @@
             "endpoint": 0
         },
         {
+            "key": "field_theme_header_logo",
+            "label": "Header Logo",
+            "name": "theme_header_logo",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "instructions": "Upload the primary navigation logo.",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_theme_footer_logo",
+            "label": "Footer Logo",
+            "name": "theme_footer_logo",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "instructions": "Upload the footer logo.",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
             "key": "field_theme_primary_color",
             "label": "Primary Color",
             "name": "theme_primary_color",
@@ -28,6 +52,56 @@
             "key": "field_theme_nav_background",
             "label": "Navigation Background",
             "name": "theme_nav_background",
+            "type": "color_picker",
+            "default_value": "#223a69"
+        },
+        {
+            "key": "field_theme_heading_color",
+            "label": "Heading Color",
+            "name": "theme_heading_color",
+            "type": "color_picker",
+            "default_value": "#111827"
+        },
+        {
+            "key": "field_theme_body_color",
+            "label": "Body Text Color",
+            "name": "theme_body_color",
+            "type": "color_picker",
+            "default_value": "#4b5563"
+        },
+        {
+            "key": "field_theme_card_bg",
+            "label": "Card Background",
+            "name": "theme_card_background",
+            "type": "color_picker",
+            "default_value": "#ffffff"
+        },
+        {
+            "key": "field_theme_card_text",
+            "label": "Card Text Color",
+            "name": "theme_card_text",
+            "type": "color_picker",
+            "default_value": "#223a69"
+        },
+        {
+            "key": "field_theme_news_cards_tab",
+            "label": "News Cards",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_theme_news_card_bg",
+            "label": "News Card Background",
+            "name": "theme_news_card_background",
+            "type": "color_picker",
+            "default_value": "#ffffff"
+        },
+        {
+            "key": "field_theme_news_card_text",
+            "label": "News Card Text Color",
+            "name": "theme_news_card_text",
             "type": "color_picker",
             "default_value": "#223a69"
         },
@@ -386,5 +460,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1733273100
+    "modified": 1762818599
 }

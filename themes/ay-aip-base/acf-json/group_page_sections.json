@@ -36,6 +36,13 @@
                     "display": "block",
                     "sub_fields": [
                         {
+                            "key": "field_hero_section_content_tab",
+                            "label": "Content",
+                            "name": "",
+                            "type": "tab",
+                            "placement": "top"
+                        },
+                        {
                             "key": "field_hero_section_heading",
                             "label": "Heading",
                             "name": "hero_section_heading",
@@ -56,6 +63,159 @@
                             "return_format": "array",
                             "wrapper": {
                                 "width": ""
+                            }
+                        },
+                        {
+                            "key": "field_hero_section_text_color",
+                            "label": "Text Color",
+                            "name": "hero_section_text_color",
+                            "type": "color_picker",
+                            "default_value": "#ffffff",
+                            "instructions": "Controls the heading and lead copy color."
+                        },
+                        {
+                            "key": "field_hero_section_style_tab",
+                            "label": "Style",
+                            "name": "",
+                            "type": "tab",
+                            "placement": "top"
+                        },
+                        {
+                            "key": "field_hero_section_background_group",
+                            "label": "Background & Overlay",
+                            "name": "",
+                            "type": "message",
+                            "message": "",
+                            "new_lines": "",
+                            "esc_html": 0
+                        },
+                        {
+                            "key": "field_hero_section_background_image",
+                            "label": "Background Image",
+                            "name": "hero_section_background_image",
+                            "type": "image",
+                            "return_format": "array",
+                            "preview_size": "medium",
+                            "instructions": "Leave blank to use the default background image."
+                        },
+                        {
+                            "key": "field_hero_section_overlay_color",
+                            "label": "Overlay Color",
+                            "name": "hero_section_overlay_color",
+                            "type": "color_picker",
+                            "instructions": "Leave blank to use the default overlay color (navy).",
+                            "wrapper": {
+                                "width": "50"
+                            }
+                        },
+                        {
+                            "key": "field_hero_section_overlay_opacity",
+                            "label": "Overlay Opacity",
+                            "name": "hero_section_overlay_opacity",
+                            "type": "range",
+                            "default_value": 70,
+                            "min": 0,
+                            "max": 100,
+                            "step": 5,
+                            "instructions": "Set the opacity level (0-100%). Default is 70%.",
+                            "wrapper": {
+                                "width": "50"
+                            }
+                        },
+                        {
+                            "key": "field_hero_section_button_group",
+                            "label": "Button Styling",
+                            "name": "",
+                            "type": "message",
+                            "message": "",
+                            "new_lines": "",
+                            "esc_html": 0
+                        },
+                        {
+                            "key": "field_hero_section_button_type",
+                            "label": "Button Type",
+                            "name": "hero_section_button_style_type",
+                            "type": "select",
+                            "choices": {
+                                "solid": "Solid",
+                                "outline": "Outline"
+                            },
+                            "default_value": "outline"
+                        },
+                        {
+                            "key": "field_hero_section_button_normal_group",
+                            "label": "Normal State",
+                            "name": "",
+                            "type": "message",
+                            "message": "",
+                            "new_lines": "",
+                            "esc_html": 0
+                        },
+                        {
+                            "key": "field_hero_section_button_bg",
+                            "label": "Background",
+                            "name": "hero_section_button_background_color",
+                            "type": "color_picker",
+                            "instructions": "Leave blank for transparent (outline style).",
+                            "wrapper": {
+                                "width": "33"
+                            }
+                        },
+                        {
+                            "key": "field_hero_section_button_border",
+                            "label": "Border",
+                            "name": "hero_section_button_border_color",
+                            "type": "color_picker",
+                            "default_value": "#ffffff",
+                            "wrapper": {
+                                "width": "33"
+                            }
+                        },
+                        {
+                            "key": "field_hero_section_button_text",
+                            "label": "Text",
+                            "name": "hero_section_button_text_color",
+                            "type": "color_picker",
+                            "default_value": "#ffffff",
+                            "wrapper": {
+                                "width": "33"
+                            }
+                        },
+                        {
+                            "key": "field_hero_section_button_hover_group",
+                            "label": "Hover State",
+                            "name": "",
+                            "type": "message",
+                            "message": "",
+                            "new_lines": "",
+                            "esc_html": 0
+                        },
+                        {
+                            "key": "field_hero_section_button_hover_bg",
+                            "label": "Background (Hover)",
+                            "name": "hero_section_button_hover_background_color",
+                            "type": "color_picker",
+                            "instructions": "Leave blank to use default hover effect.",
+                            "wrapper": {
+                                "width": "33"
+                            }
+                        },
+                        {
+                            "key": "field_hero_section_button_hover_border",
+                            "label": "Border (Hover)",
+                            "name": "hero_section_button_hover_border_color",
+                            "type": "color_picker",
+                            "wrapper": {
+                                "width": "33"
+                            }
+                        },
+                        {
+                            "key": "field_hero_section_button_hover_text",
+                            "label": "Text (Hover)",
+                            "name": "hero_section_button_hover_text_color",
+                            "type": "color_picker",
+                            "wrapper": {
+                                "width": "33"
                             }
                         }
                     ]
@@ -1108,18 +1268,11 @@
                     "display": "block",
                     "sub_fields": [
                         {
-                            "key": "field_value_cards_background",
-                            "label": "Background",
-                            "name": "value_cards_background",
-                            "type": "select",
-                            "choices": {
-                                "white": "White",
-                                "navy": "Navy"
-                            },
-                            "default_value": "white",
-                            "wrapper": {
-                                "width": "30"
-                            }
+                            "key": "field_value_cards_content_tab",
+                            "label": "Content",
+                            "name": "",
+                            "type": "tab",
+                            "placement": "top"
                         },
                         {
                             "key": "field_value_cards_title",
@@ -1182,6 +1335,74 @@
                             "wrapper": {
                                 "width": "50"
                             }
+                        },
+                        {
+                            "key": "field_value_cards_style_tab",
+                            "label": "Style",
+                            "name": "",
+                            "type": "tab",
+                            "placement": "top"
+                        },
+                        {
+                            "key": "field_value_cards_background_group",
+                            "label": "Background & Pattern",
+                            "name": "",
+                            "type": "message",
+                            "message": "",
+                            "new_lines": "",
+                            "esc_html": 0
+                        },
+                        {
+                            "key": "field_value_cards_background",
+                            "label": "Background Color",
+                            "name": "value_cards_background",
+                            "type": "select",
+                            "choices": {
+                                "white": "White",
+                                "light": "Light Grey",
+                                "navy": "Navy"
+                            },
+                            "default_value": "white",
+                            "wrapper": {
+                                "width": "50"
+                            }
+                        },
+                        {
+                            "key": "field_value_cards_show_pattern",
+                            "label": "Show Diagonal Pattern",
+                            "name": "value_cards_show_pattern",
+                            "type": "true_false",
+                            "ui": 1,
+                            "default_value": 1,
+                            "instructions": "Toggle the decorative diagonal lines pattern.",
+                            "wrapper": {
+                                "width": "50"
+                            }
+                        },
+                        {
+                            "key": "field_value_cards_pattern_position",
+                            "label": "Pattern Position",
+                            "name": "value_cards_pattern_position",
+                            "type": "select",
+                            "choices": {
+                                "top-right": "Top Right",
+                                "top-left": "Top Left",
+                                "bottom-right": "Bottom Right",
+                                "bottom-left": "Bottom Left"
+                            },
+                            "default_value": "top-right",
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_value_cards_show_pattern",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50"
+                            }
                         }
                     ]
                 },
@@ -1192,18 +1413,11 @@
                     "display": "block",
                     "sub_fields": [
                         {
-                            "key": "field_product_offerings_theme",
-                            "label": "Section Theme",
-                            "name": "product_offerings_theme",
-                            "type": "select",
-                            "choices": {
-                                "grey": "Grey",
-                                "navy": "Navy"
-                            },
-                            "default_value": "grey",
-                            "wrapper": {
-                                "width": "30"
-                            }
+                            "key": "field_product_offerings_content_tab",
+                            "label": "Content",
+                            "name": "",
+                            "type": "tab",
+                            "placement": "top"
                         },
                         {
                             "key": "field_product_offerings_title",
@@ -1227,19 +1441,6 @@
                             "button_label": "Add Card",
                             "sub_fields": [
                                 {
-                                    "key": "field_product_offerings_icon_svg",
-                                    "label": "Icon SVG",
-                                    "name": "icon_svg",
-                                    "type": "textarea",
-                                    "rows": 3
-                                },
-                                {
-                                    "key": "field_product_offerings_icon_class",
-                                    "label": "Icon Class",
-                                    "name": "icon_class",
-                                    "type": "text"
-                                },
-                                {
                                     "key": "field_product_offerings_icon_image",
                                     "label": "Icon Image",
                                     "name": "icon_image",
@@ -1261,6 +1462,75 @@
                                     "rows": 3
                                 }
                             ]
+                        },
+                        {
+                            "key": "field_product_offerings_style_tab",
+                            "label": "Style",
+                            "name": "",
+                            "type": "tab",
+                            "placement": "top"
+                        },
+                        {
+                            "key": "field_product_offerings_background_group",
+                            "label": "Background & Pattern",
+                            "name": "",
+                            "type": "message",
+                            "message": "",
+                            "new_lines": "",
+                            "esc_html": 0
+                        },
+                        {
+                            "key": "field_product_offerings_theme",
+                            "label": "Background Color",
+                            "name": "product_offerings_theme",
+                            "type": "select",
+                            "choices": {
+                                "white": "White",
+                                "light": "Light Grey",
+                                "grey": "Grey",
+                                "navy": "Navy"
+                            },
+                            "default_value": "grey",
+                            "wrapper": {
+                                "width": "50"
+                            }
+                        },
+                        {
+                            "key": "field_product_offerings_show_pattern",
+                            "label": "Show Diagonal Pattern",
+                            "name": "product_offerings_show_pattern",
+                            "type": "true_false",
+                            "ui": 1,
+                            "default_value": 1,
+                            "instructions": "Toggle the decorative diagonal lines pattern.",
+                            "wrapper": {
+                                "width": "50"
+                            }
+                        },
+                        {
+                            "key": "field_product_offerings_pattern_position",
+                            "label": "Pattern Position",
+                            "name": "product_offerings_pattern_position",
+                            "type": "select",
+                            "choices": {
+                                "top-right": "Top Right",
+                                "top-left": "Top Left",
+                                "bottom-right": "Bottom Right",
+                                "bottom-left": "Bottom Left"
+                            },
+                            "default_value": "top-right",
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_product_offerings_show_pattern",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50"
+                            }
                         }
                     ]
                 },
@@ -1423,5 +1693,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1762729111
+    "modified": 1762818599
 }

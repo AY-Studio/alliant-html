@@ -1,16 +1,31 @@
 <?php
-$theme    = ay_aip_base_get_block_field( 'product_offerings_theme', 'grey' );
-$title    = ay_aip_base_get_block_field( 'product_offerings_title' );
-$subtitle = ay_aip_base_get_block_field( 'product_offerings_subtitle' );
-$items    = ay_aip_base_get_block_field( 'product_offerings_items', [] );
+$theme             = ay_aip_base_get_block_field( 'product_offerings_theme', 'grey' );
+$show_pattern      = ay_aip_base_get_block_field( 'product_offerings_show_pattern', true );
+$pattern_position  = ay_aip_base_get_block_field( 'product_offerings_pattern_position', 'top-right' );
+$title             = ay_aip_base_get_block_field( 'product_offerings_title' );
+$subtitle          = ay_aip_base_get_block_field( 'product_offerings_subtitle' );
+$items             = ay_aip_base_get_block_field( 'product_offerings_items', [] );
 
+// Determine section class based on background
 $section_class = 'section group-grey product-offerings';
-if ( 'navy' === $theme ) {
+if ( 'white' === $theme ) {
+    $section_class = 'section section-white product-offerings';
+} elseif ( 'light' === $theme ) {
+    $section_class = 'section section-light product-offerings';
+} elseif ( 'navy' === $theme ) {
     $section_class = 'section group-navy product-offerings';
+}
+
+// Build pattern class if pattern is enabled
+$pattern_class = '';
+if ( $show_pattern ) {
+    $pattern_class = 'diagonal-lines pattern-' . esc_attr( $pattern_position );
 }
 ?>
 <section class="<?php echo esc_attr( $section_class ); ?>">
-    <div class="diagonal-lines"></div>
+    <?php if ( $show_pattern ) : ?>
+        <div class="<?php echo esc_attr( $pattern_class ); ?>"></div>
+    <?php endif; ?>
     <div class="container">
         <?php if ( $title || $subtitle ) : ?>
             <div class="row">
@@ -33,6 +48,8 @@ if ( 'navy' === $theme ) {
                 foreach ( $items as $item ) :
                     $delay = $delay_cycle[ $index % count( $delay_cycle ) ];
                     $icon_markup = '';
+
+                    // Get icon image
                     if ( ! empty( $item['icon_image'] ) ) {
                         $icon_id = is_array( $item['icon_image'] ) && isset( $item['icon_image']['ID'] ) ? $item['icon_image']['ID'] : $item['icon_image'];
                         $icon_id = absint( $icon_id );
@@ -47,23 +64,9 @@ if ( 'navy' === $theme ) {
                                 ]
                             );
                         }
-                    } elseif ( ! empty( $item['icon_image_url'] ) ) {
-                        $icon_markup = sprintf(
-                            '<img src="%s" alt="%s">',
-                            esc_url( $item['icon_image_url'] ),
-                            esc_attr( $item['title'] ?? '' )
-                        );
                     }
-                    if ( ! $icon_markup ) {
-                        $icon_markup = ay_aip_base_get_icon_markup(
-                            $item,
-                            [
-                                'svg'   => 'icon_svg',
-                                'image' => 'icon_image',
-                                'class' => 'icon_class',
-                            ]
-                        );
-                    }
+
+                    // Fallback to default icon if none provided
                     if ( ! $icon_markup ) {
                         $fallback = ay_aip_base_get_theme_asset_url( 'img/ico/bridge.svg' );
                         $icon_markup = '<img src="' . esc_url( $fallback ) . '" alt="' . esc_attr__( 'Product icon', 'ay-aip-base' ) . '" class="img-fluid">';

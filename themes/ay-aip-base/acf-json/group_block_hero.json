@@ -90,6 +90,45 @@
                         "width": "20"
                     },
                     "default_value": "primary"
+                },
+                {
+                    "key": "field_hero_button_style_tab",
+                    "label": "Style",
+                    "name": "",
+                    "type": "tab",
+                    "placement": "top"
+                },
+                {
+                    "key": "field_hero_button_type",
+                    "label": "Button Type",
+                    "name": "button_style_type",
+                    "type": "select",
+                    "choices": {
+                        "solid": "Solid",
+                        "outline": "Outline"
+                    },
+                    "default_value": "solid"
+                },
+                {
+                    "key": "field_hero_button_bg_color",
+                    "label": "Background Color",
+                    "name": "button_background_color",
+                    "type": "color_picker",
+                    "instructions": "Leave blank to use the default background for the selected type."
+                },
+                {
+                    "key": "field_hero_button_border_color",
+                    "label": "Border Color",
+                    "name": "button_border_color",
+                    "type": "color_picker",
+                    "default_value": "#ffffff"
+                },
+                {
+                    "key": "field_hero_button_text_color",
+                    "label": "Text Color",
+                    "name": "button_text_color",
+                    "type": "color_picker",
+                    "default_value": "#ffffff"
                 }
             ]
         },
@@ -106,6 +145,14 @@
             "label": "Overlay Color",
             "name": "hero_overlay_color",
             "type": "color_picker"
+        },
+        {
+            "key": "field_hero_text_color",
+            "label": "Text Color",
+            "name": "hero_text_color",
+            "type": "color_picker",
+            "default_value": "#ffffff",
+            "instructions": "Controls the heading and description color."
         }
     ],
     "location": [
@@ -125,5 +172,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1762728439
+    "modified": 1762818599
 }

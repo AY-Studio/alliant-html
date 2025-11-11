@@ -278,6 +278,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   background-image: url('../img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg');
   background-size: cover;
   background-position: center;
@@ -293,6 +294,22 @@
     min-height: 570px;
   }
 
+  // Background image layer (for WordPress with dynamic images)
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
   // Dark overlay for better text readability
   &::before {
     content: '';
@@ -302,6 +319,16 @@
     right: 0;
     bottom: 0;
     background-color: $hero-overlay;
+    z-index: 1;
+  }
+
+  // Dynamic overlay (for WordPress with custom overlay color)
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     z-index: 1;
   }
 
@@ -337,15 +364,4 @@
     }
   }
 
-  // CTA button styling
-  .btn-outline-light {
-    border-width: 2px;
-    padding: 0.625rem 1.5rem;
-    font-weight: 500;
-
-    &:hover {
-      background-color: $white;
-      color: $alliant-navy;
-    }
-  }
 }

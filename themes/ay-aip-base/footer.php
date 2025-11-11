@@ -8,7 +8,12 @@
     <div class="diagonal-lines diagonal-lines--footer" aria-hidden="true"></div>
     <div class="container">
         <div class="footer-logo">
-            <?php if ( has_custom_logo() ) : ?>
+            <?php
+            $footer_logo = ay_aip_base_get_footer_logo( get_template_directory_uri() . '/img/alliant-logo-footer.svg' );
+            if ( $footer_logo ) :
+                ?>
+                <img src="<?php echo esc_url( $footer_logo['url'] ); ?>" alt="<?php echo esc_attr( $footer_logo['alt'] ?? get_bloginfo( 'name' ) ); ?>" width="220" height="52">
+            <?php elseif ( has_custom_logo() ) : ?>
                 <?php the_custom_logo(); ?>
             <?php else : ?>
                 <img src="<?php echo esc_url( get_template_directory_uri() . '/img/alliant-logo-footer.svg' ); ?>" alt="<?php esc_attr_e( 'Site logo', 'ay-aip-base' ); ?>" width="220" height="52">
