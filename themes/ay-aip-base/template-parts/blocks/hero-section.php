@@ -27,7 +27,7 @@ if ( ! $overlay_color ) {
 
 // Default opacity if none is provided
 if ( ! $overlay_opacity ) {
-    $overlay_opacity = 70;
+    $overlay_opacity = 30;
 }
 
 // Convert hex color to rgba with opacity

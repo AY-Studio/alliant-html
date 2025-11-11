@@ -878,8 +878,8 @@ function ay_aip_base_about_content() {
 }
 
 function ay_aip_base_news_content() {
-    $html = ay_aip_base_get_demo_html( 'news' );
-    return ay_aip_base_filter_preset_content( $html ? ay_aip_base_wrap_html_block( $html ) : '' );
+    // News page uses home.php template with ACF hero fields, no content needed
+    return '';
 }
 
 function ay_aip_base_contact_content() {
@@ -915,7 +915,7 @@ function ay_aip_base_seed_home_builder( $page_id ) {
             'hero_section_lead'   => 'Alliant AirFinance is an experienced commercial aviation lending platform with deep expertise in the aviation finance sector.',
             'hero_section_background_image' => $hero_bg_image,
             'hero_section_overlay_color' => '#223a69',
-            'hero_section_overlay_opacity' => 70,
+            'hero_section_overlay_opacity' => 30,
             'hero_section_text_color' => '#ffffff',
             'hero_section_button_style_type' => 'outline',
             'cta_link'            => ay_aip_base_make_link_field( '#contact', 'Contact Us' ),
@@ -987,7 +987,7 @@ function ay_aip_base_seed_about_builder( $page_id ) {
             'hero_section_lead'    => 'Alliant AirFinance believes its asset expertise and platform capabilities enable us to provide counterparties bespoke financial solutions across asset types and capital structures.',
             'hero_section_background_image' => $hero_bg_image,
             'hero_section_overlay_color' => '#223a69',
-            'hero_section_overlay_opacity' => 70,
+            'hero_section_overlay_opacity' => 30,
             'hero_section_text_color' => '#ffffff',
             'hero_section_button_style_type' => 'outline',
         ],
@@ -1023,7 +1023,7 @@ function ay_aip_base_seed_contact_builder( $page_id ) {
             'hero_section_lead'    => 'To learn more about our services or discuss how we can support your equipment financing needs, feel free to get in touch with our team today.',
             'hero_section_background_image' => $hero_bg_image,
             'hero_section_overlay_color' => '#223a69',
-            'hero_section_overlay_opacity' => 70,
+            'hero_section_overlay_opacity' => 30,
             'hero_section_text_color' => '#ffffff',
             'hero_section_button_style_type' => 'outline',
         ],
@@ -1076,7 +1076,7 @@ function ay_aip_base_seed_blocks_builder( $page_id ) {
             'hero_section_lead'   => 'Alliant AirFinance is an experienced commercial aviation lending platform with deep expertise in the aviation finance sector.',
             'hero_section_background_image' => $hero_bg_image,
             'hero_section_overlay_color' => '#223a69',
-            'hero_section_overlay_opacity' => 70,
+            'hero_section_overlay_opacity' => 30,
             'hero_section_text_color' => '#ffffff',
             'hero_section_button_style_type' => 'outline',
             'cta_link'            => ay_aip_base_make_link_field( '#contact', 'Contact Us' ),

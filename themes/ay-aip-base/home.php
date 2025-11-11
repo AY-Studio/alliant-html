@@ -27,36 +27,46 @@ if ( ! $overlay_color ) {
     $overlay_color = '#223a69';
 }
 if ( ! $overlay_opacity ) {
-    $overlay_opacity = 70;
+    $overlay_opacity = 30;
 }
 if ( ! $text_color ) {
     $text_color = '#ffffff';
 }
 
-// Get background image URL
-$bg_image_url = '';
+// Prepare background image
+$bg_image = null;
 if ( $background_image && is_array( $background_image ) && ! empty( $background_image['url'] ) ) {
-    $bg_image_url = $background_image['url'];
+    $bg_image = $background_image;
 } else {
-    $bg_image_url = get_template_directory_uri() . '/img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg';
+    $bg_image = [
+        'url' => get_template_directory_uri() . '/img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg',
+        'alt' => $heading,
+    ];
 }
 
 // Convert overlay color to rgba
 if ( function_exists( 'ay_aip_base_hex_to_rgba' ) ) {
     $overlay_rgba = ay_aip_base_hex_to_rgba( $overlay_color, $overlay_opacity / 100 );
 } else {
-    $overlay_rgba = 'rgba(34, 58, 105, 0.7)';
+    $overlay_rgba = 'rgba(34, 58, 105, 0.3)';
 }
+
+$text_attr = $text_color ? ' style="color:' . esc_attr( $text_color ) . ';"' : '';
 
 get_header();
 ?>
-<section class="hero-section position-relative" style="background-image: url('<?php echo esc_url( $bg_image_url ); ?>'); background-size: cover; background-position: center; min-height: 400px; display: flex; align-items: center;">
-    <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: <?php echo esc_attr( $overlay_rgba ); ?>;"></div>
-    <div class="container position-relative" style="z-index: 2;">
+<section class="hero-section" style="background-image: none;">
+    <?php if ( $bg_image && ! empty( $bg_image['url'] ) ) : ?>
+        <div class="hero-background">
+            <img src="<?php echo esc_url( $bg_image['url'] ); ?>" alt="<?php echo esc_attr( $bg_image['alt'] ?: $heading ); ?>">
+        </div>
+    <?php endif; ?>
+    <div class="hero-overlay" style="background: <?php echo esc_attr( $overlay_rgba ); ?>;"></div>
+    <div class="container" style="position: relative; z-index: 2;">
         <div class="row">
             <div class="col-12 text-center">
-                <h1 class="display-4 fw-bold mb-3" style="color: <?php echo esc_attr( $text_color ); ?>;"><?php echo esc_html( $heading ); ?></h1>
-                <p class="lead" style="color: <?php echo esc_attr( $text_color ); ?>; max-width: 800px; margin: 0 auto;"><?php echo esc_html( $subheading ); ?></p>
+                <h1<?php echo $text_attr; ?>><?php echo esc_html( $heading ); ?></h1>
+                <p class="lead"<?php echo $text_attr; ?> style="max-width: 800px; margin: 0 auto;"><?php echo esc_html( $subheading ); ?></p>
             </div>
         </div>
     </div>

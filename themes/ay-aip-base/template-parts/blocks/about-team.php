@@ -1,10 +1,30 @@
 <?php
-$title    = ay_aip_base_get_block_field( 'about_team_title' );
-$subtitle = ay_aip_base_get_block_field( 'about_team_subtitle' );
-$members  = ay_aip_base_get_block_field( 'about_team_members', [] );
+$title            = ay_aip_base_get_block_field( 'about_team_title' );
+$subtitle         = ay_aip_base_get_block_field( 'about_team_subtitle' );
+$members          = ay_aip_base_get_block_field( 'about_team_members', [] );
+$background       = ay_aip_base_get_block_field( 'about_team_background', 'light' );
+$show_pattern     = ay_aip_base_get_block_field( 'about_team_show_pattern', false );
+$pattern_position = ay_aip_base_get_block_field( 'about_team_pattern_position', 'top-right' );
+
+// Determine section class based on background
+$section_class = 'section section-light';
+if ( 'white' === $background ) {
+    $section_class = 'section section-white';
+} elseif ( 'navy' === $background ) {
+    $section_class = 'section group-navy';
+}
+
+// Build pattern class if pattern is enabled
+$pattern_class = '';
+if ( $show_pattern ) {
+    $pattern_class = 'diagonal-lines pattern-' . esc_attr( $pattern_position );
+}
 ?>
-<section class="section section-light py-6">
-    <div class="container">
+<section class="<?php echo esc_attr( $section_class ); ?> py-6 position-relative">
+    <?php if ( $show_pattern ) : ?>
+        <div class="<?php echo esc_attr( $pattern_class ); ?>"></div>
+    <?php endif; ?>
+    <div class="container" style="position: relative; z-index: 2;">
         <?php if ( $title || $subtitle ) : ?>
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-8 text-center mb-4" data-aos="fade">

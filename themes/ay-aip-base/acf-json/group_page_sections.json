@@ -113,11 +113,11 @@
                             "label": "Overlay Opacity",
                             "name": "hero_section_overlay_opacity",
                             "type": "range",
-                            "default_value": 70,
+                            "default_value": 30,
                             "min": 0,
                             "max": 100,
                             "step": 5,
-                            "instructions": "Set the opacity level (0-100%). Default is 70%.",
+                            "instructions": "Set the opacity level (0-100%). Default is 30%.",
                             "wrapper": {
                                 "width": "50"
                             }
@@ -1541,6 +1541,13 @@
                     "display": "block",
                     "sub_fields": [
                         {
+                            "key": "field_about_team_content_tab",
+                            "label": "Content",
+                            "name": "",
+                            "type": "tab",
+                            "placement": "top"
+                        },
+                        {
                             "key": "field_about_team_title",
                             "label": "Section Title",
                             "name": "about_team_title",
@@ -1567,21 +1574,95 @@
                                     "name": "photo",
                                     "type": "image",
                                     "return_format": "array",
-                                    "preview_size": "medium"
+                                    "preview_size": "thumbnail"
                                 },
                                 {
                                     "key": "field_about_team_name",
                                     "label": "Name",
                                     "name": "name",
-                                    "type": "text"
+                                    "type": "text",
+                                    "wrapper": {
+                                        "width": "50"
+                                    }
                                 },
                                 {
                                     "key": "field_about_team_role",
-                                    "label": "Title",
+                                    "label": "Title/Role",
                                     "name": "title",
-                                    "type": "text"
+                                    "type": "text",
+                                    "wrapper": {
+                                        "width": "50"
+                                    }
                                 }
                             ]
+                        },
+                        {
+                            "key": "field_about_team_style_tab",
+                            "label": "Style",
+                            "name": "",
+                            "type": "tab",
+                            "placement": "top"
+                        },
+                        {
+                            "key": "field_about_team_background_group",
+                            "label": "Background & Pattern",
+                            "name": "",
+                            "type": "message",
+                            "message": "",
+                            "new_lines": "",
+                            "esc_html": 0
+                        },
+                        {
+                            "key": "field_about_team_background",
+                            "label": "Background Color",
+                            "name": "about_team_background",
+                            "type": "select",
+                            "choices": {
+                                "white": "White",
+                                "light": "Light Grey",
+                                "navy": "Navy"
+                            },
+                            "default_value": "light",
+                            "wrapper": {
+                                "width": "50"
+                            }
+                        },
+                        {
+                            "key": "field_about_team_show_pattern",
+                            "label": "Show Diagonal Pattern",
+                            "name": "about_team_show_pattern",
+                            "type": "true_false",
+                            "ui": 1,
+                            "default_value": 0,
+                            "instructions": "Toggle the decorative diagonal lines pattern.",
+                            "wrapper": {
+                                "width": "50"
+                            }
+                        },
+                        {
+                            "key": "field_about_team_pattern_position",
+                            "label": "Pattern Position",
+                            "name": "about_team_pattern_position",
+                            "type": "select",
+                            "choices": {
+                                "top-right": "Top Right",
+                                "top-left": "Top Left",
+                                "bottom-right": "Bottom Right",
+                                "bottom-left": "Bottom Left"
+                            },
+                            "default_value": "top-right",
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_about_team_show_pattern",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50"
+                            }
                         }
                     ]
                 },
@@ -1693,5 +1774,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1762818599
+    "modified": 1762858762
 }

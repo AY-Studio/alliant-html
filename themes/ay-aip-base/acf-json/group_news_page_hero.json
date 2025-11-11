@@ -41,11 +41,11 @@
             "label": "Overlay Opacity",
             "name": "news_hero_overlay_opacity",
             "type": "range",
-            "default_value": 70,
+            "default_value": 30,
             "min": 0,
             "max": 100,
             "step": 5,
-            "instructions": "Set the opacity level (0-100%). Default is 70%.",
+            "instructions": "Set the opacity level (0-100%). Default is 30%.",
             "wrapper": {
                 "width": "50"
             }
@@ -76,5 +76,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "Configure the hero section for the News & Insights page.",
-    "modified": 1762818599
+    "modified": 1762854851
 }
