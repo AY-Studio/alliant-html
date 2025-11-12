@@ -13058,13 +13058,14 @@ textarea.form-control-lg {
 }
 
 .footer {
-  background-color: #ffffff;
+  background-color: var(--ay-footer-background, #ffffff);
   padding: 3rem 0 2rem;
   text-align: center;
-  border-top: 5px solid #A8D8E6;
+  border-top: 5px solid var(--ay-footer-border, #A8D8E6);
   box-shadow: 0 -12px 24px rgba(34, 58, 105, 0.08);
   position: relative;
   overflow: hidden;
+  color: var(--ay-footer-text-color, #6c757d);
 }
 .footer .footer-logo {
   margin-bottom: 6rem;
@@ -13086,7 +13087,7 @@ textarea.form-control-lg {
   margin: 0;
 }
 .footer .footer-nav a {
-  color: #223a69;
+  color: var(--ay-footer-nav-color, #223a69);
   text-decoration: none;
   font-weight: 600;
   position: relative;
@@ -13110,14 +13111,14 @@ textarea.form-control-lg {
   opacity: 0.85;
 }
 .footer .footer-nav a:hover {
-  color: #5a7ba6;
+  color: var(--ay-footer-nav-hover, #5a7ba6);
 }
 .footer .footer-nav a:hover::after {
   transform: scaleX(1);
 }
 .footer .footer-copyright {
   font-size: 0.875rem;
-  color: #6c757d;
+  color: var(--ay-footer-text-color, #6c757d);
   margin: 0;
 }
 .footer .diagonal-lines {
@@ -14488,7 +14489,7 @@ textarea.form-control-lg {
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #223a69;
+  color: var(--ay-color-heading);
 }
 .product-offerings.group-navy .card-title {
   color: #ffffff;

@@ -147,6 +147,132 @@
             }
         },
         {
+            "key": "field_theme_footer_tab",
+            "label": "Footer",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_theme_footer_colors_message",
+            "label": "Footer Colors",
+            "name": "",
+            "type": "message",
+            "message": "Customize the footer appearance and styling.",
+            "wrapper": {
+                "width": "100"
+            }
+        },
+        {
+            "key": "field_theme_footer_background",
+            "label": "Footer Background Color",
+            "name": "theme_footer_background",
+            "type": "color_picker",
+            "default_value": "#ffffff",
+            "instructions": "Background color for the entire footer.",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_theme_footer_border_color",
+            "label": "Footer Border Top Color",
+            "name": "theme_footer_border_color",
+            "type": "color_picker",
+            "default_value": "#A8D8E6",
+            "instructions": "Color of the top border line.",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_theme_footer_nav_color",
+            "label": "Footer Nav Link Color",
+            "name": "theme_footer_nav_color",
+            "type": "color_picker",
+            "default_value": "#223a69",
+            "instructions": "Default color for footer navigation links.",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_theme_footer_nav_hover_color",
+            "label": "Footer Nav Hover Color",
+            "name": "theme_footer_nav_hover_color",
+            "type": "color_picker",
+            "default_value": "#4a7dff",
+            "instructions": "Hover color for footer navigation links.",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_theme_footer_text_color",
+            "label": "Footer Text Color",
+            "name": "theme_footer_text_color",
+            "type": "color_picker",
+            "default_value": "#6b7280",
+            "instructions": "Color for footer copyright and general text.",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_theme_footer_image_message",
+            "label": "Footer Decorative Image",
+            "name": "",
+            "type": "message",
+            "message": "Upload an optional background image or pattern (typically an angled corner design).",
+            "wrapper": {
+                "width": "100"
+            }
+        },
+        {
+            "key": "field_theme_footer_background_image",
+            "label": "Footer Background Image",
+            "name": "theme_footer_background_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "instructions": "Optional decorative image (e.g., diagonal lines pattern).",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_theme_footer_image_position",
+            "label": "Image Position",
+            "name": "theme_footer_image_position",
+            "type": "select",
+            "choices": {
+                "top-left": "Top Left",
+                "top-right": "Top Right",
+                "bottom-left": "Bottom Left",
+                "bottom-right": "Bottom Right"
+            },
+            "default_value": "top-right",
+            "instructions": "Position of the background image.",
+            "wrapper": {
+                "width": "25"
+            }
+        },
+        {
+            "key": "field_theme_footer_image_opacity",
+            "label": "Image Opacity (%)",
+            "name": "theme_footer_image_opacity",
+            "type": "number",
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "default_value": 15,
+            "instructions": "0-100",
+            "wrapper": {
+                "width": "25"
+            }
+        },
+        {
             "key": "field_theme_fonts_tab",
             "label": "Fonts",
             "name": "",
@@ -460,5 +586,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1762818599
+    "modified": 1762900021
 }

@@ -4,8 +4,32 @@
  */
 ?>
 </main>
-<footer class="footer">
-    <div class="diagonal-lines diagonal-lines--footer" aria-hidden="true"></div>
+<footer class="footer"<?php
+$footer_bg_image = ay_aip_base_get_footer_background_image();
+if ( ! empty( $footer_bg_image ) && isset( $footer_bg_image['url'] ) ) {
+    $position = ay_aip_base_get_footer_image_position();
+    $opacity  = ay_aip_base_get_footer_image_opacity();
+
+    // Map position to CSS values
+    $position_map = [
+        'top-left'     => 'top left',
+        'top-right'    => 'top right',
+        'bottom-left'  => 'bottom left',
+        'bottom-right' => 'bottom right',
+    ];
+    $css_position = isset( $position_map[ $position ] ) ? $position_map[ $position ] : 'top right';
+
+    printf(
+        ' style="background-image: url(%s); background-position: %s; background-repeat: no-repeat; background-size: clamp(200px, 36vw, 420px) auto; --footer-bg-opacity: %s;"',
+        esc_url( $footer_bg_image['url'] ),
+        esc_attr( $css_position ),
+        esc_attr( $opacity )
+    );
+}
+?>>
+    <?php if ( empty( $footer_bg_image ) || ! isset( $footer_bg_image['url'] ) ) : ?>
+        <div class="diagonal-lines diagonal-lines--footer" aria-hidden="true"></div>
+    <?php endif; ?>
     <div class="container">
         <div class="footer-logo">
             <?php
@@ -32,7 +56,7 @@
             echo '<ul class="footer-nav"><li class="footer-nav__item"><a class="footer-nav__link" href="' . esc_url( admin_url( 'nav-menus.php' ) ) . '">' . esc_html__( 'Assign footer menu', 'ay-aip-base' ) . '</a></li></ul>';
         }
         ?>
-        <p class="footer-copy">&copy; <?php echo esc_html( date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>. <?php esc_html_e( 'All rights reserved.', 'ay-aip-base' ); ?></p>
+        <p class="footer-copyright">&copy; <?php echo esc_html( date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>. <?php esc_html_e( 'All rights reserved.', 'ay-aip-base' ); ?></p>
     </div>
 </footer>
 <?php wp_footer(); ?>

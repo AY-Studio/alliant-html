@@ -252,6 +252,8 @@ function ay_aip_base_apply_default_section_overrides( $sections ) {
                 if ( empty( $section['hero_section_button_style_type'] ) ) {
                     $section['hero_section_button_style_type'] = 'outline';
                 }
+                // Set overlay color to black for default preset
+                $section['hero_section_overlay_color'] = '#000000';
                 break;
             case 'value_cards':
                 $section['value_cards_title']     = __( 'Our Core Values', 'ay-aip-base' );
@@ -331,7 +333,7 @@ function ay_aip_base_apply_theme_color_defaults( $preset ) {
             'primary'        => '#000000',
             'accent'         => '#f5a623',
             'nav'            => '#000000',
-            'heading'        => '#222222',
+            'heading'        => '#000000',
             'body'           => '#4b4b4b',
             'card_bg'        => '#ffffff',
             'card_text'      => '#000000',

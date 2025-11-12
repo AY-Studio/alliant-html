@@ -2,13 +2,14 @@
 // Simple footer with logo, navigation links, and copyright
 
 .footer {
-  background-color: $white;
+  background-color: var(--ay-footer-background, $white);
   padding: 3rem 0 2rem;
   text-align: center;
-  border-top: 5px solid #A8D8E6;
+  border-top: 5px solid var(--ay-footer-border, #A8D8E6);
   box-shadow: 0 -12px 24px rgba(34, 58, 105, 0.08);
   position: relative;
   overflow: hidden;
+  color: var(--ay-footer-text-color, $text-muted);
 
   // Footer logo
   .footer-logo {
@@ -35,7 +36,7 @@
     }
 
     a {
-      color: $alliant-navy;
+      color: var(--ay-footer-nav-color, $alliant-navy);
       text-decoration: none;
       font-weight: 600;
       position: relative;
@@ -60,7 +61,7 @@
       }
 
       &:hover {
-        color: $secondary;
+        color: var(--ay-footer-nav-hover, $secondary);
 
         &::after {
           transform: scaleX(1);
@@ -72,7 +73,7 @@
   // Copyright text
   .footer-copyright {
     font-size: 0.875rem;
-    color: $text-muted;
+    color: var(--ay-footer-text-color, $text-muted);
     margin: 0;
   }
 

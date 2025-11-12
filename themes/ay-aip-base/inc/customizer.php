@@ -107,6 +107,11 @@ function ay_aip_base_print_theme_tokens() {
     $card_text       = ay_aip_base_get_card_text_color();
     $news_card_background = ay_aip_base_get_news_card_background_color();
     $news_card_text       = ay_aip_base_get_news_card_text_color();
+    $footer_background    = ay_aip_base_get_footer_background_color();
+    $footer_border        = ay_aip_base_get_footer_border_color();
+    $footer_nav_color     = ay_aip_base_get_footer_nav_color();
+    $footer_nav_hover     = ay_aip_base_get_footer_nav_hover_color();
+    $footer_text_color    = ay_aip_base_get_footer_text_color();
     $body_rgb       = ay_aip_base_hex_to_rgb_components( $body_color, '34, 58, 105' );
     $accent_rgb     = ay_aip_base_hex_to_rgb_components( $accent_color, '74, 125, 255' );
     $primary_rgb    = ay_aip_base_hex_to_rgb_components( $primary_color, '34, 58, 105' );
@@ -122,6 +127,11 @@ function ay_aip_base_print_theme_tokens() {
         '--ay-news-card-background'  => $news_card_background,
         '--ay-news-card-text'        => $news_card_text,
         '--ay-nav-background'        => $nav_background,
+        '--ay-footer-background'     => $footer_background,
+        '--ay-footer-border'         => $footer_border,
+        '--ay-footer-nav-color'      => $footer_nav_color,
+        '--ay-footer-nav-hover'      => $footer_nav_hover,
+        '--ay-footer-text-color'     => $footer_text_color,
         '--bs-body-color'            => $body_color,
         '--bs-body-color-rgb'        => $body_rgb,
         '--bs-heading-color'         => $heading_color,
@@ -185,7 +195,6 @@ function ay_aip_base_print_theme_tokens() {
 
     $color_rules = [];
     $color_rules[] = 'body{color:var(--ay-color-body);}';
-    $color_rules[] = '.footer, .footer-nav__link{color:var(--ay-color-body);}';
     $color_rules[] = 'h1,h2,h3,h4,h5,h6,.section-title{color:var(--ay-color-heading);}';
     $color_rules[] = '.value-card,.value-card .card-overlay{background-color:var(--ay-card-background);color:var(--ay-card-text);}';
     $color_rules[] = '.value-card .card-title,.value-card .card-text{color:var(--ay-card-text);}';
@@ -195,6 +204,10 @@ function ay_aip_base_print_theme_tokens() {
     $color_rules[] = '.btn-outline-primary{border-color:var(--ay-color-primary);color:var(--ay-color-primary);}';
     $color_rules[] = '.btn-outline-primary:hover{background-color:var(--ay-color-primary);border-color:var(--ay-color-primary);color:#fff;}';
     $color_rules[] = '.link, a{color:var(--ay-color-accent);}';
+    $color_rules[] = '.footer{background-color:var(--ay-footer-background);border-top-color:var(--ay-footer-border);color:var(--ay-footer-text-color);}';
+    $color_rules[] = '.footer .footer-nav a,.footer-nav__link{color:var(--ay-footer-nav-color);}';
+    $color_rules[] = '.footer .footer-nav a:hover,.footer-nav__link:hover{color:var(--ay-footer-nav-hover);}';
+    $color_rules[] = '.footer .footer-copyright,.footer .footer-copy{color:var(--ay-footer-text-color);}';
 
     echo "<style id='ay-aip-base-font-overrides'>" . implode( '', $font_rules ) . '</style>';
     echo "<style id='ay-aip-base-nav-style'>.navbar{background-color:var(--ay-nav-background);}html.is-animating{background-color:var(--ay-nav-background);}</style>";

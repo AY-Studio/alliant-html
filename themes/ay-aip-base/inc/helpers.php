@@ -479,7 +479,7 @@ function ay_aip_base_get_accent_color_default() {
 }
 
 function ay_aip_base_get_heading_color_default() {
-    return ay_aip_base_is_default_preset() ? '#222222' : '#1f3a63';
+    return ay_aip_base_is_default_preset() ? '#000000' : '#1f3a63';
 }
 
 function ay_aip_base_get_body_color_default() {
@@ -653,4 +653,37 @@ function ay_aip_base_get_google_fonts_api_key() {
         return $option_value;
     }
     return 'AIzaSyAUaND6Jsu_ABtWFHeZ4rh4u8kZO3VbBVc';
+}
+
+function ay_aip_base_get_footer_background_color() {
+    return ay_aip_base_get_theme_option_value( 'theme_footer_background', '#ffffff' );
+}
+
+function ay_aip_base_get_footer_border_color() {
+    return ay_aip_base_get_theme_option_value( 'theme_footer_border_color', '#A8D8E6' );
+}
+
+function ay_aip_base_get_footer_nav_color() {
+    return ay_aip_base_get_theme_option_value( 'theme_footer_nav_color', '#223a69' );
+}
+
+function ay_aip_base_get_footer_nav_hover_color() {
+    return ay_aip_base_get_theme_option_value( 'theme_footer_nav_hover_color', '#4a7dff' );
+}
+
+function ay_aip_base_get_footer_text_color() {
+    return ay_aip_base_get_theme_option_value( 'theme_footer_text_color', '#6b7280' );
+}
+
+function ay_aip_base_get_footer_background_image() {
+    return ay_aip_base_get_theme_option_value( 'theme_footer_background_image', [] );
+}
+
+function ay_aip_base_get_footer_image_position() {
+    return ay_aip_base_get_theme_option_value( 'theme_footer_image_position', 'top-right' );
+}
+
+function ay_aip_base_get_footer_image_opacity() {
+    $opacity = ay_aip_base_get_theme_option_value( 'theme_footer_image_opacity', 15 );
+    return absint( $opacity ) / 100; // Convert to 0-1 range
 }
