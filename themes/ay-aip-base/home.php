@@ -39,7 +39,7 @@ if ( $background_image && is_array( $background_image ) && ! empty( $background_
     $bg_image = $background_image;
 } else {
     $bg_image = [
-        'url' => get_template_directory_uri() . '/img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg',
+        'url' => get_template_directory_uri() . '/img/alliant-mission-hero.jpg',
         'alt' => $heading,
     ];
 }
@@ -87,7 +87,7 @@ get_header();
                         }
                     }
                     if ( ! $thumb_url ) {
-                        $thumb_url = esc_url( get_template_directory_uri() . '/img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg' );
+                        $thumb_url = esc_url( get_template_directory_uri() . '/img/alliant-mission-hero.jpg' );
                     }
                     $date_display = strtoupper( get_the_date( 'F j, Y' ) );
                     ?>

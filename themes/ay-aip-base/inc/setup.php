@@ -58,7 +58,7 @@ function ay_aip_base_flush_rewrite() {
 
 add_action( 'wp_head', 'ay_aip_base_inline_backgrounds', 30 );
 function ay_aip_base_inline_backgrounds() {
-    $hero_bg = esc_url( get_template_directory_uri() . '/img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg' );
+    $hero_bg = esc_url( get_template_directory_uri() . '/img/alliant-mission-hero.jpg' );
     echo '<style class="ay-hero-inline">.hero-section{background-image:url(' . $hero_bg . ');}';
     echo '.admin-bar .navbar{top:32px;}@media (max-width:782px){.admin-bar .navbar{top:46px;}}';
     echo '</style>';

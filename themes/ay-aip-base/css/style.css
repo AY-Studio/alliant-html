@@ -12136,9 +12136,9 @@ textarea.form-control-lg {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-image: url("../img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg");
+  background-image: url("../img/alliant-mission-hero.jpg");
   background-size: cover;
-  background-position: center;
+  background-position: top center;
   background-repeat: no-repeat;
   color: #ffffff;
   text-align: center;
@@ -12165,6 +12165,7 @@ textarea.form-control-lg {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top center;
 }
 .hero-section::before {
   content: "";
@@ -12429,7 +12430,7 @@ textarea.form-control-lg {
 }
 
 .team-hero {
-  background-image: url("../img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg");
+  background-image: url("../img/alliant-mission-hero.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -14803,3 +14804,208 @@ html.is-animating {
 }
 
 /*# sourceMappingURL=style.css.map */
+/* ===================================
+   Product Offerings & Asset Types Component
+   =================================== */
+.offerings-assets-split-section {
+    background-color: #FFFFFF;
+}
+
+.offerings-assets-split-section__column {
+    padding: 160px 40px;
+    position: relative;
+}
+
+.offerings-assets-split-section__column--products {
+    background-color: #223a69;
+}
+
+.offerings-assets-split-section__column--assets {
+    background-color: #F0F4F8;
+}
+
+.offerings-assets-split-section__content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.offerings-assets-split-section__title {
+    font-family: Mulish, sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 1.3;
+    color: #1A2332;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.offerings-assets-split-section__column--products .offerings-assets-split-section__title {
+    color: #FFFFFF;
+}
+
+.offerings-assets-split-section__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.offering-compact-card,
+.asset-compact-card {
+    flex: 0 0 calc(33.333% - 20px);
+    max-width: 250px;
+    min-height: 160px;
+}
+
+@media (max-width: 1400px) {
+    .offering-compact-card,
+    .asset-compact-card {
+        flex: 0 0 calc(50% - 15px);
+    }
+
+    .offerings-assets-split-section__content {
+        max-width: 700px;
+    }
+}
+
+.offering-compact-card {
+    text-align: center;
+    padding: 30px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.offering-compact-card__icon {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80px;
+}
+
+.offering-compact-card__icon img {
+    width: 80px;
+    height: auto;
+}
+
+.offering-compact-card__title {
+    font-family: Mulish, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 1.4;
+    color: #FFFFFF;
+    margin-bottom: 0;
+    min-height: 52px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+}
+
+.asset-compact-card {
+    text-align: center;
+    padding: 30px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.asset-compact-card__icon {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80px;
+}
+
+.asset-compact-card__icon img {
+    width: 80px;
+    height: auto;
+}
+
+.asset-compact-card__title {
+    font-family: Mulish, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 1.4;
+    color: #364153;
+    margin-bottom: 0;
+    min-height: 52px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+}
+
+@media (max-width: 991px) {
+    .offerings-assets-split-section__column {
+        padding: 100px 30px 90px;
+    }
+
+    .offerings-assets-split-section__title {
+        font-size: 28px;
+    }
+
+    .offerings-assets-split-section__grid {
+        gap: 20px;
+    }
+
+    .offering-compact-card,
+    .asset-compact-card {
+        flex: 0 0 calc(50% - 10px);
+        padding: 20px 10px;
+    }
+
+    .offering-compact-card__title,
+    .asset-compact-card__title {
+        font-size: 16px;
+        min-height: 46px;
+    }
+}
+
+@media (max-width: 767px) {
+    .offerings-assets-split-section__column {
+        padding: 80px 20px 70px;
+    }
+
+    .offerings-assets-split-section__content {
+        max-width: 100%;
+    }
+
+    .offerings-assets-split-section__title {
+        font-size: 24px;
+        margin-bottom: 1.5rem;
+    }
+
+    .offerings-assets-split-section__grid {
+        gap: 15px;
+    }
+
+    .offering-compact-card,
+    .asset-compact-card {
+        flex: 0 0 calc(50% - 7.5px);
+    }
+
+    .offering-compact-card__icon,
+    .asset-compact-card__icon {
+        min-height: 60px;
+    }
+
+    .offering-compact-card__icon img,
+    .asset-compact-card__icon img {
+        width: 60px;
+    }
+
+    .offering-compact-card__title,
+    .asset-compact-card__title {
+        font-size: 14px;
+        min-height: 42px;
+    }
+}

@@ -32,7 +32,7 @@ if ( $overlay_color ) {
 
 if ( ! $bg_image ) {
     $bg_image = [
-        'url' => get_template_directory_uri() . '/img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg',
+        'url' => get_template_directory_uri() . '/img/alliant-mission-hero.jpg',
         'alt' => $title ?: __( 'Hero background', 'ay-aip-base' ),
     ];
 }

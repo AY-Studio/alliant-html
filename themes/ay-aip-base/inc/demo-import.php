@@ -908,7 +908,7 @@ function ay_aip_base_seed_home_builder( $page_id ) {
 
     $value_images  = ay_aip_base_get_demo_value_card_images();
     $product_icons = ay_aip_base_get_demo_product_icons();
-    $hero_bg_image = ay_aip_base_import_demo_image( 'img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg', 'Hero Background' );
+    $hero_bg_image = ay_aip_base_import_demo_image( 'img/alliant-mission-hero.jpg', 'Hero Background' );
 
     $sections = [
         [
@@ -980,7 +980,7 @@ function ay_aip_base_seed_about_builder( $page_id ) {
     }
 
     $person_image  = ay_aip_base_import_demo_image( 'img/person.jpg', 'Team Member' );
-    $hero_bg_image = ay_aip_base_import_demo_image( 'img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg', 'Hero Background' );
+    $hero_bg_image = ay_aip_base_import_demo_image( 'img/alliant-mission-hero.jpg', 'Hero Background' );
 
     $sections = [
         [
@@ -1016,7 +1016,7 @@ function ay_aip_base_seed_contact_builder( $page_id ) {
         return;
     }
 
-    $hero_bg_image = ay_aip_base_import_demo_image( 'img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg', 'Hero Background' );
+    $hero_bg_image = ay_aip_base_import_demo_image( 'img/alliant-mission-hero.jpg', 'Hero Background' );
 
     $sections = [
         [
@@ -1048,7 +1048,7 @@ function ay_aip_base_seed_blocks_builder( $page_id ) {
 
     $value_images  = ay_aip_base_get_demo_value_card_images();
     $product_icons = ay_aip_base_get_demo_product_icons();
-    $hero_bg_image = ay_aip_base_import_demo_image( 'img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg', 'Hero Background' );
+    $hero_bg_image = ay_aip_base_import_demo_image( 'img/alliant-mission-hero.jpg', 'Hero Background' );
 
     $sections = [
         [

@@ -12136,9 +12136,9 @@ textarea.form-control-lg {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-image: url("../img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg");
+  background-image: url("../img/alliant-mission-hero.jpg");
   background-size: cover;
-  background-position: center;
+  background-position: top center;
   background-repeat: no-repeat;
   color: #ffffff;
   text-align: center;
@@ -12165,6 +12165,7 @@ textarea.form-control-lg {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top center;
 }
 .hero-section::before {
   content: "";
@@ -12429,7 +12430,7 @@ textarea.form-control-lg {
 }
 
 .team-hero {
-  background-image: url("../img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg");
+  background-image: url("../img/alliant-mission-hero.jpg");
   background-size: cover;
   background-position: center;
 }

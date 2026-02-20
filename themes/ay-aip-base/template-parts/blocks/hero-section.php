@@ -15,7 +15,7 @@ $text_attr   = $text_color ? ' style="color:' . esc_attr( $text_color ) . ';"' :
 // Default background image if none is provided
 if ( ! $bg_image ) {
     $bg_image = [
-        'url' => get_template_directory_uri() . '/img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg',
+        'url' => get_template_directory_uri() . '/img/alliant-mission-hero.jpg',
         'alt' => $heading ?: __( 'Hero background', 'ay-aip-base' ),
     ];
 }

@@ -10,7 +10,7 @@ $image_alt    = ay_aip_base_get_block_field( 'media_content_image_alt' );
 
 if ( ! $image ) {
     $image = [
-        'url' => ay_aip_base_get_theme_asset_url( 'img/passenger-air-vehicle-parked-on-the-airport-apron-2024-10-18-09-02-37-utc-scaled.jpg' ),
+        'url' => ay_aip_base_get_theme_asset_url( 'img/alliant-mission-hero.jpg' ),
         'alt' => $image_alt ?: $title,
     ];
 }
