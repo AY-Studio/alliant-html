@@ -1,0 +1,58 @@
+}
+
+.offerings-assets-split-section__grid {
+    gap: 20px;
+}
+
+.offering-compact-card,
+.asset-compact-card {
+    flex: 0 0 calc(50% - 10px);
+    padding: 20px 10px;
+}
+
+.offering-compact-card__title,
+.asset-compact-card__title {
+    font-size: 16px;
+    min-height: 46px;
+}
+}
+
+@media (max-width: 767px) {
+    .offerings-assets-split-section__column {
+        padding: 80px 20px 70px;
+    }
+
+    .offerings-assets-split-section__content {
+        max-width: 100%;
+    }
+
+    .offerings-assets-split-section__title {
+        font-size: 24px;
+        margin-bottom: 1.5rem;
+    }
+
+    .offerings-assets-split-section__grid {
+        gap: 15px;
+    }
+
+    .offering-compact-card,
+    .asset-compact-card {
+        flex: 0 0 calc(50% - 7.5px);
+    }
+
+    .offering-compact-card__icon,
+    .asset-compact-card__icon {
+        min-height: 60px;
+    }
+
+    .offering-compact-card__icon img,
+    .asset-compact-card__icon img {
+        width: 60px;
+    }
+
+    .offering-compact-card__title,
+    .asset-compact-card__title {
+        font-size: 14px;
+        min-height: 42px;
+    }
+}
